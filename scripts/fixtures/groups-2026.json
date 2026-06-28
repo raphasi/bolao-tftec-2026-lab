@@ -1,0 +1,120 @@
+{
+  "_meta": {
+    "source": "FIFA Final Draw, Las Vegas, 2025-12-05",
+    "verified": "Wikipedia 2026 FIFA World Cup Group A-L pages, fetched 2026-05-11",
+    "season": 2026,
+    "totalGroups": 12,
+    "totalTeams": 48,
+    "story": "S2.1 — Dataset oficial FIFA Copa 2026"
+  },
+  "groups": [
+    {
+      "code": "A",
+      "teams": [
+        { "iso": "mx", "name": "México" },
+        { "iso": "za", "name": "África do Sul" },
+        { "iso": "kr", "name": "Coreia do Sul" },
+        { "iso": "cz", "name": "República Tcheca" }
+      ]
+    },
+    {
+      "code": "B",
+      "teams": [
+        { "iso": "ca", "name": "Canadá" },
+        { "iso": "ba", "name": "Bósnia e Herzegovina" },
+        { "iso": "qa", "name": "Catar" },
+        { "iso": "ch", "name": "Suíça" }
+      ]
+    },
+    {
+      "code": "C",
+      "teams": [
+        { "iso": "br", "name": "Brasil" },
+        { "iso": "ma", "name": "Marrocos" },
+        { "iso": "ht", "name": "Haiti" },
+        { "iso": "gb-sct", "name": "Escócia" }
+      ]
+    },
+    {
+      "code": "D",
+      "teams": [
+        { "iso": "us", "name": "Estados Unidos" },
+        { "iso": "py", "name": "Paraguai" },
+        { "iso": "au", "name": "Austrália" },
+        { "iso": "tr", "name": "Turquia" }
+      ]
+    },
+    {
+      "code": "E",
+      "teams": [
+        { "iso": "de", "name": "Alemanha" },
+        { "iso": "cw", "name": "Curaçao" },
+        { "iso": "ci", "name": "Costa do Marfim" },
+        { "iso": "ec", "name": "Equador" }
+      ]
+    },
+    {
+      "code": "F",
+      "teams": [
+        { "iso": "nl", "name": "Países Baixos" },
+        { "iso": "jp", "name": "Japão" },
+        { "iso": "se", "name": "Suécia" },
+        { "iso": "tn", "name": "Tunísia" }
+      ]
+    },
+    {
+      "code": "G",
+      "teams": [
+        { "iso": "be", "name": "Bélgica" },
+        { "iso": "eg", "name": "Egito" },
+        { "iso": "ir", "name": "Irã" },
+        { "iso": "nz", "name": "Nova Zelândia" }
+      ]
+    },
+    {
+      "code": "H",
+      "teams": [
+        { "iso": "es", "name": "Espanha" },
+        { "iso": "cv", "name": "Cabo Verde" },
+        { "iso": "sa", "name": "Arábia Saudita" },
+        { "iso": "uy", "name": "Uruguai" }
+      ]
+    },
+    {
+      "code": "I",
+      "teams": [
+        { "iso": "fr", "name": "França" },
+        { "iso": "sn", "name": "Senegal" },
+        { "iso": "iq", "name": "Iraque" },
+        { "iso": "no", "name": "Noruega" }
+      ]
+    },
+    {
+      "code": "J",
+      "teams": [
+        { "iso": "ar", "name": "Argentina" },
+        { "iso": "dz", "name": "Argélia" },
+        { "iso": "at", "name": "Áustria" },
+        { "iso": "jo", "name": "Jordânia" }
+      ]
+    },
+    {
+      "code": "K",
+      "teams": [
+        { "iso": "pt", "name": "Portugal" },
+        { "iso": "cd", "name": "RD Congo" },
+        { "iso": "uz", "name": "Uzbequistão" },
+        { "iso": "co", "name": "Colômbia" }
+      ]
+    },
+    {
+      "code": "L",
+      "teams": [
+        { "iso": "gb-eng", "name": "Inglaterra" },
+        { "iso": "hr", "name": "Croácia" },
+        { "iso": "gh", "name": "Gana" },
+        { "iso": "pa", "name": "Panamá" }
+      ]
+    }
+  ]
+}

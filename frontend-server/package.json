@@ -1,0 +1,13 @@
+{
+  "name": "fifa2026-bolao-frontend-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Micro-servidor Express que serve o SPA do Bolão (S6.2/ADR-020). Empacotado com dist/ via Run-From-Package.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

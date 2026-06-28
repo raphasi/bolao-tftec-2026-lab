@@ -1,0 +1,5290 @@
+{
+  "_meta": {
+    "source": "Wikipedia 2026 FIFA World Cup squads + corroboração ESPN/NBC/FIFA",
+    "verified": true,
+    "generatedAt": "2026-06-07",
+    "season": 2026,
+    "totalNations": 48,
+    "totalPlayers": 1247,
+    "verifiedBy": "dono (Raphael), 2026-06-07",
+    "note": "Canadá com 25 (26º pendente — Marcelo Flores lesionado 31/05; carregar via reseed quando anunciado)"
+  },
+  "nations": [
+    {
+      "iso": "mx",
+      "name": "México",
+      "players": [
+        {
+          "id": "mx-raul-rangel",
+          "name": "Raúl Rangel"
+        },
+        {
+          "id": "mx-jorge-sanchez",
+          "name": "Jorge Sánchez"
+        },
+        {
+          "id": "mx-cesar-montes",
+          "name": "César Montes"
+        },
+        {
+          "id": "mx-edson-alvarez",
+          "name": "Edson Álvarez"
+        },
+        {
+          "id": "mx-johan-vasquez",
+          "name": "Johan Vásquez"
+        },
+        {
+          "id": "mx-erik-lira",
+          "name": "Érik Lira"
+        },
+        {
+          "id": "mx-luis-romo",
+          "name": "Luis Romo"
+        },
+        {
+          "id": "mx-alvaro-fidalgo",
+          "name": "Álvaro Fidalgo"
+        },
+        {
+          "id": "mx-raul-jimenez",
+          "name": "Raúl Jiménez"
+        },
+        {
+          "id": "mx-alexis-vega",
+          "name": "Alexis Vega"
+        },
+        {
+          "id": "mx-santiago-gimenez",
+          "name": "Santiago Giménez"
+        },
+        {
+          "id": "mx-carlos-acevedo",
+          "name": "Carlos Acevedo"
+        },
+        {
+          "id": "mx-guillermo-ochoa",
+          "name": "Guillermo Ochoa"
+        },
+        {
+          "id": "mx-armando-gonzalez",
+          "name": "Armando González"
+        },
+        {
+          "id": "mx-israel-reyes",
+          "name": "Israel Reyes"
+        },
+        {
+          "id": "mx-julian-quinones",
+          "name": "Julián Quiñones"
+        },
+        {
+          "id": "mx-orbelin-pineda",
+          "name": "Orbelín Pineda"
+        },
+        {
+          "id": "mx-obed-vargas",
+          "name": "Obed Vargas"
+        },
+        {
+          "id": "mx-gilberto-mora",
+          "name": "Gilberto Mora"
+        },
+        {
+          "id": "mx-mateo-chavez",
+          "name": "Mateo Chávez"
+        },
+        {
+          "id": "mx-cesar-huerta",
+          "name": "César Huerta"
+        },
+        {
+          "id": "mx-guillermo-martinez",
+          "name": "Guillermo Martínez"
+        },
+        {
+          "id": "mx-jesus-gallardo",
+          "name": "Jesús Gallardo"
+        },
+        {
+          "id": "mx-luis-chavez",
+          "name": "Luis Chávez"
+        },
+        {
+          "id": "mx-roberto-alvarado",
+          "name": "Roberto Alvarado"
+        },
+        {
+          "id": "mx-brian-gutierrez",
+          "name": "Brian Gutiérrez"
+        }
+      ]
+    },
+    {
+      "iso": "za",
+      "name": "África do Sul",
+      "players": [
+        {
+          "id": "za-ronwen-williams",
+          "name": "Ronwen Williams"
+        },
+        {
+          "id": "za-thabang-matuludi",
+          "name": "Thabang Matuludi"
+        },
+        {
+          "id": "za-khulumani-ndamane",
+          "name": "Khulumani Ndamane"
+        },
+        {
+          "id": "za-teboho-mokoena",
+          "name": "Teboho Mokoena"
+        },
+        {
+          "id": "za-thalente-mbatha",
+          "name": "Thalente Mbatha"
+        },
+        {
+          "id": "za-aubrey-modiba",
+          "name": "Aubrey Modiba"
+        },
+        {
+          "id": "za-oswin-appollis",
+          "name": "Oswin Appollis"
+        },
+        {
+          "id": "za-tshepang-moremi",
+          "name": "Tshepang Moremi"
+        },
+        {
+          "id": "za-lyle-foster",
+          "name": "Lyle Foster"
+        },
+        {
+          "id": "za-relebohile-mofokeng",
+          "name": "Relebohile Mofokeng"
+        },
+        {
+          "id": "za-themba-zwane",
+          "name": "Themba Zwane"
+        },
+        {
+          "id": "za-thapelo-maseko",
+          "name": "Thapelo Maseko"
+        },
+        {
+          "id": "za-sphephelo-sithole",
+          "name": "Sphephelo Sithole"
+        },
+        {
+          "id": "za-mbekezeli-mbokazi",
+          "name": "Mbekezeli Mbokazi"
+        },
+        {
+          "id": "za-iqraam-rayners",
+          "name": "Iqraam Rayners"
+        },
+        {
+          "id": "za-sipho-chaine",
+          "name": "Sipho Chaine"
+        },
+        {
+          "id": "za-evidence-makgopa",
+          "name": "Evidence Makgopa"
+        },
+        {
+          "id": "za-samukele-kabini",
+          "name": "Samukele Kabini"
+        },
+        {
+          "id": "za-nkosinathi-sibisi",
+          "name": "Nkosinathi Sibisi"
+        },
+        {
+          "id": "za-khuliso-mudau",
+          "name": "Khuliso Mudau"
+        },
+        {
+          "id": "za-ime-okon",
+          "name": "Ime Okon"
+        },
+        {
+          "id": "za-ricardo-goss",
+          "name": "Ricardo Goss"
+        },
+        {
+          "id": "za-jayden-adams",
+          "name": "Jayden Adams"
+        },
+        {
+          "id": "za-olwethu-makhanya",
+          "name": "Olwethu Makhanya"
+        },
+        {
+          "id": "za-kamogelo-sebelebele",
+          "name": "Kamogelo Sebelebele"
+        },
+        {
+          "id": "za-bradley-cross",
+          "name": "Bradley Cross"
+        }
+      ]
+    },
+    {
+      "iso": "kr",
+      "name": "Coreia do Sul",
+      "players": [
+        {
+          "id": "kr-kim-seung-gyu",
+          "name": "Kim Seung-gyu"
+        },
+        {
+          "id": "kr-lee-han-beom",
+          "name": "Lee Han-beom"
+        },
+        {
+          "id": "kr-lee-gi-hyuk",
+          "name": "Lee Gi-hyuk"
+        },
+        {
+          "id": "kr-kim-min-jae",
+          "name": "Kim Min-jae"
+        },
+        {
+          "id": "kr-kim-tae-hyeon",
+          "name": "Kim Tae-hyeon"
+        },
+        {
+          "id": "kr-hwang-in-beom",
+          "name": "Hwang In-beom"
+        },
+        {
+          "id": "kr-son-heung-min",
+          "name": "Son Heung-min"
+        },
+        {
+          "id": "kr-paik-seung-ho",
+          "name": "Paik Seung-ho"
+        },
+        {
+          "id": "kr-cho-gue-sung",
+          "name": "Cho Gue-sung"
+        },
+        {
+          "id": "kr-lee-jae-sung",
+          "name": "Lee Jae-sung"
+        },
+        {
+          "id": "kr-hwang-hee-chan",
+          "name": "Hwang Hee-chan"
+        },
+        {
+          "id": "kr-song-bum-keun",
+          "name": "Song Bum-keun"
+        },
+        {
+          "id": "kr-lee-tae-seok",
+          "name": "Lee Tae-seok"
+        },
+        {
+          "id": "kr-cho-wi-je",
+          "name": "Cho Wi-je"
+        },
+        {
+          "id": "kr-kim-moon-hwan",
+          "name": "Kim Moon-hwan"
+        },
+        {
+          "id": "kr-park-jin-seob",
+          "name": "Park Jin-seob"
+        },
+        {
+          "id": "kr-bae-jun-ho",
+          "name": "Bae Jun-ho"
+        },
+        {
+          "id": "kr-oh-hyeon-gyu",
+          "name": "Oh Hyeon-gyu"
+        },
+        {
+          "id": "kr-lee-kang-in",
+          "name": "Lee Kang-in"
+        },
+        {
+          "id": "kr-yang-hyun-jun",
+          "name": "Yang Hyun-jun"
+        },
+        {
+          "id": "kr-jo-hyeon-woo",
+          "name": "Jo Hyeon-woo"
+        },
+        {
+          "id": "kr-seol-young-woo",
+          "name": "Seol Young-woo"
+        },
+        {
+          "id": "kr-jens-castrop",
+          "name": "Jens Castrop"
+        },
+        {
+          "id": "kr-kim-jin-gyu",
+          "name": "Kim Jin-gyu"
+        },
+        {
+          "id": "kr-eom-ji-sung",
+          "name": "Eom Ji-sung"
+        },
+        {
+          "id": "kr-lee-dong-gyeong",
+          "name": "Lee Dong-gyeong"
+        }
+      ]
+    },
+    {
+      "iso": "cz",
+      "name": "República Tcheca",
+      "players": [
+        {
+          "id": "cz-matej-kovar",
+          "name": "Matěj Kovář"
+        },
+        {
+          "id": "cz-jindrich-stanek",
+          "name": "Jindřich Staněk"
+        },
+        {
+          "id": "cz-lukas-hornicek",
+          "name": "Lukáš Horníček"
+        },
+        {
+          "id": "cz-david-zima",
+          "name": "David Zima"
+        },
+        {
+          "id": "cz-tomas-holes",
+          "name": "Tomáš Holeš"
+        },
+        {
+          "id": "cz-robin-hranac",
+          "name": "Robin Hranáč"
+        },
+        {
+          "id": "cz-vladimir-coufal",
+          "name": "Vladimír Coufal"
+        },
+        {
+          "id": "cz-stepan-chaloupek",
+          "name": "Štěpán Chaloupek"
+        },
+        {
+          "id": "cz-ladislav-krejci",
+          "name": "Ladislav Krejčí"
+        },
+        {
+          "id": "cz-david-jurasek",
+          "name": "David Jurásek"
+        },
+        {
+          "id": "cz-jaroslav-zeleny",
+          "name": "Jaroslav Zelený"
+        },
+        {
+          "id": "cz-david-doudera",
+          "name": "David Douděra"
+        },
+        {
+          "id": "cz-vladimir-darida",
+          "name": "Vladimír Darida"
+        },
+        {
+          "id": "cz-lukas-cerv",
+          "name": "Lukáš Červ"
+        },
+        {
+          "id": "cz-lukas-provod",
+          "name": "Lukáš Provod"
+        },
+        {
+          "id": "cz-michal-sadilek",
+          "name": "Michal Sadílek"
+        },
+        {
+          "id": "cz-tomas-soucek",
+          "name": "Tomáš Souček"
+        },
+        {
+          "id": "cz-alexandr-sojka",
+          "name": "Alexandr Sojka"
+        },
+        {
+          "id": "cz-hugo-sochurek",
+          "name": "Hugo Sochůrek"
+        },
+        {
+          "id": "cz-adam-hlozek",
+          "name": "Adam Hložek"
+        },
+        {
+          "id": "cz-patrik-schick",
+          "name": "Patrik Schick"
+        },
+        {
+          "id": "cz-jan-kuchta",
+          "name": "Jan Kuchta"
+        },
+        {
+          "id": "cz-mojmir-chytil",
+          "name": "Mojmír Chytil"
+        },
+        {
+          "id": "cz-pavel-sulc",
+          "name": "Pavel Šulc"
+        },
+        {
+          "id": "cz-tomas-chory",
+          "name": "Tomáš Chorý"
+        },
+        {
+          "id": "cz-denis-visinsky",
+          "name": "Denis Višinský"
+        }
+      ]
+    },
+    {
+      "iso": "ca",
+      "name": "Canadá",
+      "players": [
+        {
+          "id": "ca-dayne-st-clair",
+          "name": "Dayne St. Clair"
+        },
+        {
+          "id": "ca-alistair-johnston",
+          "name": "Alistair Johnston"
+        },
+        {
+          "id": "ca-alfie-jones",
+          "name": "Alfie Jones"
+        },
+        {
+          "id": "ca-luc-de-fougerolles",
+          "name": "Luc de Fougerolles"
+        },
+        {
+          "id": "ca-joel-waterman",
+          "name": "Joel Waterman"
+        },
+        {
+          "id": "ca-mathieu-choiniere",
+          "name": "Mathieu Choinière"
+        },
+        {
+          "id": "ca-stephen-eustaquio",
+          "name": "Stephen Eustáquio"
+        },
+        {
+          "id": "ca-ismael-kone",
+          "name": "Ismaël Koné"
+        },
+        {
+          "id": "ca-cyle-larin",
+          "name": "Cyle Larin"
+        },
+        {
+          "id": "ca-jonathan-david",
+          "name": "Jonathan David"
+        },
+        {
+          "id": "ca-liam-millar",
+          "name": "Liam Millar"
+        },
+        {
+          "id": "ca-tani-oluwaseyi",
+          "name": "Tani Oluwaseyi"
+        },
+        {
+          "id": "ca-derek-cornelius",
+          "name": "Derek Cornelius"
+        },
+        {
+          "id": "ca-jacob-shaffelburg",
+          "name": "Jacob Shaffelburg"
+        },
+        {
+          "id": "ca-moise-bombito",
+          "name": "Moïse Bombito"
+        },
+        {
+          "id": "ca-maxime-crepeau",
+          "name": "Maxime Crépeau"
+        },
+        {
+          "id": "ca-tajon-buchanan",
+          "name": "Tajon Buchanan"
+        },
+        {
+          "id": "ca-owen-goodman",
+          "name": "Owen Goodman"
+        },
+        {
+          "id": "ca-alphonso-davies",
+          "name": "Alphonso Davies"
+        },
+        {
+          "id": "ca-ali-ahmed",
+          "name": "Ali Ahmed"
+        },
+        {
+          "id": "ca-jonathan-osorio",
+          "name": "Jonathan Osorio"
+        },
+        {
+          "id": "ca-richie-laryea",
+          "name": "Richie Laryea"
+        },
+        {
+          "id": "ca-niko-sigur",
+          "name": "Niko Sigur"
+        },
+        {
+          "id": "ca-promise-david",
+          "name": "Promise David"
+        },
+        {
+          "id": "ca-nathan-saliba",
+          "name": "Nathan Saliba"
+        }
+      ]
+    },
+    {
+      "iso": "ba",
+      "name": "Bósnia e Herzegovina",
+      "players": [
+        {
+          "id": "ba-nikola-vasilj",
+          "name": "Nikola Vasilj"
+        },
+        {
+          "id": "ba-nihad-mujakic",
+          "name": "Nihad Mujakić"
+        },
+        {
+          "id": "ba-dennis-hadzikadunic",
+          "name": "Dennis Hadžikadunić"
+        },
+        {
+          "id": "ba-tarik-muharemovic",
+          "name": "Tarik Muharemović"
+        },
+        {
+          "id": "ba-sead-kolasinac",
+          "name": "Sead Kolašinac"
+        },
+        {
+          "id": "ba-benjamin-tahirovic",
+          "name": "Benjamin Tahirović"
+        },
+        {
+          "id": "ba-amar-dedic",
+          "name": "Amar Dedić"
+        },
+        {
+          "id": "ba-armin-gigovic",
+          "name": "Armin Gigović"
+        },
+        {
+          "id": "ba-samed-bazdar",
+          "name": "Samed Baždar"
+        },
+        {
+          "id": "ba-ermedin-demirovic",
+          "name": "Ermedin Demirović"
+        },
+        {
+          "id": "ba-edin-dzeko",
+          "name": "Edin Džeko"
+        },
+        {
+          "id": "ba-mladen-jurkas",
+          "name": "Mladen Jurkas"
+        },
+        {
+          "id": "ba-ivan-basic",
+          "name": "Ivan Bašić"
+        },
+        {
+          "id": "ba-ivan-sunjic",
+          "name": "Ivan Šunjić"
+        },
+        {
+          "id": "ba-amar-memic",
+          "name": "Amar Memić"
+        },
+        {
+          "id": "ba-amir-hadziahmetovic",
+          "name": "Amir Hadžiahmetović"
+        },
+        {
+          "id": "ba-dzenis-burnic",
+          "name": "Dženis Burnić"
+        },
+        {
+          "id": "ba-nikola-katic",
+          "name": "Nikola Katić"
+        },
+        {
+          "id": "ba-kerim-alajbegovic",
+          "name": "Kerim Alajbegović"
+        },
+        {
+          "id": "ba-esmir-bajraktarevic",
+          "name": "Esmir Bajraktarević"
+        },
+        {
+          "id": "ba-stjepan-radeljic",
+          "name": "Stjepan Radeljić"
+        },
+        {
+          "id": "ba-martin-zlomislic",
+          "name": "Martin Zlomislić"
+        },
+        {
+          "id": "ba-haris-tabakovic",
+          "name": "Haris Tabaković"
+        },
+        {
+          "id": "ba-nidal-celik",
+          "name": "Nidal Čelik"
+        },
+        {
+          "id": "ba-jovo-lukic",
+          "name": "Jovo Lukić"
+        },
+        {
+          "id": "ba-ermin-mahmic",
+          "name": "Ermin Mahmić"
+        }
+      ]
+    },
+    {
+      "iso": "qa",
+      "name": "Catar",
+      "players": [
+        {
+          "id": "qa-meshaal-barsham",
+          "name": "Meshaal Barsham"
+        },
+        {
+          "id": "qa-mahmoud-abunada",
+          "name": "Mahmoud Abunada"
+        },
+        {
+          "id": "qa-salah-zakaria",
+          "name": "Salah Zakaria"
+        },
+        {
+          "id": "qa-pedro-miguel",
+          "name": "Pedro Miguel"
+        },
+        {
+          "id": "qa-lucas-mendes",
+          "name": "Lucas Mendes"
+        },
+        {
+          "id": "qa-boualem-khoukhi",
+          "name": "Boualem Khoukhi"
+        },
+        {
+          "id": "qa-ayoub-al-aloui",
+          "name": "Ayoub Al Aloui"
+        },
+        {
+          "id": "qa-homam-ahmed",
+          "name": "Homam Ahmed"
+        },
+        {
+          "id": "qa-sultan-al-braik",
+          "name": "Sultan Al Braik"
+        },
+        {
+          "id": "qa-ahmed-fathi",
+          "name": "Ahmed Fathi"
+        },
+        {
+          "id": "qa-al-hashmi-al-hussein",
+          "name": "Al Hashmi Al Hussein"
+        },
+        {
+          "id": "qa-issa-lai",
+          "name": "Issa Lai"
+        },
+        {
+          "id": "qa-jassem-jaber",
+          "name": "Jassem Jaber"
+        },
+        {
+          "id": "qa-abdulaziz-hatem",
+          "name": "Abdulaziz Hatem"
+        },
+        {
+          "id": "qa-karim-boudiaf",
+          "name": "Karim Boudiaf"
+        },
+        {
+          "id": "qa-assim-madibo",
+          "name": "Assim Madibo"
+        },
+        {
+          "id": "qa-tahseen-mohammed",
+          "name": "Tahseen Mohammed"
+        },
+        {
+          "id": "qa-mohamed-al-mannai",
+          "name": "Mohamed Al Mannai"
+        },
+        {
+          "id": "qa-ahmed-al-janhi",
+          "name": "Ahmed Al Janhi"
+        },
+        {
+          "id": "qa-hassan-al-haydos",
+          "name": "Hassan Al Haydos"
+        },
+        {
+          "id": "qa-akram-afif",
+          "name": "Akram Afif"
+        },
+        {
+          "id": "qa-almoez-ali",
+          "name": "Almoez Ali"
+        },
+        {
+          "id": "qa-edmilson-junior",
+          "name": "Edmilson Junior"
+        },
+        {
+          "id": "qa-ahmed-alaa",
+          "name": "Ahmed Alaa"
+        },
+        {
+          "id": "qa-yusuf-abdurisag",
+          "name": "Yusuf Abdurisag"
+        },
+        {
+          "id": "qa-mohammed-muntari",
+          "name": "Mohammed Muntari"
+        }
+      ]
+    },
+    {
+      "iso": "ch",
+      "name": "Suíça",
+      "players": [
+        {
+          "id": "ch-gregor-kobel",
+          "name": "Gregor Kobel"
+        },
+        {
+          "id": "ch-yvon-mvogo",
+          "name": "Yvon Mvogo"
+        },
+        {
+          "id": "ch-marvin-keller",
+          "name": "Marvin Keller"
+        },
+        {
+          "id": "ch-manuel-akanji",
+          "name": "Manuel Akanji"
+        },
+        {
+          "id": "ch-nico-elvedi",
+          "name": "Nico Elvedi"
+        },
+        {
+          "id": "ch-ricardo-rodriguez",
+          "name": "Ricardo Rodríguez"
+        },
+        {
+          "id": "ch-silvan-widmer",
+          "name": "Silvan Widmer"
+        },
+        {
+          "id": "ch-miro-muheim",
+          "name": "Miro Muheim"
+        },
+        {
+          "id": "ch-aurele-amenda",
+          "name": "Aurèle Amenda"
+        },
+        {
+          "id": "ch-eray-comert",
+          "name": "Eray Çömert"
+        },
+        {
+          "id": "ch-luca-jaquez",
+          "name": "Luca Jäquez"
+        },
+        {
+          "id": "ch-granit-xhaka",
+          "name": "Granit Xhaka"
+        },
+        {
+          "id": "ch-remo-freuler",
+          "name": "Remo Freuler"
+        },
+        {
+          "id": "ch-denis-zakaria",
+          "name": "Denis Zakaria"
+        },
+        {
+          "id": "ch-ardon-jashari",
+          "name": "Ardon Jashari"
+        },
+        {
+          "id": "ch-djibril-sow",
+          "name": "Djibril Sow"
+        },
+        {
+          "id": "ch-michel-aebischer",
+          "name": "Michel Aebischer"
+        },
+        {
+          "id": "ch-fabian-rieder",
+          "name": "Fabian Rieder"
+        },
+        {
+          "id": "ch-johan-manzambi",
+          "name": "Johan Manzambi"
+        },
+        {
+          "id": "ch-breel-embolo",
+          "name": "Breel Embolo"
+        },
+        {
+          "id": "ch-noah-okafor",
+          "name": "Noah Okafor"
+        },
+        {
+          "id": "ch-dan-ndoye",
+          "name": "Dan Ndoye"
+        },
+        {
+          "id": "ch-zeki-amdouni",
+          "name": "Zeki Amdouni"
+        },
+        {
+          "id": "ch-ruben-vargas",
+          "name": "Rúben Vargas"
+        },
+        {
+          "id": "ch-christian-fassnacht",
+          "name": "Christian Fassnacht"
+        },
+        {
+          "id": "ch-cedric-itten",
+          "name": "Cédric Itten"
+        }
+      ]
+    },
+    {
+      "iso": "br",
+      "name": "Brasil",
+      "players": [
+        {
+          "id": "br-alisson",
+          "name": "Alisson"
+        },
+        {
+          "id": "br-ederson",
+          "name": "Éderson"
+        },
+        {
+          "id": "br-weverton",
+          "name": "Weverton"
+        },
+        {
+          "id": "br-alex-sandro",
+          "name": "Alex Sandro"
+        },
+        {
+          "id": "br-bremer",
+          "name": "Bremer"
+        },
+        {
+          "id": "br-danilo",
+          "name": "Danilo"
+        },
+        {
+          "id": "br-douglas-santos",
+          "name": "Douglas Santos"
+        },
+        {
+          "id": "br-gabriel-magalhaes",
+          "name": "Gabriel Magalhães"
+        },
+        {
+          "id": "br-leo-pereira",
+          "name": "Léo Pereira"
+        },
+        {
+          "id": "br-marquinhos",
+          "name": "Marquinhos"
+        },
+        {
+          "id": "br-roger-ibanez",
+          "name": "Roger Ibañez"
+        },
+        {
+          "id": "br-wesley",
+          "name": "Wesley"
+        },
+        {
+          "id": "br-bruno-guimaraes",
+          "name": "Bruno Guimarães"
+        },
+        {
+          "id": "br-casemiro",
+          "name": "Casemiro"
+        },
+        {
+          "id": "br-danilo-2",
+          "name": "Danilo"
+        },
+        {
+          "id": "br-fabinho",
+          "name": "Fabinho"
+        },
+        {
+          "id": "br-lucas-paqueta",
+          "name": "Lucas Paquetá"
+        },
+        {
+          "id": "br-endrick",
+          "name": "Endrick"
+        },
+        {
+          "id": "br-gabriel-martinelli",
+          "name": "Gabriel Martinelli"
+        },
+        {
+          "id": "br-igor-thiago",
+          "name": "Igor Thiago"
+        },
+        {
+          "id": "br-luiz-henrique",
+          "name": "Luiz Henrique"
+        },
+        {
+          "id": "br-matheus-cunha",
+          "name": "Matheus Cunha"
+        },
+        {
+          "id": "br-neymar",
+          "name": "Neymar"
+        },
+        {
+          "id": "br-raphinha",
+          "name": "Raphinha"
+        },
+        {
+          "id": "br-rayan",
+          "name": "Rayan"
+        },
+        {
+          "id": "br-vinicius-junior",
+          "name": "Vinícius Júnior"
+        }
+      ]
+    },
+    {
+      "iso": "ma",
+      "name": "Marrocos",
+      "players": [
+        {
+          "id": "ma-yassine-bounou",
+          "name": "Yassine Bounou"
+        },
+        {
+          "id": "ma-munir-el-kajoui",
+          "name": "Munir El Kajoui"
+        },
+        {
+          "id": "ma-reda-tagnaouti",
+          "name": "Reda Tagnaouti"
+        },
+        {
+          "id": "ma-noussair-mazraoui",
+          "name": "Noussair Mazraoui"
+        },
+        {
+          "id": "ma-anass-salah-eddine",
+          "name": "Anass Salah-Eddine"
+        },
+        {
+          "id": "ma-youssef-belammari",
+          "name": "Youssef Belammari"
+        },
+        {
+          "id": "ma-achraf-hakimi",
+          "name": "Achraf Hakimi"
+        },
+        {
+          "id": "ma-zakaria-el-ouahdi",
+          "name": "Zakaria El Ouahdi"
+        },
+        {
+          "id": "ma-chadi-riad",
+          "name": "Chadi Riad"
+        },
+        {
+          "id": "ma-nayef-aguerd",
+          "name": "Nayef Aguerd"
+        },
+        {
+          "id": "ma-redouane-halhal",
+          "name": "Redouane Halhal"
+        },
+        {
+          "id": "ma-issa-diop",
+          "name": "Issa Diop"
+        },
+        {
+          "id": "ma-samir-el-mourabet",
+          "name": "Samir El Mourabet"
+        },
+        {
+          "id": "ma-ayyoub-bouaddi",
+          "name": "Ayyoub Bouaddi"
+        },
+        {
+          "id": "ma-neil-el-aynaoui",
+          "name": "Neil El Aynaoui"
+        },
+        {
+          "id": "ma-sofyan-amrabat",
+          "name": "Sofyan Amrabat"
+        },
+        {
+          "id": "ma-azzedine-ounahi",
+          "name": "Azzedine Ounahi"
+        },
+        {
+          "id": "ma-bilal-el-khannouss",
+          "name": "Bilal El Khannouss"
+        },
+        {
+          "id": "ma-ismael-saibari",
+          "name": "Ismael Saibari"
+        },
+        {
+          "id": "ma-abde-ezzalzouli",
+          "name": "Abde Ezzalzouli"
+        },
+        {
+          "id": "ma-chemsdine-talbi",
+          "name": "Chemsdine Talbi"
+        },
+        {
+          "id": "ma-soufiane-rahimi",
+          "name": "Soufiane Rahimi"
+        },
+        {
+          "id": "ma-ayoub-el-kaabi",
+          "name": "Ayoub El Kaabi"
+        },
+        {
+          "id": "ma-brahim-diaz",
+          "name": "Brahim Díaz"
+        },
+        {
+          "id": "ma-gessime-yassine",
+          "name": "Gessime Yassine"
+        },
+        {
+          "id": "ma-ayoube-amaimouni",
+          "name": "Ayoube Amaimouni"
+        }
+      ]
+    },
+    {
+      "iso": "ht",
+      "name": "Haiti",
+      "players": [
+        {
+          "id": "ht-johny-placide",
+          "name": "Johny Placide"
+        },
+        {
+          "id": "ht-alexandre-pierre",
+          "name": "Alexandre Pierre"
+        },
+        {
+          "id": "ht-josue-duverger",
+          "name": "Josué Duverger"
+        },
+        {
+          "id": "ht-carlens-arcus",
+          "name": "Carlens Arcus"
+        },
+        {
+          "id": "ht-wilguens-paugain",
+          "name": "Wilguens Paugain"
+        },
+        {
+          "id": "ht-duke-lacroix",
+          "name": "Duke Lacroix"
+        },
+        {
+          "id": "ht-martin-experience",
+          "name": "Martin Expérience"
+        },
+        {
+          "id": "ht-jean-kevin-duverne",
+          "name": "Jean-Kévin Duverne"
+        },
+        {
+          "id": "ht-ricardo-ade",
+          "name": "Ricardo Adé"
+        },
+        {
+          "id": "ht-hannes-delcroix",
+          "name": "Hannes Delcroix"
+        },
+        {
+          "id": "ht-keeto-thermoncy",
+          "name": "Keeto Thermoncy"
+        },
+        {
+          "id": "ht-carl-fred-sainte",
+          "name": "Carl Fred Sainté"
+        },
+        {
+          "id": "ht-leverton-pierre",
+          "name": "Leverton Pierre"
+        },
+        {
+          "id": "ht-danley-jean-jacques",
+          "name": "Danley Jean Jacques"
+        },
+        {
+          "id": "ht-jean-ricner-bellegarde",
+          "name": "Jean-Ricner Bellegarde"
+        },
+        {
+          "id": "ht-woodensky-pierre",
+          "name": "Woodensky Pierre"
+        },
+        {
+          "id": "ht-dominique-simon",
+          "name": "Dominique Simon"
+        },
+        {
+          "id": "ht-don-deedson-louicius",
+          "name": "Don Deedson Louicius"
+        },
+        {
+          "id": "ht-josue-casimir",
+          "name": "Josué Casimir"
+        },
+        {
+          "id": "ht-derrick-etienne",
+          "name": "Derrick Etienne"
+        },
+        {
+          "id": "ht-ruben-providence",
+          "name": "Ruben Providence"
+        },
+        {
+          "id": "ht-duckens-nazon",
+          "name": "Duckens Nazon"
+        },
+        {
+          "id": "ht-frantzdy-pierrot",
+          "name": "Frantzdy Pierrot"
+        },
+        {
+          "id": "ht-wilson-isidor",
+          "name": "Wilson Isidor"
+        },
+        {
+          "id": "ht-yassin-fortune",
+          "name": "Yassin Fortuné"
+        },
+        {
+          "id": "ht-lenny-joseph",
+          "name": "Lenny Joseph"
+        }
+      ]
+    },
+    {
+      "iso": "gb-sct",
+      "name": "Escócia",
+      "players": [
+        {
+          "id": "gb-sct-craig-gordon",
+          "name": "Craig Gordon"
+        },
+        {
+          "id": "gb-sct-angus-gunn",
+          "name": "Angus Gunn"
+        },
+        {
+          "id": "gb-sct-liam-kelly",
+          "name": "Liam Kelly"
+        },
+        {
+          "id": "gb-sct-grant-hanley",
+          "name": "Grant Hanley"
+        },
+        {
+          "id": "gb-sct-jack-hendry",
+          "name": "Jack Hendry"
+        },
+        {
+          "id": "gb-sct-aaron-hickey",
+          "name": "Aaron Hickey"
+        },
+        {
+          "id": "gb-sct-dominic-hyam",
+          "name": "Dominic Hyam"
+        },
+        {
+          "id": "gb-sct-scott-mckenna",
+          "name": "Scott McKenna"
+        },
+        {
+          "id": "gb-sct-nathan-patterson",
+          "name": "Nathan Patterson"
+        },
+        {
+          "id": "gb-sct-anthony-ralston",
+          "name": "Anthony Ralston"
+        },
+        {
+          "id": "gb-sct-andy-robertson",
+          "name": "Andy Robertson"
+        },
+        {
+          "id": "gb-sct-john-souttar",
+          "name": "John Souttar"
+        },
+        {
+          "id": "gb-sct-kieran-tierney",
+          "name": "Kieran Tierney"
+        },
+        {
+          "id": "gb-sct-ryan-christie",
+          "name": "Ryan Christie"
+        },
+        {
+          "id": "gb-sct-findlay-curtis",
+          "name": "Findlay Curtis"
+        },
+        {
+          "id": "gb-sct-lewis-ferguson",
+          "name": "Lewis Ferguson"
+        },
+        {
+          "id": "gb-sct-ben-gannon-doak",
+          "name": "Ben Gannon-Doak"
+        },
+        {
+          "id": "gb-sct-tyler-fletcher",
+          "name": "Tyler Fletcher"
+        },
+        {
+          "id": "gb-sct-john-mcginn",
+          "name": "John McGinn"
+        },
+        {
+          "id": "gb-sct-kenny-mclean",
+          "name": "Kenny McLean"
+        },
+        {
+          "id": "gb-sct-scott-mctominay",
+          "name": "Scott McTominay"
+        },
+        {
+          "id": "gb-sct-che-adams",
+          "name": "Che Adams"
+        },
+        {
+          "id": "gb-sct-lyndon-dykes",
+          "name": "Lyndon Dykes"
+        },
+        {
+          "id": "gb-sct-george-hirst",
+          "name": "George Hirst"
+        },
+        {
+          "id": "gb-sct-lawrence-shankland",
+          "name": "Lawrence Shankland"
+        },
+        {
+          "id": "gb-sct-ross-stewart",
+          "name": "Ross Stewart"
+        }
+      ]
+    },
+    {
+      "iso": "us",
+      "name": "Estados Unidos",
+      "players": [
+        {
+          "id": "us-chris-brady",
+          "name": "Chris Brady"
+        },
+        {
+          "id": "us-matt-freese",
+          "name": "Matt Freese"
+        },
+        {
+          "id": "us-matt-turner",
+          "name": "Matt Turner"
+        },
+        {
+          "id": "us-max-arfsten",
+          "name": "Max Arfsten"
+        },
+        {
+          "id": "us-sergino-dest",
+          "name": "Sergiño Dest"
+        },
+        {
+          "id": "us-alex-freeman",
+          "name": "Alex Freeman"
+        },
+        {
+          "id": "us-mark-mckenzie",
+          "name": "Mark McKenzie"
+        },
+        {
+          "id": "us-tim-ream",
+          "name": "Tim Ream"
+        },
+        {
+          "id": "us-chris-richards",
+          "name": "Chris Richards"
+        },
+        {
+          "id": "us-antonee-robinson",
+          "name": "Antonee Robinson"
+        },
+        {
+          "id": "us-miles-robinson",
+          "name": "Miles Robinson"
+        },
+        {
+          "id": "us-joe-scally",
+          "name": "Joe Scally"
+        },
+        {
+          "id": "us-auston-trusty",
+          "name": "Auston Trusty"
+        },
+        {
+          "id": "us-tyler-adams",
+          "name": "Tyler Adams"
+        },
+        {
+          "id": "us-sebastian-berhalter",
+          "name": "Sebastian Berhalter"
+        },
+        {
+          "id": "us-weston-mckennie",
+          "name": "Weston McKennie"
+        },
+        {
+          "id": "us-gio-reyna",
+          "name": "Gio Reyna"
+        },
+        {
+          "id": "us-cristian-roldan",
+          "name": "Cristian Roldan"
+        },
+        {
+          "id": "us-malik-tillman",
+          "name": "Malik Tillman"
+        },
+        {
+          "id": "us-brenden-aaronson",
+          "name": "Brenden Aaronson"
+        },
+        {
+          "id": "us-folarin-balogun",
+          "name": "Folarin Balogun"
+        },
+        {
+          "id": "us-ricardo-pepi",
+          "name": "Ricardo Pepi"
+        },
+        {
+          "id": "us-christian-pulisic",
+          "name": "Christian Pulisic"
+        },
+        {
+          "id": "us-tim-weah",
+          "name": "Tim Weah"
+        },
+        {
+          "id": "us-haji-wright",
+          "name": "Haji Wright"
+        },
+        {
+          "id": "us-alejandro-zendejas",
+          "name": "Alejandro Zendejas"
+        }
+      ]
+    },
+    {
+      "iso": "py",
+      "name": "Paraguai",
+      "players": [
+        {
+          "id": "py-roberto-fernandez",
+          "name": "Roberto Fernández"
+        },
+        {
+          "id": "py-orlando-gill",
+          "name": "Orlando Gill"
+        },
+        {
+          "id": "py-gaston-olveira",
+          "name": "Gastón Olveira"
+        },
+        {
+          "id": "py-gustavo-gomez",
+          "name": "Gustavo Gómez"
+        },
+        {
+          "id": "py-junior-alonso",
+          "name": "Júnior Alonso"
+        },
+        {
+          "id": "py-fabian-balbuena",
+          "name": "Fabián Balbuena"
+        },
+        {
+          "id": "py-omar-alderete",
+          "name": "Omar Alderete"
+        },
+        {
+          "id": "py-juan-jose-caceres",
+          "name": "Juan José Cáceres"
+        },
+        {
+          "id": "py-jose-canale",
+          "name": "José Canale"
+        },
+        {
+          "id": "py-alexandro-maidana",
+          "name": "Alexandro Maidana"
+        },
+        {
+          "id": "py-gustavo-velazquez",
+          "name": "Gustavo Velázquez"
+        },
+        {
+          "id": "py-miguel-almiron",
+          "name": "Miguel Almirón"
+        },
+        {
+          "id": "py-alejandro-romero-gamarra",
+          "name": "Alejandro Romero Gamarra"
+        },
+        {
+          "id": "py-andres-cubas",
+          "name": "Andrés Cubas"
+        },
+        {
+          "id": "py-ramon-sosa",
+          "name": "Ramón Sosa"
+        },
+        {
+          "id": "py-diego-gomez",
+          "name": "Diego Gómez"
+        },
+        {
+          "id": "py-damian-bobadilla",
+          "name": "Damián Bobadilla"
+        },
+        {
+          "id": "py-braian-ojeda",
+          "name": "Braian Ojeda"
+        },
+        {
+          "id": "py-matias-galarza",
+          "name": "Matías Galarza"
+        },
+        {
+          "id": "py-mauricio",
+          "name": "Maurício"
+        },
+        {
+          "id": "py-antonio-sanabria",
+          "name": "Antonio Sanabria"
+        },
+        {
+          "id": "py-julio-enciso",
+          "name": "Julio Enciso"
+        },
+        {
+          "id": "py-gabriel-avalos",
+          "name": "Gabriel Ávalos"
+        },
+        {
+          "id": "py-alex-arce",
+          "name": "Álex Arce"
+        },
+        {
+          "id": "py-isidro-pitta",
+          "name": "Isidro Pitta"
+        },
+        {
+          "id": "py-gustavo-caballero",
+          "name": "Gustavo Caballero"
+        }
+      ]
+    },
+    {
+      "iso": "au",
+      "name": "Austrália",
+      "players": [
+        {
+          "id": "au-maty-ryan",
+          "name": "Maty Ryan"
+        },
+        {
+          "id": "au-paul-izzo",
+          "name": "Paul Izzo"
+        },
+        {
+          "id": "au-patrick-beach",
+          "name": "Patrick Beach"
+        },
+        {
+          "id": "au-aziz-behich",
+          "name": "Aziz Behich"
+        },
+        {
+          "id": "au-cameron-burgess",
+          "name": "Cameron Burgess"
+        },
+        {
+          "id": "au-alessandro-circati",
+          "name": "Alessandro Circati"
+        },
+        {
+          "id": "au-milos-degenek",
+          "name": "Milos Degenek"
+        },
+        {
+          "id": "au-jason-geria",
+          "name": "Jason Geria"
+        },
+        {
+          "id": "au-jacob-italiano",
+          "name": "Jacob Italiano"
+        },
+        {
+          "id": "au-harry-souttar",
+          "name": "Harry Souttar"
+        },
+        {
+          "id": "au-jordan-bos",
+          "name": "Jordan Bos"
+        },
+        {
+          "id": "au-cameron-devlin",
+          "name": "Cameron Devlin"
+        },
+        {
+          "id": "au-ajdin-hrustic",
+          "name": "Ajdin Hrustic"
+        },
+        {
+          "id": "au-jackson-irvine",
+          "name": "Jackson Irvine"
+        },
+        {
+          "id": "au-mathew-leckie",
+          "name": "Mathew Leckie"
+        },
+        {
+          "id": "au-connor-metcalfe",
+          "name": "Connor Metcalfe"
+        },
+        {
+          "id": "au-aiden-o-neill",
+          "name": "Aiden O'Neill"
+        },
+        {
+          "id": "au-paul-okon-engstler",
+          "name": "Paul Okon-Engstler"
+        },
+        {
+          "id": "au-kai-trewin",
+          "name": "Kai Trewin"
+        },
+        {
+          "id": "au-nestory-irankunda",
+          "name": "Nestory Irankunda"
+        },
+        {
+          "id": "au-awer-mabil",
+          "name": "Awer Mabil"
+        },
+        {
+          "id": "au-lucas-herrington",
+          "name": "Lucas Herrington"
+        },
+        {
+          "id": "au-mohamed-toure",
+          "name": "Mohamed Toure"
+        },
+        {
+          "id": "au-nishan-velupillay",
+          "name": "Nishan Velupillay"
+        },
+        {
+          "id": "au-cristian-volpato",
+          "name": "Cristian Volpato"
+        },
+        {
+          "id": "au-tete-yengi",
+          "name": "Tete Yengi"
+        }
+      ]
+    },
+    {
+      "iso": "tr",
+      "name": "Turquia",
+      "players": [
+        {
+          "id": "tr-altay-bay-nd-r",
+          "name": "Altay Bayındır"
+        },
+        {
+          "id": "tr-mert-gunok",
+          "name": "Mert Günok"
+        },
+        {
+          "id": "tr-ugurcan-cak-r",
+          "name": "Uğurcan Çakır"
+        },
+        {
+          "id": "tr-zeki-celik",
+          "name": "Zeki Çelik"
+        },
+        {
+          "id": "tr-merih-demiral",
+          "name": "Merih Demiral"
+        },
+        {
+          "id": "tr-caglar-soyuncu",
+          "name": "Çağlar Söyüncü"
+        },
+        {
+          "id": "tr-eren-elmal",
+          "name": "Eren Elmalı"
+        },
+        {
+          "id": "tr-abdulkerim-bardakc",
+          "name": "Abdülkerim Bardakcı"
+        },
+        {
+          "id": "tr-ozan-kabak",
+          "name": "Ozan Kabak"
+        },
+        {
+          "id": "tr-mert-muldur",
+          "name": "Mert Müldür"
+        },
+        {
+          "id": "tr-ferdi-kad-oglu",
+          "name": "Ferdi Kadıoğlu"
+        },
+        {
+          "id": "tr-samet-akaydin",
+          "name": "Samet Akaydin"
+        },
+        {
+          "id": "tr-salih-ozcan",
+          "name": "Salih Özcan"
+        },
+        {
+          "id": "tr-orkun-kokcu",
+          "name": "Orkun Kökçü"
+        },
+        {
+          "id": "tr-hakan-calhanoglu",
+          "name": "Hakan Çalhanoğlu"
+        },
+        {
+          "id": "tr-ismail-yuksek",
+          "name": "İsmail Yüksek"
+        },
+        {
+          "id": "tr-kaan-ayhan",
+          "name": "Kaan Ayhan"
+        },
+        {
+          "id": "tr-kerem-akturkoglu",
+          "name": "Kerem Aktürkoğlu"
+        },
+        {
+          "id": "tr-arda-guler",
+          "name": "Arda Güler"
+        },
+        {
+          "id": "tr-deniz-gul",
+          "name": "Deniz Gül"
+        },
+        {
+          "id": "tr-kenan-y-ld-z",
+          "name": "Kenan Yıldız"
+        },
+        {
+          "id": "tr-irfan-can-kahveci",
+          "name": "İrfan Can Kahveci"
+        },
+        {
+          "id": "tr-yunus-akgun",
+          "name": "Yunus Akgün"
+        },
+        {
+          "id": "tr-bar-s-alper-y-lmaz",
+          "name": "Barış Alper Yılmaz"
+        },
+        {
+          "id": "tr-oguz-ayd-n",
+          "name": "Oğuz Aydın"
+        },
+        {
+          "id": "tr-can-uzun",
+          "name": "Can Uzun"
+        }
+      ]
+    },
+    {
+      "iso": "de",
+      "name": "Alemanha",
+      "players": [
+        {
+          "id": "de-manuel-neuer",
+          "name": "Manuel Neuer"
+        },
+        {
+          "id": "de-oliver-baumann",
+          "name": "Oliver Baumann"
+        },
+        {
+          "id": "de-alexander-nubel",
+          "name": "Alexander Nübel"
+        },
+        {
+          "id": "de-jonathan-tah",
+          "name": "Jonathan Tah"
+        },
+        {
+          "id": "de-antonio-rudiger",
+          "name": "Antonio Rüdiger"
+        },
+        {
+          "id": "de-waldemar-anton",
+          "name": "Waldemar Anton"
+        },
+        {
+          "id": "de-david-raum",
+          "name": "David Raum"
+        },
+        {
+          "id": "de-nico-schlotterbeck",
+          "name": "Nico Schlotterbeck"
+        },
+        {
+          "id": "de-malick-thiaw",
+          "name": "Malick Thiaw"
+        },
+        {
+          "id": "de-joshua-kimmich",
+          "name": "Joshua Kimmich"
+        },
+        {
+          "id": "de-nathaniel-brown",
+          "name": "Nathaniel Brown"
+        },
+        {
+          "id": "de-aleksandar-pavlovic",
+          "name": "Aleksandar Pavlović"
+        },
+        {
+          "id": "de-leon-goretzka",
+          "name": "Leon Goretzka"
+        },
+        {
+          "id": "de-pascal-gro",
+          "name": "Pascal Groß"
+        },
+        {
+          "id": "de-nadiem-amiri",
+          "name": "Nadiem Amiri"
+        },
+        {
+          "id": "de-felix-nmecha",
+          "name": "Felix Nmecha"
+        },
+        {
+          "id": "de-angelo-stiller",
+          "name": "Angelo Stiller"
+        },
+        {
+          "id": "de-florian-wirtz",
+          "name": "Florian Wirtz"
+        },
+        {
+          "id": "de-jamal-musiala",
+          "name": "Jamal Musiala"
+        },
+        {
+          "id": "de-assan-ouedraogo",
+          "name": "Assan Ouédraogo"
+        },
+        {
+          "id": "de-jamie-leweling",
+          "name": "Jamie Leweling"
+        },
+        {
+          "id": "de-deniz-undav",
+          "name": "Deniz Undav"
+        },
+        {
+          "id": "de-maximilian-beier",
+          "name": "Maximilian Beier"
+        },
+        {
+          "id": "de-kai-havertz",
+          "name": "Kai Havertz"
+        },
+        {
+          "id": "de-nick-woltemade",
+          "name": "Nick Woltemade"
+        },
+        {
+          "id": "de-leroy-sane",
+          "name": "Leroy Sané"
+        }
+      ]
+    },
+    {
+      "iso": "cw",
+      "name": "Curaçao",
+      "players": [
+        {
+          "id": "cw-eloy-room",
+          "name": "Eloy Room"
+        },
+        {
+          "id": "cw-trevor-doornbusch",
+          "name": "Trevor Doornbusch"
+        },
+        {
+          "id": "cw-tyrick-bodak",
+          "name": "Tyrick Bodak"
+        },
+        {
+          "id": "cw-shurandy-sambo",
+          "name": "Shurandy Sambo"
+        },
+        {
+          "id": "cw-jurien-gaari",
+          "name": "Juriën Gaari"
+        },
+        {
+          "id": "cw-roshon-van-eijma",
+          "name": "Roshon van Eijma"
+        },
+        {
+          "id": "cw-sherel-floranus",
+          "name": "Sherel Floranus"
+        },
+        {
+          "id": "cw-armando-obispo",
+          "name": "Armando Obispo"
+        },
+        {
+          "id": "cw-joshua-brenet",
+          "name": "Joshua Brenet"
+        },
+        {
+          "id": "cw-riechedly-bazoer",
+          "name": "Riechedly Bazoer"
+        },
+        {
+          "id": "cw-deveron-fonville",
+          "name": "Deveron Fonville"
+        },
+        {
+          "id": "cw-godfried-roemeratoe",
+          "name": "Godfried Roemeratoe"
+        },
+        {
+          "id": "cw-juninho-bacuna",
+          "name": "Juninho Bacuna"
+        },
+        {
+          "id": "cw-livano-comenencia",
+          "name": "Livano Comenencia"
+        },
+        {
+          "id": "cw-leandro-bacuna",
+          "name": "Leandro Bacuna"
+        },
+        {
+          "id": "cw-tyrese-noslin",
+          "name": "Tyrese Noslin"
+        },
+        {
+          "id": "cw-ar-jany-martha",
+          "name": "Ar'jany Martha"
+        },
+        {
+          "id": "cw-kevin-felida",
+          "name": "Kevin Felida"
+        },
+        {
+          "id": "cw-jurgen-locadia",
+          "name": "Jürgen Locadia"
+        },
+        {
+          "id": "cw-jeremy-antonisse",
+          "name": "Jeremy Antonisse"
+        },
+        {
+          "id": "cw-sontje-hansen",
+          "name": "Sontje Hansen"
+        },
+        {
+          "id": "cw-kenji-gorre",
+          "name": "Kenji Gorré"
+        },
+        {
+          "id": "cw-jearl-margaritha",
+          "name": "Jearl Margaritha"
+        },
+        {
+          "id": "cw-brandley-kuwas",
+          "name": "Brandley Kuwas"
+        },
+        {
+          "id": "cw-gervane-kastaneer",
+          "name": "Gervane Kastaneer"
+        },
+        {
+          "id": "cw-tahith-chong",
+          "name": "Tahith Chong"
+        }
+      ]
+    },
+    {
+      "iso": "ci",
+      "name": "Costa do Marfim",
+      "players": [
+        {
+          "id": "ci-yahia-fofana",
+          "name": "Yahia Fofana"
+        },
+        {
+          "id": "ci-mohamed-kone",
+          "name": "Mohamed Koné"
+        },
+        {
+          "id": "ci-alban-lafont",
+          "name": "Alban Lafont"
+        },
+        {
+          "id": "ci-emmanuel-agbadou",
+          "name": "Emmanuel Agbadou"
+        },
+        {
+          "id": "ci-clement-akpa",
+          "name": "Clément Akpa"
+        },
+        {
+          "id": "ci-ousmane-diomande",
+          "name": "Ousmane Diomande"
+        },
+        {
+          "id": "ci-guela-doue",
+          "name": "Guela Doué"
+        },
+        {
+          "id": "ci-ghislain-konan",
+          "name": "Ghislain Konan"
+        },
+        {
+          "id": "ci-odilon-kossounou",
+          "name": "Odilon Kossounou"
+        },
+        {
+          "id": "ci-evan-ndicka",
+          "name": "Evan Ndicka"
+        },
+        {
+          "id": "ci-wilfried-singo",
+          "name": "Wilfried Singo"
+        },
+        {
+          "id": "ci-seko-fofana",
+          "name": "Seko Fofana"
+        },
+        {
+          "id": "ci-parfait-guiagon",
+          "name": "Parfait Guiagon"
+        },
+        {
+          "id": "ci-franck-kessie",
+          "name": "Franck Kessié"
+        },
+        {
+          "id": "ci-christ-inao-oulai",
+          "name": "Christ Inao Oulaï"
+        },
+        {
+          "id": "ci-ibrahim-sangare",
+          "name": "Ibrahim Sangaré"
+        },
+        {
+          "id": "ci-jean-michael-seri",
+          "name": "Jean-Michaël Seri"
+        },
+        {
+          "id": "ci-simon-adingra",
+          "name": "Simon Adingra"
+        },
+        {
+          "id": "ci-ange-yoan-bonny",
+          "name": "Ange-Yoan Bonny"
+        },
+        {
+          "id": "ci-amad-diallo",
+          "name": "Amad Diallo"
+        },
+        {
+          "id": "ci-oumar-diakite",
+          "name": "Oumar Diakité"
+        },
+        {
+          "id": "ci-yan-diomande",
+          "name": "Yan Diomande"
+        },
+        {
+          "id": "ci-evann-guessand",
+          "name": "Evann Guessand"
+        },
+        {
+          "id": "ci-nicolas-pepe",
+          "name": "Nicolas Pépé"
+        },
+        {
+          "id": "ci-bazoumana-toure",
+          "name": "Bazoumana Touré"
+        },
+        {
+          "id": "ci-elye-wahi",
+          "name": "Elye Wahi"
+        }
+      ]
+    },
+    {
+      "iso": "ec",
+      "name": "Equador",
+      "players": [
+        {
+          "id": "ec-hernan-galindez",
+          "name": "Hernán Galíndez"
+        },
+        {
+          "id": "ec-moises-ramirez",
+          "name": "Moisés Ramírez"
+        },
+        {
+          "id": "ec-gonzalo-valle",
+          "name": "Gonzalo Valle"
+        },
+        {
+          "id": "ec-willian-pacho",
+          "name": "Willian Pacho"
+        },
+        {
+          "id": "ec-piero-hincapie",
+          "name": "Piero Hincapié"
+        },
+        {
+          "id": "ec-joel-ordonez",
+          "name": "Joel Ordóñez"
+        },
+        {
+          "id": "ec-felix-torres",
+          "name": "Félix Torres"
+        },
+        {
+          "id": "ec-pervis-estupinan",
+          "name": "Pervis Estupiñán"
+        },
+        {
+          "id": "ec-yaimar-medina",
+          "name": "Yaimar Medina"
+        },
+        {
+          "id": "ec-angelo-preciado",
+          "name": "Ángelo Preciado"
+        },
+        {
+          "id": "ec-jackson-porozo",
+          "name": "Jackson Porozo"
+        },
+        {
+          "id": "ec-moises-caicedo",
+          "name": "Moisés Caicedo"
+        },
+        {
+          "id": "ec-alan-franco",
+          "name": "Alan Franco"
+        },
+        {
+          "id": "ec-jordy-alcivar",
+          "name": "Jordy Alcívar"
+        },
+        {
+          "id": "ec-denil-castillo",
+          "name": "Denil Castillo"
+        },
+        {
+          "id": "ec-john-yeboah",
+          "name": "John Yeboah"
+        },
+        {
+          "id": "ec-pedro-vite",
+          "name": "Pedro Vite"
+        },
+        {
+          "id": "ec-alan-minda",
+          "name": "Alan Minda"
+        },
+        {
+          "id": "ec-kendry-paez",
+          "name": "Kendry Páez"
+        },
+        {
+          "id": "ec-nilson-angulo",
+          "name": "Nilson Angulo"
+        },
+        {
+          "id": "ec-gonzalo-plata",
+          "name": "Gonzalo Plata"
+        },
+        {
+          "id": "ec-enner-valencia",
+          "name": "Enner Valencia"
+        },
+        {
+          "id": "ec-kevin-rodriguez",
+          "name": "Kevin Rodríguez"
+        },
+        {
+          "id": "ec-anthony-valencia",
+          "name": "Anthony Valencia"
+        },
+        {
+          "id": "ec-jordy-caicedo",
+          "name": "Jordy Caicedo"
+        },
+        {
+          "id": "ec-jeremy-arevalo",
+          "name": "Jeremy Arévalo"
+        }
+      ]
+    },
+    {
+      "iso": "nl",
+      "name": "Países Baixos",
+      "players": [
+        {
+          "id": "nl-mark-flekken",
+          "name": "Mark Flekken"
+        },
+        {
+          "id": "nl-robin-roefs",
+          "name": "Robin Roefs"
+        },
+        {
+          "id": "nl-bart-verbruggen",
+          "name": "Bart Verbruggen"
+        },
+        {
+          "id": "nl-nathan-ake",
+          "name": "Nathan Aké"
+        },
+        {
+          "id": "nl-denzel-dumfries",
+          "name": "Denzel Dumfries"
+        },
+        {
+          "id": "nl-jorrel-hato",
+          "name": "Jorrel Hato"
+        },
+        {
+          "id": "nl-jurrien-timber",
+          "name": "Jurriën Timber"
+        },
+        {
+          "id": "nl-micky-van-de-ven",
+          "name": "Micky van de Ven"
+        },
+        {
+          "id": "nl-virgil-van-dijk",
+          "name": "Virgil van Dijk"
+        },
+        {
+          "id": "nl-jan-paul-van-hecke",
+          "name": "Jan Paul van Hecke"
+        },
+        {
+          "id": "nl-mats-wieffer",
+          "name": "Mats Wieffer"
+        },
+        {
+          "id": "nl-frenkie-de-jong",
+          "name": "Frenkie de Jong"
+        },
+        {
+          "id": "nl-marten-de-roon",
+          "name": "Marten de Roon"
+        },
+        {
+          "id": "nl-ryan-gravenberch",
+          "name": "Ryan Gravenberch"
+        },
+        {
+          "id": "nl-justin-kluivert",
+          "name": "Justin Kluivert"
+        },
+        {
+          "id": "nl-teun-koopmeiners",
+          "name": "Teun Koopmeiners"
+        },
+        {
+          "id": "nl-tijjani-reijnders",
+          "name": "Tijjani Reijnders"
+        },
+        {
+          "id": "nl-guus-til",
+          "name": "Guus Til"
+        },
+        {
+          "id": "nl-quinten-timber",
+          "name": "Quinten Timber"
+        },
+        {
+          "id": "nl-brian-brobbey",
+          "name": "Brian Brobbey"
+        },
+        {
+          "id": "nl-memphis-depay",
+          "name": "Memphis Depay"
+        },
+        {
+          "id": "nl-cody-gakpo",
+          "name": "Cody Gakpo"
+        },
+        {
+          "id": "nl-noa-lang",
+          "name": "Noa Lang"
+        },
+        {
+          "id": "nl-donyell-malen",
+          "name": "Donyell Malen"
+        },
+        {
+          "id": "nl-crysencio-summerville",
+          "name": "Crysencio Summerville"
+        },
+        {
+          "id": "nl-wout-weghorst",
+          "name": "Wout Weghorst"
+        }
+      ]
+    },
+    {
+      "iso": "jp",
+      "name": "Japão",
+      "players": [
+        {
+          "id": "jp-zion-suzuki",
+          "name": "Zion Suzuki"
+        },
+        {
+          "id": "jp-keisuke-osako",
+          "name": "Keisuke Ōsako"
+        },
+        {
+          "id": "jp-tomoki-hayakawa",
+          "name": "Tomoki Hayakawa"
+        },
+        {
+          "id": "jp-yuto-nagatomo",
+          "name": "Yūto Nagatomo"
+        },
+        {
+          "id": "jp-shogo-taniguchi",
+          "name": "Shōgo Taniguchi"
+        },
+        {
+          "id": "jp-tsuyoshi-watanabe",
+          "name": "Tsuyoshi Watanabe"
+        },
+        {
+          "id": "jp-junnosuke-suzuki",
+          "name": "Junnosuke Suzuki"
+        },
+        {
+          "id": "jp-hiroki-ito",
+          "name": "Hiroki Itō"
+        },
+        {
+          "id": "jp-ko-itakura",
+          "name": "Kō Itakura"
+        },
+        {
+          "id": "jp-takehiro-tomiyasu",
+          "name": "Takehiro Tomiyasu"
+        },
+        {
+          "id": "jp-ayumu-seko",
+          "name": "Ayumu Seko"
+        },
+        {
+          "id": "jp-yukinari-sugawara",
+          "name": "Yukinari Sugawara"
+        },
+        {
+          "id": "jp-wataru-endo",
+          "name": "Wataru Endō"
+        },
+        {
+          "id": "jp-daichi-kamada",
+          "name": "Daichi Kamada"
+        },
+        {
+          "id": "jp-kaishu-sano",
+          "name": "Kaishū Sano"
+        },
+        {
+          "id": "jp-ao-tanaka",
+          "name": "Ao Tanaka"
+        },
+        {
+          "id": "jp-jun-ya-ito",
+          "name": "Jun'ya Itō"
+        },
+        {
+          "id": "jp-ritsu-doan",
+          "name": "Ritsu Dōan"
+        },
+        {
+          "id": "jp-keito-nakamura",
+          "name": "Keito Nakamura"
+        },
+        {
+          "id": "jp-takefusa-kubo",
+          "name": "Takefusa Kubo"
+        },
+        {
+          "id": "jp-yuito-suzuki",
+          "name": "Yuito Suzuki"
+        },
+        {
+          "id": "jp-daizen-maeda",
+          "name": "Daizen Maeda"
+        },
+        {
+          "id": "jp-ayase-ueda",
+          "name": "Ayase Ueda"
+        },
+        {
+          "id": "jp-koki-ogawa",
+          "name": "Kōki Ogawa"
+        },
+        {
+          "id": "jp-keisuke-goto",
+          "name": "Keisuke Gotō"
+        },
+        {
+          "id": "jp-kento-shiogai",
+          "name": "Kento Shiogai"
+        }
+      ]
+    },
+    {
+      "iso": "se",
+      "name": "Suécia",
+      "players": [
+        {
+          "id": "se-kristoffer-nordfeldt",
+          "name": "Kristoffer Nordfeldt"
+        },
+        {
+          "id": "se-viktor-johansson",
+          "name": "Viktor Johansson"
+        },
+        {
+          "id": "se-jacob-widell-zetterstrom",
+          "name": "Jacob Widell Zetterström"
+        },
+        {
+          "id": "se-victor-lindelof",
+          "name": "Victor Lindelöf"
+        },
+        {
+          "id": "se-gustaf-lagerbielke",
+          "name": "Gustaf Lagerbielke"
+        },
+        {
+          "id": "se-isak-hien",
+          "name": "Isak Hien"
+        },
+        {
+          "id": "se-gabriel-gudmundsson",
+          "name": "Gabriel Gudmundsson"
+        },
+        {
+          "id": "se-daniel-svensson",
+          "name": "Daniel Svensson"
+        },
+        {
+          "id": "se-hjalmar-ekdal",
+          "name": "Hjalmar Ekdal"
+        },
+        {
+          "id": "se-carl-starfelt",
+          "name": "Carl Starfelt"
+        },
+        {
+          "id": "se-eric-smith",
+          "name": "Eric Smith"
+        },
+        {
+          "id": "se-lucas-bergvall",
+          "name": "Lucas Bergvall"
+        },
+        {
+          "id": "se-jesper-karlstrom",
+          "name": "Jesper Karlström"
+        },
+        {
+          "id": "se-yasin-ayari",
+          "name": "Yasin Ayari"
+        },
+        {
+          "id": "se-mattias-svanberg",
+          "name": "Mattias Svanberg"
+        },
+        {
+          "id": "se-besfort-zeneli",
+          "name": "Besfort Zeneli"
+        },
+        {
+          "id": "se-ken-sema",
+          "name": "Ken Sema"
+        },
+        {
+          "id": "se-herman-johansson",
+          "name": "Herman Johansson"
+        },
+        {
+          "id": "se-elliot-stroud",
+          "name": "Elliot Stroud"
+        },
+        {
+          "id": "se-taha-ali",
+          "name": "Taha Ali"
+        },
+        {
+          "id": "se-alexander-isak",
+          "name": "Alexander Isak"
+        },
+        {
+          "id": "se-viktor-gyokeres",
+          "name": "Viktor Gyökeres"
+        },
+        {
+          "id": "se-anthony-elanga",
+          "name": "Anthony Elanga"
+        },
+        {
+          "id": "se-benjamin-nygren",
+          "name": "Benjamin Nygren"
+        },
+        {
+          "id": "se-alexander-bernhardsson",
+          "name": "Alexander Bernhardsson"
+        },
+        {
+          "id": "se-gustaf-nilsson",
+          "name": "Gustaf Nilsson"
+        }
+      ]
+    },
+    {
+      "iso": "tn",
+      "name": "Tunísia",
+      "players": [
+        {
+          "id": "tn-aymen-dahmen",
+          "name": "Aymen Dahmen"
+        },
+        {
+          "id": "tn-abdelmohib-chamekh",
+          "name": "Abdelmohib Chamekh"
+        },
+        {
+          "id": "tn-sabri-ben-hassan",
+          "name": "Sabri Ben Hassan"
+        },
+        {
+          "id": "tn-montassar-talbi",
+          "name": "Montassar Talbi"
+        },
+        {
+          "id": "tn-dylan-bronn",
+          "name": "Dylan Bronn"
+        },
+        {
+          "id": "tn-adam-arous",
+          "name": "Adam Arous"
+        },
+        {
+          "id": "tn-omar-rekik",
+          "name": "Omar Rekik"
+        },
+        {
+          "id": "tn-raed-sheikhaoui",
+          "name": "Raed Sheikhaoui"
+        },
+        {
+          "id": "tn-yan-valery",
+          "name": "Yan Valery"
+        },
+        {
+          "id": "tn-moataz-nafati",
+          "name": "Moataz Nafati"
+        },
+        {
+          "id": "tn-ali-abdi",
+          "name": "Ali Abdi"
+        },
+        {
+          "id": "tn-mohamed-amin-ben-hamida",
+          "name": "Mohamed Amin Ben Hamida"
+        },
+        {
+          "id": "tn-ellyes-skhiri",
+          "name": "Ellyes Skhiri"
+        },
+        {
+          "id": "tn-hannibal-mejbri",
+          "name": "Hannibal Mejbri"
+        },
+        {
+          "id": "tn-anis-ben-slimane",
+          "name": "Anis Ben Slimane"
+        },
+        {
+          "id": "tn-rani-khedira",
+          "name": "Rani Khedira"
+        },
+        {
+          "id": "tn-mohamed-haj-mahmoud",
+          "name": "Mohamed Haj Mahmoud"
+        },
+        {
+          "id": "tn-ismail-gharbi",
+          "name": "Ismail Gharbi"
+        },
+        {
+          "id": "tn-mortadha-ben-ouanes",
+          "name": "Mortadha Ben Ouanes"
+        },
+        {
+          "id": "tn-elyes-achouri",
+          "name": "Elyes Achouri"
+        },
+        {
+          "id": "tn-elyes-saad",
+          "name": "Elyes Saad"
+        },
+        {
+          "id": "tn-sebastian-tounekti",
+          "name": "Sebastian Tounekti"
+        },
+        {
+          "id": "tn-firas-chaouat",
+          "name": "Firas Chaouat"
+        },
+        {
+          "id": "tn-khalil-ayari",
+          "name": "Khalil Ayari"
+        },
+        {
+          "id": "tn-hazem-mestouri",
+          "name": "Hazem Mestouri"
+        },
+        {
+          "id": "tn-rayan-loumi",
+          "name": "Rayan Loumi"
+        }
+      ]
+    },
+    {
+      "iso": "be",
+      "name": "Bélgica",
+      "players": [
+        {
+          "id": "be-thibaut-courtois",
+          "name": "Thibaut Courtois"
+        },
+        {
+          "id": "be-senne-lammens",
+          "name": "Senne Lammens"
+        },
+        {
+          "id": "be-mike-penders",
+          "name": "Mike Penders"
+        },
+        {
+          "id": "be-timothy-castagne",
+          "name": "Timothy Castagne"
+        },
+        {
+          "id": "be-thomas-meunier",
+          "name": "Thomas Meunier"
+        },
+        {
+          "id": "be-maxim-de-cuyper",
+          "name": "Maxim De Cuyper"
+        },
+        {
+          "id": "be-zeno-debast",
+          "name": "Zeno Debast"
+        },
+        {
+          "id": "be-arthur-theate",
+          "name": "Arthur Theate"
+        },
+        {
+          "id": "be-koni-de-winter",
+          "name": "Koni De Winter"
+        },
+        {
+          "id": "be-nathan-ngoy",
+          "name": "Nathan Ngoy"
+        },
+        {
+          "id": "be-brandon-mechele",
+          "name": "Brandon Mechele"
+        },
+        {
+          "id": "be-joaquin-seys",
+          "name": "Joaquin Seys"
+        },
+        {
+          "id": "be-youri-tielemans",
+          "name": "Youri Tielemans"
+        },
+        {
+          "id": "be-kevin-de-bruyne",
+          "name": "Kevin De Bruyne"
+        },
+        {
+          "id": "be-amadou-onana",
+          "name": "Amadou Onana"
+        },
+        {
+          "id": "be-charles-de-ketelaere",
+          "name": "Charles De Ketelaere"
+        },
+        {
+          "id": "be-nicolas-raskin",
+          "name": "Nicolas Raskin"
+        },
+        {
+          "id": "be-hans-vanaken",
+          "name": "Hans Vanaken"
+        },
+        {
+          "id": "be-axel-witsel",
+          "name": "Axel Witsel"
+        },
+        {
+          "id": "be-diego-moreira",
+          "name": "Diego Moreira"
+        },
+        {
+          "id": "be-romelu-lukaku",
+          "name": "Romelu Lukaku"
+        },
+        {
+          "id": "be-jeremy-doku",
+          "name": "Jérémy Doku"
+        },
+        {
+          "id": "be-leandro-trossard",
+          "name": "Leandro Trossard"
+        },
+        {
+          "id": "be-alexis-saelemaekers",
+          "name": "Alexis Saelemaekers"
+        },
+        {
+          "id": "be-dodi-lukebakio",
+          "name": "Dodi Lukebakio"
+        },
+        {
+          "id": "be-matias-fernandez-pardo",
+          "name": "Matías Fernández-Pardo"
+        }
+      ]
+    },
+    {
+      "iso": "eg",
+      "name": "Egito",
+      "players": [
+        {
+          "id": "eg-mohamed-el-shenawy",
+          "name": "Mohamed El Shenawy"
+        },
+        {
+          "id": "eg-mostafa-shobeir",
+          "name": "Mostafa Shobeir"
+        },
+        {
+          "id": "eg-el-mahdy-soliman",
+          "name": "El Mahdy Soliman"
+        },
+        {
+          "id": "eg-mohamed-alaa",
+          "name": "Mohamed Alaa"
+        },
+        {
+          "id": "eg-mohamed-hany",
+          "name": "Mohamed Hany"
+        },
+        {
+          "id": "eg-tarek-alaa",
+          "name": "Tarek Alaa"
+        },
+        {
+          "id": "eg-hamdy-fathy",
+          "name": "Hamdy Fathy"
+        },
+        {
+          "id": "eg-ramy-rabia",
+          "name": "Ramy Rabia"
+        },
+        {
+          "id": "eg-yasser-ibrahim",
+          "name": "Yasser Ibrahim"
+        },
+        {
+          "id": "eg-hossam-abdelmaguid",
+          "name": "Hossam Abdelmaguid"
+        },
+        {
+          "id": "eg-mohamed-abdelmonem",
+          "name": "Mohamed Abdelmonem"
+        },
+        {
+          "id": "eg-ahmed-fatouh",
+          "name": "Ahmed Fatouh"
+        },
+        {
+          "id": "eg-karim-hafez",
+          "name": "Karim Hafez"
+        },
+        {
+          "id": "eg-marwan-attia",
+          "name": "Marwan Attia"
+        },
+        {
+          "id": "eg-mohanad-lasheen",
+          "name": "Mohanad Lasheen"
+        },
+        {
+          "id": "eg-nabil-emad",
+          "name": "Nabil Emad"
+        },
+        {
+          "id": "eg-mahmoud-saber",
+          "name": "Mahmoud Saber"
+        },
+        {
+          "id": "eg-zizo",
+          "name": "Zizo"
+        },
+        {
+          "id": "eg-trezeguet",
+          "name": "Trézéguet"
+        },
+        {
+          "id": "eg-emam-ashour",
+          "name": "Emam Ashour"
+        },
+        {
+          "id": "eg-mostafa-ziko",
+          "name": "Mostafa Ziko"
+        },
+        {
+          "id": "eg-ibrahim-adel",
+          "name": "Ibrahim Adel"
+        },
+        {
+          "id": "eg-haissem-hassan",
+          "name": "Haissem Hassan"
+        },
+        {
+          "id": "eg-mohamed-salah",
+          "name": "Mohamed Salah"
+        },
+        {
+          "id": "eg-omar-marmoush",
+          "name": "Omar Marmoush"
+        },
+        {
+          "id": "eg-hamza-abdelkarim",
+          "name": "Hamza Abdelkarim"
+        }
+      ]
+    },
+    {
+      "iso": "ir",
+      "name": "Irã",
+      "players": [
+        {
+          "id": "ir-alireza-beiranvand",
+          "name": "Alireza Beiranvand"
+        },
+        {
+          "id": "ir-hossein-hosseini",
+          "name": "Hossein Hosseini"
+        },
+        {
+          "id": "ir-payam-niazmand",
+          "name": "Payam Niazmand"
+        },
+        {
+          "id": "ir-ehsan-haji-safi",
+          "name": "Ehsan Haji Safi"
+        },
+        {
+          "id": "ir-milad-mohammadi",
+          "name": "Milad Mohammadi"
+        },
+        {
+          "id": "ir-ali-nemati",
+          "name": "Ali Nemati"
+        },
+        {
+          "id": "ir-daniyal-eiri",
+          "name": "Daniyal Eiri"
+        },
+        {
+          "id": "ir-shoja-khalilzadeh",
+          "name": "Shoja Khalilzadeh"
+        },
+        {
+          "id": "ir-mohammadhossein-kanani",
+          "name": "Mohammadhossein Kanani"
+        },
+        {
+          "id": "ir-saleh-hardani",
+          "name": "Saleh Hardani"
+        },
+        {
+          "id": "ir-ramin-rezaeian",
+          "name": "Ramin Rezaeian"
+        },
+        {
+          "id": "ir-arya-yousefi",
+          "name": "Arya Yousefi"
+        },
+        {
+          "id": "ir-alireza-jahanbakhsh",
+          "name": "Alireza Jahanbakhsh"
+        },
+        {
+          "id": "ir-saeid-ezatolahi",
+          "name": "Saeid Ezatolahi"
+        },
+        {
+          "id": "ir-roozbeh-cheshmi",
+          "name": "Roozbeh Cheshmi"
+        },
+        {
+          "id": "ir-amirmohammad-rezzaghinia",
+          "name": "Amirmohammad Rezzaghinia"
+        },
+        {
+          "id": "ir-mehdi-ghaedi",
+          "name": "Mehdi Ghaedi"
+        },
+        {
+          "id": "ir-saman-ghoddos",
+          "name": "Saman Ghoddos"
+        },
+        {
+          "id": "ir-mohammad-ghorbani",
+          "name": "Mohammad Ghorbani"
+        },
+        {
+          "id": "ir-mehdi-torabi",
+          "name": "Mehdi Torabi"
+        },
+        {
+          "id": "ir-mohammad-mohebbi",
+          "name": "Mohammad Mohebbi"
+        },
+        {
+          "id": "ir-mehdi-taremi",
+          "name": "Mehdi Taremi"
+        },
+        {
+          "id": "ir-shahriyar-moghanlou",
+          "name": "Shahriyar Moghanlou"
+        },
+        {
+          "id": "ir-dennis-dargahi",
+          "name": "Dennis Dargahi"
+        },
+        {
+          "id": "ir-ali-alipour",
+          "name": "Ali Alipour"
+        },
+        {
+          "id": "ir-amirhossein-hosseinzadeh",
+          "name": "Amirhossein Hosseinzadeh"
+        }
+      ]
+    },
+    {
+      "iso": "nz",
+      "name": "Nova Zelândia",
+      "players": [
+        {
+          "id": "nz-max-crocombe",
+          "name": "Max Crocombe"
+        },
+        {
+          "id": "nz-alex-paulsen",
+          "name": "Alex Paulsen"
+        },
+        {
+          "id": "nz-michael-woud",
+          "name": "Michael Woud"
+        },
+        {
+          "id": "nz-tim-payne",
+          "name": "Tim Payne"
+        },
+        {
+          "id": "nz-francis-de-vries",
+          "name": "Francis De Vries"
+        },
+        {
+          "id": "nz-tyler-bindon",
+          "name": "Tyler Bindon"
+        },
+        {
+          "id": "nz-michael-boxall",
+          "name": "Michael Boxall"
+        },
+        {
+          "id": "nz-liberato-cacace",
+          "name": "Liberato Cacace"
+        },
+        {
+          "id": "nz-nando-pijnaker",
+          "name": "Nando Pijnaker"
+        },
+        {
+          "id": "nz-finn-surman",
+          "name": "Finn Surman"
+        },
+        {
+          "id": "nz-callan-elliot",
+          "name": "Callan Elliot"
+        },
+        {
+          "id": "nz-tommy-smith",
+          "name": "Tommy Smith"
+        },
+        {
+          "id": "nz-joe-bell",
+          "name": "Joe Bell"
+        },
+        {
+          "id": "nz-matt-garbett",
+          "name": "Matt Garbett"
+        },
+        {
+          "id": "nz-marko-stamenic",
+          "name": "Marko Stamenić"
+        },
+        {
+          "id": "nz-sarpreet-singh",
+          "name": "Sarpreet Singh"
+        },
+        {
+          "id": "nz-alex-rufer",
+          "name": "Alex Rufer"
+        },
+        {
+          "id": "nz-ryan-thomas",
+          "name": "Ryan Thomas"
+        },
+        {
+          "id": "nz-chris-wood",
+          "name": "Chris Wood"
+        },
+        {
+          "id": "nz-eli-just",
+          "name": "Eli Just"
+        },
+        {
+          "id": "nz-kosta-barbarouses",
+          "name": "Kosta Barbarouses"
+        },
+        {
+          "id": "nz-ben-waine",
+          "name": "Ben Waine"
+        },
+        {
+          "id": "nz-ben-old",
+          "name": "Ben Old"
+        },
+        {
+          "id": "nz-callum-mccowatt",
+          "name": "Callum McCowatt"
+        },
+        {
+          "id": "nz-jesse-randall",
+          "name": "Jesse Randall"
+        },
+        {
+          "id": "nz-lachlan-bayliss",
+          "name": "Lachlan Bayliss"
+        }
+      ]
+    },
+    {
+      "iso": "es",
+      "name": "Espanha",
+      "players": [
+        {
+          "id": "es-unai-simon",
+          "name": "Unai Simón"
+        },
+        {
+          "id": "es-david-raya",
+          "name": "David Raya"
+        },
+        {
+          "id": "es-joan-garcia",
+          "name": "Joan García"
+        },
+        {
+          "id": "es-marc-cucurella",
+          "name": "Marc Cucurella"
+        },
+        {
+          "id": "es-pau-cubarsi",
+          "name": "Pau Cubarsí"
+        },
+        {
+          "id": "es-aymeric-laporte",
+          "name": "Aymeric Laporte"
+        },
+        {
+          "id": "es-alejandro-grimaldo",
+          "name": "Alejandro Grimaldo"
+        },
+        {
+          "id": "es-pedro-porro",
+          "name": "Pedro Porro"
+        },
+        {
+          "id": "es-eric-garcia",
+          "name": "Eric García"
+        },
+        {
+          "id": "es-marcos-llorente",
+          "name": "Marcos Llorente"
+        },
+        {
+          "id": "es-marc-pubill",
+          "name": "Marc Pubill"
+        },
+        {
+          "id": "es-gavi",
+          "name": "Gavi"
+        },
+        {
+          "id": "es-rodri",
+          "name": "Rodri"
+        },
+        {
+          "id": "es-pedri",
+          "name": "Pedri"
+        },
+        {
+          "id": "es-martin-zubimendi",
+          "name": "Martín Zubimendi"
+        },
+        {
+          "id": "es-fabian-ruiz",
+          "name": "Fabián Ruiz"
+        },
+        {
+          "id": "es-alex-baena",
+          "name": "Álex Baena"
+        },
+        {
+          "id": "es-mikel-merino",
+          "name": "Mikel Merino"
+        },
+        {
+          "id": "es-lamine-yamal",
+          "name": "Lamine Yamal"
+        },
+        {
+          "id": "es-nico-williams",
+          "name": "Nico Williams"
+        },
+        {
+          "id": "es-dani-olmo",
+          "name": "Dani Olmo"
+        },
+        {
+          "id": "es-ferran-torres",
+          "name": "Ferran Torres"
+        },
+        {
+          "id": "es-mikel-oyarzabal",
+          "name": "Mikel Oyarzabal"
+        },
+        {
+          "id": "es-yeremy-pino",
+          "name": "Yéremy Pino"
+        },
+        {
+          "id": "es-borja-iglesias",
+          "name": "Borja Iglesias"
+        },
+        {
+          "id": "es-victor-munoz",
+          "name": "Víctor Muñoz"
+        }
+      ]
+    },
+    {
+      "iso": "cv",
+      "name": "Cabo Verde",
+      "players": [
+        {
+          "id": "cv-vozinha",
+          "name": "Vozinha"
+        },
+        {
+          "id": "cv-marcio-rosa",
+          "name": "Márcio Rosa"
+        },
+        {
+          "id": "cv-cj-dos-santos",
+          "name": "CJ dos Santos"
+        },
+        {
+          "id": "cv-steven-moreira",
+          "name": "Steven Moreira"
+        },
+        {
+          "id": "cv-wagner-pina",
+          "name": "Wagner Pina"
+        },
+        {
+          "id": "cv-joao-paulo",
+          "name": "João Paulo"
+        },
+        {
+          "id": "cv-sidny-lopes-cabral",
+          "name": "Sidny Lopes Cabral"
+        },
+        {
+          "id": "cv-logan-costa",
+          "name": "Logan Costa"
+        },
+        {
+          "id": "cv-roberto-lopes",
+          "name": "Roberto Lopes"
+        },
+        {
+          "id": "cv-kelvin-pires",
+          "name": "Kelvin Pires"
+        },
+        {
+          "id": "cv-stopira",
+          "name": "Stopira"
+        },
+        {
+          "id": "cv-diney",
+          "name": "Diney"
+        },
+        {
+          "id": "cv-jamiro-monteiro",
+          "name": "Jamiro Monteiro"
+        },
+        {
+          "id": "cv-telmo-arcanjo",
+          "name": "Telmo Arcanjo"
+        },
+        {
+          "id": "cv-yannick-semedo",
+          "name": "Yannick Semedo"
+        },
+        {
+          "id": "cv-laros-duarte",
+          "name": "Laros Duarte"
+        },
+        {
+          "id": "cv-deroy-duarte",
+          "name": "Deroy Duarte"
+        },
+        {
+          "id": "cv-kevin-pina",
+          "name": "Kevin Pina"
+        },
+        {
+          "id": "cv-ryan-mendes",
+          "name": "Ryan Mendes"
+        },
+        {
+          "id": "cv-willy-semedo",
+          "name": "Willy Semedo"
+        },
+        {
+          "id": "cv-garry-rodrigues",
+          "name": "Garry Rodrigues"
+        },
+        {
+          "id": "cv-jovane-cabral",
+          "name": "Jovane Cabral"
+        },
+        {
+          "id": "cv-nuno-da-costa",
+          "name": "Nuno da Costa"
+        },
+        {
+          "id": "cv-dailon-livramento",
+          "name": "Dailon Livramento"
+        },
+        {
+          "id": "cv-gilson-benchimol",
+          "name": "Gilson Benchimol"
+        },
+        {
+          "id": "cv-helio-varela",
+          "name": "Hélio Varela"
+        }
+      ]
+    },
+    {
+      "iso": "sa",
+      "name": "Arábia Saudita",
+      "players": [
+        {
+          "id": "sa-mohammed-al-owais",
+          "name": "Mohammed Al-Owais"
+        },
+        {
+          "id": "sa-nawaf-al-aqidi",
+          "name": "Nawaf Al-Aqidi"
+        },
+        {
+          "id": "sa-ahmed-al-kassar",
+          "name": "Ahmed Al-Kassar"
+        },
+        {
+          "id": "sa-abdulelah-al-amri",
+          "name": "Abdulelah Al-Amri"
+        },
+        {
+          "id": "sa-hassan-tambakti",
+          "name": "Hassan Tambakti"
+        },
+        {
+          "id": "sa-jehad-thikri",
+          "name": "Jehad Thikri"
+        },
+        {
+          "id": "sa-ali-lajami",
+          "name": "Ali Lajami"
+        },
+        {
+          "id": "sa-hassan-kadesh",
+          "name": "Hassan Kadesh"
+        },
+        {
+          "id": "sa-saud-abdulhamid",
+          "name": "Saud Abdulhamid"
+        },
+        {
+          "id": "sa-mohammed-abu-al-shamat",
+          "name": "Mohammed Abu Al-Shamat"
+        },
+        {
+          "id": "sa-ali-majrashi",
+          "name": "Ali Majrashi"
+        },
+        {
+          "id": "sa-moteb-al-harbi",
+          "name": "Moteb Al-Harbi"
+        },
+        {
+          "id": "sa-nawaf-boushal",
+          "name": "Nawaf Boushal"
+        },
+        {
+          "id": "sa-sultan-al-ghannam",
+          "name": "Sultan Al-Ghannam"
+        },
+        {
+          "id": "sa-mohammed-kanno",
+          "name": "Mohammed Kanno"
+        },
+        {
+          "id": "sa-abdullah-al-khaibari",
+          "name": "Abdullah Al-Khaibari"
+        },
+        {
+          "id": "sa-ziyad-al-johani",
+          "name": "Ziyad Al-Johani"
+        },
+        {
+          "id": "sa-nasser-al-dawsari",
+          "name": "Nasser Al-Dawsari"
+        },
+        {
+          "id": "sa-musab-al-juwayr",
+          "name": "Musab Al-Juwayr"
+        },
+        {
+          "id": "sa-alaa-al-hajji",
+          "name": "Alaa Al-Hajji"
+        },
+        {
+          "id": "sa-salem-al-dawsari",
+          "name": "Salem Al-Dawsari"
+        },
+        {
+          "id": "sa-khalid-al-ghannam",
+          "name": "Khalid Al-Ghannam"
+        },
+        {
+          "id": "sa-ayman-yahya",
+          "name": "Ayman Yahya"
+        },
+        {
+          "id": "sa-firas-al-buraikan",
+          "name": "Firas Al-Buraikan"
+        },
+        {
+          "id": "sa-saleh-al-shehri",
+          "name": "Saleh Al-Shehri"
+        },
+        {
+          "id": "sa-abdullah-al-hamdan",
+          "name": "Abdullah Al-Hamdan"
+        }
+      ]
+    },
+    {
+      "iso": "uy",
+      "name": "Uruguai",
+      "players": [
+        {
+          "id": "uy-santiago-mele",
+          "name": "Santiago Mele"
+        },
+        {
+          "id": "uy-fernando-muslera",
+          "name": "Fernando Muslera"
+        },
+        {
+          "id": "uy-sergio-rochet",
+          "name": "Sergio Rochet"
+        },
+        {
+          "id": "uy-guillermo-varela",
+          "name": "Guillermo Varela"
+        },
+        {
+          "id": "uy-sebastian-caceres",
+          "name": "Sebastián Cáceres"
+        },
+        {
+          "id": "uy-ronald-araujo",
+          "name": "Ronald Araújo"
+        },
+        {
+          "id": "uy-jose-maria-gimenez",
+          "name": "José María Giménez"
+        },
+        {
+          "id": "uy-santiago-bueno",
+          "name": "Santiago Bueno"
+        },
+        {
+          "id": "uy-mathias-olivera",
+          "name": "Mathías Olivera"
+        },
+        {
+          "id": "uy-matias-vina",
+          "name": "Matías Viña"
+        },
+        {
+          "id": "uy-joaquin-piquerez",
+          "name": "Joaquín Piquerez"
+        },
+        {
+          "id": "uy-juan-manuel-sanabria",
+          "name": "Juan Manuel Sanabria"
+        },
+        {
+          "id": "uy-manuel-ugarte",
+          "name": "Manuel Ugarte"
+        },
+        {
+          "id": "uy-emiliano-martinez",
+          "name": "Emiliano Martínez"
+        },
+        {
+          "id": "uy-giorgian-de-arrascaeta",
+          "name": "Giorgian De Arrascaeta"
+        },
+        {
+          "id": "uy-facundo-pellistri",
+          "name": "Facundo Pellistri"
+        },
+        {
+          "id": "uy-maximiliano-araujo",
+          "name": "Maximiliano Araújo"
+        },
+        {
+          "id": "uy-nicolas-de-la-cruz",
+          "name": "Nicolás De La Cruz"
+        },
+        {
+          "id": "uy-brian-rodriguez",
+          "name": "Brian Rodríguez"
+        },
+        {
+          "id": "uy-agustin-canobbio",
+          "name": "Agustín Canobbio"
+        },
+        {
+          "id": "uy-rodrigo-zalazar",
+          "name": "Rodrigo Zalazar"
+        },
+        {
+          "id": "uy-rodrigo-bentancur",
+          "name": "Rodrigo Bentancur"
+        },
+        {
+          "id": "uy-federico-valverde",
+          "name": "Federico Valverde"
+        },
+        {
+          "id": "uy-rodrigo-aguirre",
+          "name": "Rodrigo Aguirre"
+        },
+        {
+          "id": "uy-darwin-nunez",
+          "name": "Darwin Núñez"
+        },
+        {
+          "id": "uy-federico-vinas",
+          "name": "Federico Viñas"
+        }
+      ]
+    },
+    {
+      "iso": "fr",
+      "name": "França",
+      "players": [
+        {
+          "id": "fr-mike-maignan",
+          "name": "Mike Maignan"
+        },
+        {
+          "id": "fr-brice-samba",
+          "name": "Brice Samba"
+        },
+        {
+          "id": "fr-robin-risser",
+          "name": "Robin Risser"
+        },
+        {
+          "id": "fr-lucas-digne",
+          "name": "Lucas Digne"
+        },
+        {
+          "id": "fr-malo-gusto",
+          "name": "Malo Gusto"
+        },
+        {
+          "id": "fr-lucas-hernandez",
+          "name": "Lucas Hernández"
+        },
+        {
+          "id": "fr-theo-hernandez",
+          "name": "Theo Hernández"
+        },
+        {
+          "id": "fr-ibrahima-konate",
+          "name": "Ibrahima Konaté"
+        },
+        {
+          "id": "fr-jules-kounde",
+          "name": "Jules Koundé"
+        },
+        {
+          "id": "fr-maxence-lacroix",
+          "name": "Maxence Lacroix"
+        },
+        {
+          "id": "fr-william-saliba",
+          "name": "William Saliba"
+        },
+        {
+          "id": "fr-dayot-upamecano",
+          "name": "Dayot Upamecano"
+        },
+        {
+          "id": "fr-n-golo-kante",
+          "name": "N'Golo Kanté"
+        },
+        {
+          "id": "fr-manu-kone",
+          "name": "Manu Koné"
+        },
+        {
+          "id": "fr-adrien-rabiot",
+          "name": "Adrien Rabiot"
+        },
+        {
+          "id": "fr-aurelien-tchouameni",
+          "name": "Aurélien Tchouaméni"
+        },
+        {
+          "id": "fr-warren-zaire-emery",
+          "name": "Warren Zaïre-Emery"
+        },
+        {
+          "id": "fr-maghnes-akliouche",
+          "name": "Maghnes Akliouche"
+        },
+        {
+          "id": "fr-bradley-barcola",
+          "name": "Bradley Barcola"
+        },
+        {
+          "id": "fr-rayan-cherki",
+          "name": "Rayan Cherki"
+        },
+        {
+          "id": "fr-ousmane-dembele",
+          "name": "Ousmane Dembélé"
+        },
+        {
+          "id": "fr-desire-doue",
+          "name": "Désiré Doué"
+        },
+        {
+          "id": "fr-jean-philippe-mateta",
+          "name": "Jean-Philippe Mateta"
+        },
+        {
+          "id": "fr-kylian-mbappe",
+          "name": "Kylian Mbappé"
+        },
+        {
+          "id": "fr-michael-olise",
+          "name": "Michael Olise"
+        },
+        {
+          "id": "fr-marcus-thuram",
+          "name": "Marcus Thuram"
+        }
+      ]
+    },
+    {
+      "iso": "sn",
+      "name": "Senegal",
+      "players": [
+        {
+          "id": "sn-edouard-mendy",
+          "name": "Édouard Mendy"
+        },
+        {
+          "id": "sn-mory-diaw",
+          "name": "Mory Diaw"
+        },
+        {
+          "id": "sn-yehvann-diouf",
+          "name": "Yehvann Diouf"
+        },
+        {
+          "id": "sn-mamadou-sarr",
+          "name": "Mamadou Sarr"
+        },
+        {
+          "id": "sn-kalidou-koulibaly",
+          "name": "Kalidou Koulibaly"
+        },
+        {
+          "id": "sn-abdoulaye-seck",
+          "name": "Abdoulaye Seck"
+        },
+        {
+          "id": "sn-ismail-jakobs",
+          "name": "Ismail Jakobs"
+        },
+        {
+          "id": "sn-krepin-diatta",
+          "name": "Krépin Diatta"
+        },
+        {
+          "id": "sn-moussa-niakhate",
+          "name": "Moussa Niakhaté"
+        },
+        {
+          "id": "sn-antoine-mendy",
+          "name": "Antoine Mendy"
+        },
+        {
+          "id": "sn-el-hadji-malick-diouf",
+          "name": "El Hadji Malick Diouf"
+        },
+        {
+          "id": "sn-idrissa-gana-gueye",
+          "name": "Idrissa Gana Gueye"
+        },
+        {
+          "id": "sn-pathe-ciss",
+          "name": "Pathé Ciss"
+        },
+        {
+          "id": "sn-lamine-camara",
+          "name": "Lamine Camara"
+        },
+        {
+          "id": "sn-pape-matar-sarr",
+          "name": "Pape Matar Sarr"
+        },
+        {
+          "id": "sn-habib-diarra",
+          "name": "Habib Diarra"
+        },
+        {
+          "id": "sn-bara-sapoko-ndiaye",
+          "name": "Bara Sapoko Ndiaye"
+        },
+        {
+          "id": "sn-pape-gueye",
+          "name": "Pape Gueye"
+        },
+        {
+          "id": "sn-assane-diao",
+          "name": "Assane Diao"
+        },
+        {
+          "id": "sn-bamba-dieng",
+          "name": "Bamba Dieng"
+        },
+        {
+          "id": "sn-sadio-mane",
+          "name": "Sadio Mané"
+        },
+        {
+          "id": "sn-nicolas-jackson",
+          "name": "Nicolas Jackson"
+        },
+        {
+          "id": "sn-cherif-ndiaye",
+          "name": "Cherif Ndiaye"
+        },
+        {
+          "id": "sn-iliman-ndiaye",
+          "name": "Iliman Ndiaye"
+        },
+        {
+          "id": "sn-ismaila-sarr",
+          "name": "Ismaïla Sarr"
+        },
+        {
+          "id": "sn-ibrahim-mbaye",
+          "name": "Ibrahim Mbaye"
+        }
+      ]
+    },
+    {
+      "iso": "iq",
+      "name": "Iraque",
+      "players": [
+        {
+          "id": "iq-fahad-talib",
+          "name": "Fahad Talib"
+        },
+        {
+          "id": "iq-jalal-hassan",
+          "name": "Jalal Hassan"
+        },
+        {
+          "id": "iq-ahmed-basil",
+          "name": "Ahmed Basil"
+        },
+        {
+          "id": "iq-hussein-ali",
+          "name": "Hussein Ali"
+        },
+        {
+          "id": "iq-manaf-younis",
+          "name": "Manaf Younis"
+        },
+        {
+          "id": "iq-ahmed-yahya",
+          "name": "Ahmed Yahya"
+        },
+        {
+          "id": "iq-mustafa-saadoon",
+          "name": "Mustafa Saadoon"
+        },
+        {
+          "id": "iq-zaid-tahseen",
+          "name": "Zaid Tahseen"
+        },
+        {
+          "id": "iq-rebin-sulaka",
+          "name": "Rebin Sulaka"
+        },
+        {
+          "id": "iq-akam-hashim",
+          "name": "Akam Hashim"
+        },
+        {
+          "id": "iq-merchas-doski",
+          "name": "Merchas Doski"
+        },
+        {
+          "id": "iq-zaid-ismail",
+          "name": "Zaid Ismail"
+        },
+        {
+          "id": "iq-frans-putros",
+          "name": "Frans Putros"
+        },
+        {
+          "id": "iq-amir-al-ammari",
+          "name": "Amir Al-Ammari"
+        },
+        {
+          "id": "iq-kevin-yakob",
+          "name": "Kevin Yakob"
+        },
+        {
+          "id": "iq-zidane-iqbal",
+          "name": "Zidane Iqbal"
+        },
+        {
+          "id": "iq-aimar-sher",
+          "name": "Aimar Sher"
+        },
+        {
+          "id": "iq-ibrahim-bayesh",
+          "name": "Ibrahim Bayesh"
+        },
+        {
+          "id": "iq-ahmed-qasem",
+          "name": "Ahmed Qasem"
+        },
+        {
+          "id": "iq-youssef-amyn",
+          "name": "Youssef Amyn"
+        },
+        {
+          "id": "iq-marko-farji",
+          "name": "Marko Farji"
+        },
+        {
+          "id": "iq-ali-jassim",
+          "name": "Ali Jassim"
+        },
+        {
+          "id": "iq-ali-al-hamadi",
+          "name": "Ali Al-Hamadi"
+        },
+        {
+          "id": "iq-ali-yousef",
+          "name": "Ali Yousef"
+        },
+        {
+          "id": "iq-aymen-hussein",
+          "name": "Aymen Hussein"
+        },
+        {
+          "id": "iq-mohanad-ali",
+          "name": "Mohanad Ali"
+        }
+      ]
+    },
+    {
+      "iso": "no",
+      "name": "Noruega",
+      "players": [
+        {
+          "id": "no-rjan-nyland",
+          "name": "Ørjan Nyland"
+        },
+        {
+          "id": "no-egil-selvik",
+          "name": "Egil Selvik"
+        },
+        {
+          "id": "no-sander-tangvik",
+          "name": "Sander Tangvik"
+        },
+        {
+          "id": "no-kristoffer-ajer",
+          "name": "Kristoffer Ajer"
+        },
+        {
+          "id": "no-julian-ryerson",
+          "name": "Julian Ryerson"
+        },
+        {
+          "id": "no-leo-stigard",
+          "name": "Leo Østigård"
+        },
+        {
+          "id": "no-marcus-pedersen",
+          "name": "Marcus Pedersen"
+        },
+        {
+          "id": "no-torbj-rn-heggem",
+          "name": "Torbjørn Heggem"
+        },
+        {
+          "id": "no-david-m-ller-wolfe",
+          "name": "David Møller Wolfe"
+        },
+        {
+          "id": "no-fredrik-bj-rkan",
+          "name": "Fredrik Bjørkan"
+        },
+        {
+          "id": "no-sondre-langas",
+          "name": "Sondre Langås"
+        },
+        {
+          "id": "no-henrik-falchener",
+          "name": "Henrik Falchener"
+        },
+        {
+          "id": "no-martin-degaard",
+          "name": "Martin Ødegaard"
+        },
+        {
+          "id": "no-sander-berge",
+          "name": "Sander Berge"
+        },
+        {
+          "id": "no-fredrik-aursnes",
+          "name": "Fredrik Aursnes"
+        },
+        {
+          "id": "no-patrick-berg",
+          "name": "Patrick Berg"
+        },
+        {
+          "id": "no-kristian-thorstvedt",
+          "name": "Kristian Thorstvedt"
+        },
+        {
+          "id": "no-morten-thorsby",
+          "name": "Morten Thorsby"
+        },
+        {
+          "id": "no-thelo-aasgaard",
+          "name": "Thelo Aasgaard"
+        },
+        {
+          "id": "no-jens-petter-hauge",
+          "name": "Jens Petter Hauge"
+        },
+        {
+          "id": "no-andreas-schjelderup",
+          "name": "Andreas Schjelderup"
+        },
+        {
+          "id": "no-erling-haaland",
+          "name": "Erling Haaland"
+        },
+        {
+          "id": "no-alexander-s-rloth",
+          "name": "Alexander Sørloth"
+        },
+        {
+          "id": "no-j-rgen-strand-larsen",
+          "name": "Jørgen Strand Larsen"
+        },
+        {
+          "id": "no-antonio-nusa",
+          "name": "Antonio Nusa"
+        },
+        {
+          "id": "no-oscar-bobb",
+          "name": "Oscar Bobb"
+        }
+      ]
+    },
+    {
+      "iso": "ar",
+      "name": "Argentina",
+      "players": [
+        {
+          "id": "ar-emiliano-martinez",
+          "name": "Emiliano Martínez"
+        },
+        {
+          "id": "ar-geronimo-rulli",
+          "name": "Gerónimo Rulli"
+        },
+        {
+          "id": "ar-juan-musso",
+          "name": "Juan Musso"
+        },
+        {
+          "id": "ar-leonardo-balerdi",
+          "name": "Leonardo Balerdi"
+        },
+        {
+          "id": "ar-nicolas-tagliafico",
+          "name": "Nicolás Tagliafico"
+        },
+        {
+          "id": "ar-gonzalo-montiel",
+          "name": "Gonzalo Montiel"
+        },
+        {
+          "id": "ar-lisandro-martinez",
+          "name": "Lisandro Martínez"
+        },
+        {
+          "id": "ar-cristian-romero",
+          "name": "Cristian Romero"
+        },
+        {
+          "id": "ar-nicolas-otamendi",
+          "name": "Nicolás Otamendi"
+        },
+        {
+          "id": "ar-facundo-medina",
+          "name": "Facundo Medina"
+        },
+        {
+          "id": "ar-nahuel-molina",
+          "name": "Nahuel Molina"
+        },
+        {
+          "id": "ar-leandro-paredes",
+          "name": "Leandro Paredes"
+        },
+        {
+          "id": "ar-rodrigo-de-paul",
+          "name": "Rodrigo De Paul"
+        },
+        {
+          "id": "ar-valentin-barco",
+          "name": "Valentín Barco"
+        },
+        {
+          "id": "ar-giovani-lo-celso",
+          "name": "Giovani Lo Celso"
+        },
+        {
+          "id": "ar-exequiel-palacios",
+          "name": "Exequiel Palacios"
+        },
+        {
+          "id": "ar-alexis-mac-allister",
+          "name": "Alexis Mac Allister"
+        },
+        {
+          "id": "ar-enzo-fernandez",
+          "name": "Enzo Fernández"
+        },
+        {
+          "id": "ar-nico-paz",
+          "name": "Nico Paz"
+        },
+        {
+          "id": "ar-thiago-almada",
+          "name": "Thiago Almada"
+        },
+        {
+          "id": "ar-julian-alvarez",
+          "name": "Julián Álvarez"
+        },
+        {
+          "id": "ar-lionel-messi",
+          "name": "Lionel Messi"
+        },
+        {
+          "id": "ar-nicolas-gonzalez",
+          "name": "Nicolás González"
+        },
+        {
+          "id": "ar-giuliano-simeone",
+          "name": "Giuliano Simeone"
+        },
+        {
+          "id": "ar-lautaro-martinez",
+          "name": "Lautaro Martínez"
+        },
+        {
+          "id": "ar-jose-manuel-lopez",
+          "name": "José Manuel López"
+        }
+      ]
+    },
+    {
+      "iso": "dz",
+      "name": "Argélia",
+      "players": [
+        {
+          "id": "dz-luca-zidane",
+          "name": "Luca Zidane"
+        },
+        {
+          "id": "dz-oussama-benbot",
+          "name": "Oussama Benbot"
+        },
+        {
+          "id": "dz-melvin-mastil",
+          "name": "Melvin Mastil"
+        },
+        {
+          "id": "dz-rafik-belghali",
+          "name": "Rafik Belghali"
+        },
+        {
+          "id": "dz-samir-chergui",
+          "name": "Samir Chergui"
+        },
+        {
+          "id": "dz-rayan-ait-nouri",
+          "name": "Rayan Aït-Nouri"
+        },
+        {
+          "id": "dz-jaouen-hadjam",
+          "name": "Jaouen Hadjam"
+        },
+        {
+          "id": "dz-aissa-mandi",
+          "name": "Aïssa Mandi"
+        },
+        {
+          "id": "dz-ramy-bensebaini",
+          "name": "Ramy Bensebaini"
+        },
+        {
+          "id": "dz-zineddine-belaid",
+          "name": "Zineddine Belaïd"
+        },
+        {
+          "id": "dz-achref-abada",
+          "name": "Achref Abada"
+        },
+        {
+          "id": "dz-mohamed-amine-tougai",
+          "name": "Mohamed Amine Tougaï"
+        },
+        {
+          "id": "dz-nabil-bentaleb",
+          "name": "Nabil Bentaleb"
+        },
+        {
+          "id": "dz-hicham-boudaoui",
+          "name": "Hicham Boudaoui"
+        },
+        {
+          "id": "dz-houssem-aouar",
+          "name": "Houssem Aouar"
+        },
+        {
+          "id": "dz-fares-chaibi",
+          "name": "Farès Chaïbi"
+        },
+        {
+          "id": "dz-ibrahim-maza",
+          "name": "Ibrahim Maza"
+        },
+        {
+          "id": "dz-yacine-titraoui",
+          "name": "Yacine Titraoui"
+        },
+        {
+          "id": "dz-ramiz-zerrouki",
+          "name": "Ramiz Zerrouki"
+        },
+        {
+          "id": "dz-mohamed-amoura",
+          "name": "Mohamed Amoura"
+        },
+        {
+          "id": "dz-nadhir-benbouali",
+          "name": "Nadhir Benbouali"
+        },
+        {
+          "id": "dz-adil-boulbina",
+          "name": "Adil Boulbina"
+        },
+        {
+          "id": "dz-fares-ghedjemis",
+          "name": "Farès Ghedjemis"
+        },
+        {
+          "id": "dz-amine-gouiri",
+          "name": "Amine Gouiri"
+        },
+        {
+          "id": "dz-anis-hadj-moussa",
+          "name": "Anis Hadj Moussa"
+        },
+        {
+          "id": "dz-riyad-mahrez",
+          "name": "Riyad Mahrez"
+        }
+      ]
+    },
+    {
+      "iso": "at",
+      "name": "Áustria",
+      "players": [
+        {
+          "id": "at-patrick-pentz",
+          "name": "Patrick Pentz"
+        },
+        {
+          "id": "at-alexander-schlager",
+          "name": "Alexander Schlager"
+        },
+        {
+          "id": "at-florian-wiegele",
+          "name": "Florian Wiegele"
+        },
+        {
+          "id": "at-david-affengruber",
+          "name": "David Affengruber"
+        },
+        {
+          "id": "at-david-alaba",
+          "name": "David Alaba"
+        },
+        {
+          "id": "at-kevin-danso",
+          "name": "Kevin Danso"
+        },
+        {
+          "id": "at-marco-friedl",
+          "name": "Marco Friedl"
+        },
+        {
+          "id": "at-philipp-lienhart",
+          "name": "Philipp Lienhart"
+        },
+        {
+          "id": "at-phillipp-mwene",
+          "name": "Phillipp Mwene"
+        },
+        {
+          "id": "at-stefan-posch",
+          "name": "Stefan Posch"
+        },
+        {
+          "id": "at-alexander-prass",
+          "name": "Alexander Prass"
+        },
+        {
+          "id": "at-michael-svoboda",
+          "name": "Michael Svoboda"
+        },
+        {
+          "id": "at-christoph-baumgartner",
+          "name": "Christoph Baumgartner"
+        },
+        {
+          "id": "at-carney-chukwuemeka",
+          "name": "Carney Chukwuemeka"
+        },
+        {
+          "id": "at-florian-grillitsch",
+          "name": "Florian Grillitsch"
+        },
+        {
+          "id": "at-konrad-laimer",
+          "name": "Konrad Laimer"
+        },
+        {
+          "id": "at-marcel-sabitzer",
+          "name": "Marcel Sabitzer"
+        },
+        {
+          "id": "at-xaver-schlager",
+          "name": "Xaver Schlager"
+        },
+        {
+          "id": "at-romano-schmid",
+          "name": "Romano Schmid"
+        },
+        {
+          "id": "at-alessandro-schopf",
+          "name": "Alessandro Schöpf"
+        },
+        {
+          "id": "at-nicolas-seiwald",
+          "name": "Nicolas Seiwald"
+        },
+        {
+          "id": "at-paul-wanner",
+          "name": "Paul Wanner"
+        },
+        {
+          "id": "at-patrick-wimmer",
+          "name": "Patrick Wimmer"
+        },
+        {
+          "id": "at-marko-arnautovic",
+          "name": "Marko Arnautović"
+        },
+        {
+          "id": "at-michael-gregoritsch",
+          "name": "Michael Gregoritsch"
+        },
+        {
+          "id": "at-sasa-kalajdzic",
+          "name": "Sasa Kalajdžić"
+        }
+      ]
+    },
+    {
+      "iso": "jo",
+      "name": "Jordânia",
+      "players": [
+        {
+          "id": "jo-yazeed-abulaila",
+          "name": "Yazeed Abulaila"
+        },
+        {
+          "id": "jo-nour-bani-attiah",
+          "name": "Nour Bani Attiah"
+        },
+        {
+          "id": "jo-abdallah-al-fakhouri",
+          "name": "Abdallah Al-Fakhouri"
+        },
+        {
+          "id": "jo-mohammad-abu-hashish",
+          "name": "Mohammad Abu Hashish"
+        },
+        {
+          "id": "jo-abdallah-nasib",
+          "name": "Abdallah Nasib"
+        },
+        {
+          "id": "jo-husam-abu-dahab",
+          "name": "Husam Abu Dahab"
+        },
+        {
+          "id": "jo-yazan-al-arab",
+          "name": "Yazan Al-Arab"
+        },
+        {
+          "id": "jo-mohammad-abualnadi",
+          "name": "Mohammad Abualnadi"
+        },
+        {
+          "id": "jo-salim-obaid",
+          "name": "Salim Obaid"
+        },
+        {
+          "id": "jo-saed-al-rosan",
+          "name": "Saed Al-Rosan"
+        },
+        {
+          "id": "jo-ihsan-haddad",
+          "name": "Ihsan Haddad"
+        },
+        {
+          "id": "jo-anas-badawi",
+          "name": "Anas Badawi"
+        },
+        {
+          "id": "jo-mohannad-abu-taha",
+          "name": "Mohannad Abu Taha"
+        },
+        {
+          "id": "jo-noor-al-rawabdeh",
+          "name": "Noor Al-Rawabdeh"
+        },
+        {
+          "id": "jo-nizar-al-rashdan",
+          "name": "Nizar Al-Rashdan"
+        },
+        {
+          "id": "jo-ibrahim-sa-deh",
+          "name": "Ibrahim Sa'deh"
+        },
+        {
+          "id": "jo-rajaei-ayed",
+          "name": "Rajaei Ayed"
+        },
+        {
+          "id": "jo-amer-jamous",
+          "name": "Amer Jamous"
+        },
+        {
+          "id": "jo-mohammad-al-dawoud",
+          "name": "Mohammad Al-Dawoud"
+        },
+        {
+          "id": "jo-mahmoud-al-mardi",
+          "name": "Mahmoud Al-Mardi"
+        },
+        {
+          "id": "jo-odeh-al-fakhouri",
+          "name": "Odeh Al-Fakhouri"
+        },
+        {
+          "id": "jo-musa-al-tamari",
+          "name": "Musa Al-Tamari"
+        },
+        {
+          "id": "jo-mohammad-abu-zrayq",
+          "name": "Mohammad Abu Zrayq"
+        },
+        {
+          "id": "jo-ali-azaizeh",
+          "name": "Ali Azaizeh"
+        },
+        {
+          "id": "jo-ibrahim-sabra",
+          "name": "Ibrahim Sabra"
+        },
+        {
+          "id": "jo-ali-olwan",
+          "name": "Ali Olwan"
+        }
+      ]
+    },
+    {
+      "iso": "pt",
+      "name": "Portugal",
+      "players": [
+        {
+          "id": "pt-diogo-costa",
+          "name": "Diogo Costa"
+        },
+        {
+          "id": "pt-jose-sa",
+          "name": "José Sá"
+        },
+        {
+          "id": "pt-rui-silva",
+          "name": "Rui Silva"
+        },
+        {
+          "id": "pt-ruben-dias",
+          "name": "Rúben Dias"
+        },
+        {
+          "id": "pt-joao-cancelo",
+          "name": "João Cancelo"
+        },
+        {
+          "id": "pt-nelson-semedo",
+          "name": "Nélson Semedo"
+        },
+        {
+          "id": "pt-nuno-mendes",
+          "name": "Nuno Mendes"
+        },
+        {
+          "id": "pt-diogo-dalot",
+          "name": "Diogo Dalot"
+        },
+        {
+          "id": "pt-goncalo-inacio",
+          "name": "Gonçalo Inácio"
+        },
+        {
+          "id": "pt-renato-veiga",
+          "name": "Renato Veiga"
+        },
+        {
+          "id": "pt-tomas-araujo",
+          "name": "Tomás Araújo"
+        },
+        {
+          "id": "pt-matheus-nunes",
+          "name": "Matheus Nunes"
+        },
+        {
+          "id": "pt-bernardo-silva",
+          "name": "Bernardo Silva"
+        },
+        {
+          "id": "pt-bruno-fernandes",
+          "name": "Bruno Fernandes"
+        },
+        {
+          "id": "pt-ruben-neves",
+          "name": "Rúben Neves"
+        },
+        {
+          "id": "pt-vitinha",
+          "name": "Vitinha"
+        },
+        {
+          "id": "pt-joao-neves",
+          "name": "João Neves"
+        },
+        {
+          "id": "pt-samu-costa",
+          "name": "Samu Costa"
+        },
+        {
+          "id": "pt-cristiano-ronaldo",
+          "name": "Cristiano Ronaldo"
+        },
+        {
+          "id": "pt-francisco-trincao",
+          "name": "Francisco Trincão"
+        },
+        {
+          "id": "pt-joao-felix",
+          "name": "João Félix"
+        },
+        {
+          "id": "pt-rafael-leao",
+          "name": "Rafael Leão"
+        },
+        {
+          "id": "pt-goncalo-guedes",
+          "name": "Gonçalo Guedes"
+        },
+        {
+          "id": "pt-goncalo-ramos",
+          "name": "Gonçalo Ramos"
+        },
+        {
+          "id": "pt-pedro-neto",
+          "name": "Pedro Neto"
+        },
+        {
+          "id": "pt-francisco-conceicao",
+          "name": "Francisco Conceição"
+        }
+      ]
+    },
+    {
+      "iso": "cd",
+      "name": "RD Congo",
+      "players": [
+        {
+          "id": "cd-lionel-mpasi",
+          "name": "Lionel Mpasi"
+        },
+        {
+          "id": "cd-timothy-fayulu",
+          "name": "Timothy Fayulu"
+        },
+        {
+          "id": "cd-matthieu-epolo",
+          "name": "Matthieu Epolo"
+        },
+        {
+          "id": "cd-chancel-mbemba",
+          "name": "Chancel Mbemba"
+        },
+        {
+          "id": "cd-aaron-wan-bissaka",
+          "name": "Aaron Wan-Bissaka"
+        },
+        {
+          "id": "cd-axel-tuanzebe",
+          "name": "Axel Tuanzebe"
+        },
+        {
+          "id": "cd-arthur-masuaku",
+          "name": "Arthur Masuaku"
+        },
+        {
+          "id": "cd-gedeon-kalulu",
+          "name": "Gédéon Kalulu"
+        },
+        {
+          "id": "cd-joris-kayembe",
+          "name": "Joris Kayembe"
+        },
+        {
+          "id": "cd-dylan-batubinsika",
+          "name": "Dylan Batubinsika"
+        },
+        {
+          "id": "cd-steve-kapuadi",
+          "name": "Steve Kapuadi"
+        },
+        {
+          "id": "cd-aaron-tshibola",
+          "name": "Aaron Tshibola"
+        },
+        {
+          "id": "cd-meschack-elia",
+          "name": "Meschack Elia"
+        },
+        {
+          "id": "cd-samuel-moutoussamy",
+          "name": "Samuel Moutoussamy"
+        },
+        {
+          "id": "cd-edo-kayembe",
+          "name": "Edo Kayembe"
+        },
+        {
+          "id": "cd-charles-pickel",
+          "name": "Charles Pickel"
+        },
+        {
+          "id": "cd-gael-kakuta",
+          "name": "Gaël Kakuta"
+        },
+        {
+          "id": "cd-noah-sadiki",
+          "name": "Noah Sadiki"
+        },
+        {
+          "id": "cd-nathanael-mbuku",
+          "name": "Nathanaël Mbuku"
+        },
+        {
+          "id": "cd-ngal-ayel-mukau",
+          "name": "Ngal'ayel Mukau"
+        },
+        {
+          "id": "cd-brian-cipenga",
+          "name": "Brian Cipenga"
+        },
+        {
+          "id": "cd-cedric-bakambu",
+          "name": "Cédric Bakambu"
+        },
+        {
+          "id": "cd-theo-bongonda",
+          "name": "Théo Bongonda"
+        },
+        {
+          "id": "cd-fiston-mayele",
+          "name": "Fiston Mayele"
+        },
+        {
+          "id": "cd-yoane-wissa",
+          "name": "Yoane Wissa"
+        },
+        {
+          "id": "cd-simon-banza",
+          "name": "Simon Banza"
+        }
+      ]
+    },
+    {
+      "iso": "uz",
+      "name": "Uzbequistão",
+      "players": [
+        {
+          "id": "uz-utkir-yusupov",
+          "name": "Utkir Yusupov"
+        },
+        {
+          "id": "uz-abduvohid-nematov",
+          "name": "Abduvohid Nematov"
+        },
+        {
+          "id": "uz-botirali-ergashev",
+          "name": "Botirali Ergashev"
+        },
+        {
+          "id": "uz-abdukodir-khusanov",
+          "name": "Abdukodir Khusanov"
+        },
+        {
+          "id": "uz-khojiakbar-alijonov",
+          "name": "Khojiakbar Alijonov"
+        },
+        {
+          "id": "uz-farrukh-sayfiev",
+          "name": "Farrukh Sayfiev"
+        },
+        {
+          "id": "uz-rustam-ashurmatov",
+          "name": "Rustam Ashurmatov"
+        },
+        {
+          "id": "uz-umar-eshmurodov",
+          "name": "Umar Eshmurodov"
+        },
+        {
+          "id": "uz-sherzod-nasrullaev",
+          "name": "Sherzod Nasrullaev"
+        },
+        {
+          "id": "uz-abdulla-abdullaev",
+          "name": "Abdulla Abdullaev"
+        },
+        {
+          "id": "uz-avazbek-ulmasaliev",
+          "name": "Avazbek Ulmasaliev"
+        },
+        {
+          "id": "uz-jakhongir-urozov",
+          "name": "Jakhongir Urozov"
+        },
+        {
+          "id": "uz-behruz-karimov",
+          "name": "Behruz Karimov"
+        },
+        {
+          "id": "uz-akmal-mozgovoy",
+          "name": "Akmal Mozgovoy"
+        },
+        {
+          "id": "uz-otabek-shukurov",
+          "name": "Otabek Shukurov"
+        },
+        {
+          "id": "uz-jamshid-iskanderov",
+          "name": "Jamshid Iskanderov"
+        },
+        {
+          "id": "uz-odil-khamrobekov",
+          "name": "Odil Khamrobekov"
+        },
+        {
+          "id": "uz-jaloliddin-masharipov",
+          "name": "Jaloliddin Masharipov"
+        },
+        {
+          "id": "uz-oston-urunov",
+          "name": "Oston Urunov"
+        },
+        {
+          "id": "uz-dostonbek-khamdamov",
+          "name": "Dostonbek Khamdamov"
+        },
+        {
+          "id": "uz-aziz-ganiev",
+          "name": "Aziz Ganiev"
+        },
+        {
+          "id": "uz-abbosbek-fayzullaev",
+          "name": "Abbosbek Fayzullaev"
+        },
+        {
+          "id": "uz-sherzod-esanov",
+          "name": "Sherzod Esanov"
+        },
+        {
+          "id": "uz-eldor-shomurodov",
+          "name": "Eldor Shomurodov"
+        },
+        {
+          "id": "uz-igor-sergeev",
+          "name": "Igor Sergeev"
+        },
+        {
+          "id": "uz-azizbek-amonov",
+          "name": "Azizbek Amonov"
+        }
+      ]
+    },
+    {
+      "iso": "co",
+      "name": "Colômbia",
+      "players": [
+        {
+          "id": "co-camilo-vargas",
+          "name": "Camilo Vargas"
+        },
+        {
+          "id": "co-david-ospina",
+          "name": "David Ospina"
+        },
+        {
+          "id": "co-alvaro-montero",
+          "name": "Álvaro Montero"
+        },
+        {
+          "id": "co-daniel-munoz",
+          "name": "Daniel Muñoz"
+        },
+        {
+          "id": "co-davinson-sanchez",
+          "name": "Davinson Sánchez"
+        },
+        {
+          "id": "co-johan-mojica",
+          "name": "Johan Mojica"
+        },
+        {
+          "id": "co-jhon-lucumi",
+          "name": "Jhon Lucumí"
+        },
+        {
+          "id": "co-santiago-arias",
+          "name": "Santiago Arias"
+        },
+        {
+          "id": "co-yerry-mina",
+          "name": "Yerry Mina"
+        },
+        {
+          "id": "co-willer-ditta",
+          "name": "Willer Ditta"
+        },
+        {
+          "id": "co-deiver-machado",
+          "name": "Deiver Machado"
+        },
+        {
+          "id": "co-james-rodriguez",
+          "name": "James Rodríguez"
+        },
+        {
+          "id": "co-richard-rios",
+          "name": "Richard Ríos"
+        },
+        {
+          "id": "co-jhon-arias",
+          "name": "Jhon Arias"
+        },
+        {
+          "id": "co-juan-fernando-quintero",
+          "name": "Juan Fernando Quintero"
+        },
+        {
+          "id": "co-gustavo-puerta",
+          "name": "Gustavo Puerta"
+        },
+        {
+          "id": "co-juan-camilo-portilla",
+          "name": "Juan Camilo Portilla"
+        },
+        {
+          "id": "co-jorge-carrascal",
+          "name": "Jorge Carrascal"
+        },
+        {
+          "id": "co-jaminton-campaz",
+          "name": "Jáminton Campaz"
+        },
+        {
+          "id": "co-jefferson-lerma",
+          "name": "Jefferson Lerma"
+        },
+        {
+          "id": "co-kevin-castano",
+          "name": "Kevin Castaño"
+        },
+        {
+          "id": "co-luis-diaz",
+          "name": "Luis Díaz"
+        },
+        {
+          "id": "co-luis-suarez",
+          "name": "Luis Suárez"
+        },
+        {
+          "id": "co-jhon-cordoba",
+          "name": "Jhon Córdoba"
+        },
+        {
+          "id": "co-juan-camilo-hernandez",
+          "name": "Juan Camilo Hernández"
+        },
+        {
+          "id": "co-carlos-andres-gomez",
+          "name": "Carlos Andrés Gómez"
+        }
+      ]
+    },
+    {
+      "iso": "gb-eng",
+      "name": "Inglaterra",
+      "players": [
+        {
+          "id": "gb-eng-jordan-pickford",
+          "name": "Jordan Pickford"
+        },
+        {
+          "id": "gb-eng-ezri-konsa",
+          "name": "Ezri Konsa"
+        },
+        {
+          "id": "gb-eng-nico-o-reilly",
+          "name": "Nico O'Reilly"
+        },
+        {
+          "id": "gb-eng-declan-rice",
+          "name": "Declan Rice"
+        },
+        {
+          "id": "gb-eng-john-stones",
+          "name": "John Stones"
+        },
+        {
+          "id": "gb-eng-marc-guehi",
+          "name": "Marc Guéhi"
+        },
+        {
+          "id": "gb-eng-bukayo-saka",
+          "name": "Bukayo Saka"
+        },
+        {
+          "id": "gb-eng-elliot-anderson",
+          "name": "Elliot Anderson"
+        },
+        {
+          "id": "gb-eng-harry-kane",
+          "name": "Harry Kane"
+        },
+        {
+          "id": "gb-eng-jude-bellingham",
+          "name": "Jude Bellingham"
+        },
+        {
+          "id": "gb-eng-marcus-rashford",
+          "name": "Marcus Rashford"
+        },
+        {
+          "id": "gb-eng-tino-livramento",
+          "name": "Tino Livramento"
+        },
+        {
+          "id": "gb-eng-dean-henderson",
+          "name": "Dean Henderson"
+        },
+        {
+          "id": "gb-eng-jordan-henderson",
+          "name": "Jordan Henderson"
+        },
+        {
+          "id": "gb-eng-dan-burn",
+          "name": "Dan Burn"
+        },
+        {
+          "id": "gb-eng-kobbie-mainoo",
+          "name": "Kobbie Mainoo"
+        },
+        {
+          "id": "gb-eng-morgan-rogers",
+          "name": "Morgan Rogers"
+        },
+        {
+          "id": "gb-eng-anthony-gordon",
+          "name": "Anthony Gordon"
+        },
+        {
+          "id": "gb-eng-ollie-watkins",
+          "name": "Ollie Watkins"
+        },
+        {
+          "id": "gb-eng-noni-madueke",
+          "name": "Noni Madueke"
+        },
+        {
+          "id": "gb-eng-eberechi-eze",
+          "name": "Eberechi Eze"
+        },
+        {
+          "id": "gb-eng-ivan-toney",
+          "name": "Ivan Toney"
+        },
+        {
+          "id": "gb-eng-james-trafford",
+          "name": "James Trafford"
+        },
+        {
+          "id": "gb-eng-reece-james",
+          "name": "Reece James"
+        },
+        {
+          "id": "gb-eng-djed-spence",
+          "name": "Djed Spence"
+        },
+        {
+          "id": "gb-eng-jarell-quansah",
+          "name": "Jarell Quansah"
+        }
+      ]
+    },
+    {
+      "iso": "hr",
+      "name": "Croácia",
+      "players": [
+        {
+          "id": "hr-dominik-livakovic",
+          "name": "Dominik Livaković"
+        },
+        {
+          "id": "hr-dominik-kotarski",
+          "name": "Dominik Kotarski"
+        },
+        {
+          "id": "hr-ivor-pandur",
+          "name": "Ivor Pandur"
+        },
+        {
+          "id": "hr-josko-gvardiol",
+          "name": "Joško Gvardiol"
+        },
+        {
+          "id": "hr-duje-caleta-car",
+          "name": "Duje Ćaleta-Car"
+        },
+        {
+          "id": "hr-josip-sutalo",
+          "name": "Josip Šutalo"
+        },
+        {
+          "id": "hr-josip-stanisic",
+          "name": "Josip Stanišić"
+        },
+        {
+          "id": "hr-marin-pongracic",
+          "name": "Marin Pongračić"
+        },
+        {
+          "id": "hr-martin-erlic",
+          "name": "Martin Erlić"
+        },
+        {
+          "id": "hr-luka-vuskovic",
+          "name": "Luka Vušković"
+        },
+        {
+          "id": "hr-luka-modric",
+          "name": "Luka Modrić"
+        },
+        {
+          "id": "hr-mateo-kovacic",
+          "name": "Mateo Kovačić"
+        },
+        {
+          "id": "hr-mario-pasalic",
+          "name": "Mario Pašalić"
+        },
+        {
+          "id": "hr-nikola-vlasic",
+          "name": "Nikola Vlašić"
+        },
+        {
+          "id": "hr-luka-sucic",
+          "name": "Luka Sučić"
+        },
+        {
+          "id": "hr-martin-baturina",
+          "name": "Martin Baturina"
+        },
+        {
+          "id": "hr-kristijan-jakic",
+          "name": "Kristijan Jakić"
+        },
+        {
+          "id": "hr-petar-sucic",
+          "name": "Petar Sučić"
+        },
+        {
+          "id": "hr-nikola-moro",
+          "name": "Nikola Moro"
+        },
+        {
+          "id": "hr-toni-fruk",
+          "name": "Toni Fruk"
+        },
+        {
+          "id": "hr-ivan-perisic",
+          "name": "Ivan Perišić"
+        },
+        {
+          "id": "hr-andrej-kramaric",
+          "name": "Andrej Kramarić"
+        },
+        {
+          "id": "hr-ante-budimir",
+          "name": "Ante Budimir"
+        },
+        {
+          "id": "hr-marco-pasalic",
+          "name": "Marco Pašalić"
+        },
+        {
+          "id": "hr-petar-musa",
+          "name": "Petar Musa"
+        },
+        {
+          "id": "hr-igor-matanovic",
+          "name": "Igor Matanović"
+        }
+      ]
+    },
+    {
+      "iso": "gh",
+      "name": "Gana",
+      "players": [
+        {
+          "id": "gh-benjamin-asare",
+          "name": "Benjamin Asare"
+        },
+        {
+          "id": "gh-lawrence-ati-zigi",
+          "name": "Lawrence Ati-Zigi"
+        },
+        {
+          "id": "gh-joseph-anang",
+          "name": "Joseph Anang"
+        },
+        {
+          "id": "gh-baba-abdul-rahman",
+          "name": "Baba Abdul Rahman"
+        },
+        {
+          "id": "gh-gideon-mensah",
+          "name": "Gideon Mensah"
+        },
+        {
+          "id": "gh-marvin-senaya",
+          "name": "Marvin Senaya"
+        },
+        {
+          "id": "gh-alidu-seidu",
+          "name": "Alidu Seidu"
+        },
+        {
+          "id": "gh-abdul-mumin",
+          "name": "Abdul Mumin"
+        },
+        {
+          "id": "gh-jerome-opoku",
+          "name": "Jerome Opoku"
+        },
+        {
+          "id": "gh-jonas-adjetey",
+          "name": "Jonas Adjetey"
+        },
+        {
+          "id": "gh-kojo-oppong-peprah",
+          "name": "Kojo Oppong Peprah"
+        },
+        {
+          "id": "gh-derrick-luckassen",
+          "name": "Derrick Luckassen"
+        },
+        {
+          "id": "gh-elisha-owusu",
+          "name": "Elisha Owusu"
+        },
+        {
+          "id": "gh-thomas-partey",
+          "name": "Thomas Partey"
+        },
+        {
+          "id": "gh-kwasi-sibo",
+          "name": "Kwasi Sibo"
+        },
+        {
+          "id": "gh-augustine-boakye",
+          "name": "Augustine Boakye"
+        },
+        {
+          "id": "gh-caleb-yirenkyi",
+          "name": "Caleb Yirenkyi"
+        },
+        {
+          "id": "gh-abdul-fatawu-issahaku",
+          "name": "Abdul Fatawu Issahaku"
+        },
+        {
+          "id": "gh-kamaldeen-sulemana",
+          "name": "Kamaldeen Sulemana"
+        },
+        {
+          "id": "gh-christopher-bonsu-baah",
+          "name": "Christopher Bonsu Baah"
+        },
+        {
+          "id": "gh-ernest-nuamah",
+          "name": "Ernest Nuamah"
+        },
+        {
+          "id": "gh-antoine-semenyo",
+          "name": "Antoine Semenyo"
+        },
+        {
+          "id": "gh-brandon-thomas-asante",
+          "name": "Brandon Thomas-Asante"
+        },
+        {
+          "id": "gh-prince-kwabena-adu",
+          "name": "Prince Kwabena Adu"
+        },
+        {
+          "id": "gh-inaki-williams",
+          "name": "Iñaki Williams"
+        },
+        {
+          "id": "gh-jordan-ayew",
+          "name": "Jordan Ayew"
+        }
+      ]
+    },
+    {
+      "iso": "pa",
+      "name": "Panamá",
+      "players": [
+        {
+          "id": "pa-orlando-mosquera",
+          "name": "Orlando Mosquera"
+        },
+        {
+          "id": "pa-luis-mejia",
+          "name": "Luis Mejía"
+        },
+        {
+          "id": "pa-cesar-samudio",
+          "name": "César Samudio"
+        },
+        {
+          "id": "pa-cesar-blackman",
+          "name": "César Blackman"
+        },
+        {
+          "id": "pa-jorge-gutierrez",
+          "name": "Jorge Gutiérrez"
+        },
+        {
+          "id": "pa-michael-amir-murillo",
+          "name": "Michael Amir Murillo"
+        },
+        {
+          "id": "pa-fidel-escobar",
+          "name": "Fidel Escobar"
+        },
+        {
+          "id": "pa-andres-andrade",
+          "name": "Andrés Andrade"
+        },
+        {
+          "id": "pa-edgardo-farina",
+          "name": "Edgardo Fariña"
+        },
+        {
+          "id": "pa-jose-cordoba",
+          "name": "José Córdoba"
+        },
+        {
+          "id": "pa-eric-davis",
+          "name": "Éric Davis"
+        },
+        {
+          "id": "pa-jiovany-ramos",
+          "name": "Jiovany Ramos"
+        },
+        {
+          "id": "pa-roderick-miller",
+          "name": "Roderick Miller"
+        },
+        {
+          "id": "pa-anibal-godoy",
+          "name": "Aníbal Godoy"
+        },
+        {
+          "id": "pa-adalberto-carrasquilla",
+          "name": "Adalberto Carrasquilla"
+        },
+        {
+          "id": "pa-carlos-harvey",
+          "name": "Carlos Harvey"
+        },
+        {
+          "id": "pa-cristian-martinez",
+          "name": "Cristian Martínez"
+        },
+        {
+          "id": "pa-jose-luis-rodriguez",
+          "name": "José Luis Rodríguez"
+        },
+        {
+          "id": "pa-cesar-yanis",
+          "name": "César Yanis"
+        },
+        {
+          "id": "pa-yoel-barcenas",
+          "name": "Yoel Bárcenas"
+        },
+        {
+          "id": "pa-alberto-quintero",
+          "name": "Alberto Quintero"
+        },
+        {
+          "id": "pa-azarias-londono",
+          "name": "Azarías Londoño"
+        },
+        {
+          "id": "pa-ismael-diaz",
+          "name": "Ismael Díaz"
+        },
+        {
+          "id": "pa-cecilio-waterman",
+          "name": "Cecilio Waterman"
+        },
+        {
+          "id": "pa-jose-fajardo",
+          "name": "José Fajardo"
+        },
+        {
+          "id": "pa-tomas-rodriguez",
+          "name": "Tomás Rodríguez"
+        }
+      ]
+    }
+  ]
+}

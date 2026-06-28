@@ -1,0 +1,257 @@
+name: Deploy
+
+# Push em main: deploy automatizado API + Frontend (split S6.2/ADR-020) + Functions.
+# Secrets fetched de Azure Key Vault em runtime (não armazenados em GitHub).
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.aiox/**'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+# Nomes dos recursos: SEM dependência rígida de prefixo. Cada um pode ser
+# preenchido explicitamente via repo Variable (flexível — cada aluno usa os SEUS
+# nomes). Se a Variable não for definida, cai no padrão de taxonomia
+# <tipo>-fifa-bolao-<NAME_SUFFIX> (produção usa NAME_SUFFIX=tftec01).
+env:
+  RG: ${{ vars.AZURE_RG || 'rg-fifa-bolao' }}
+  KV: ${{ vars.KEY_VAULT_NAME || format('kv-bolao-{0}', vars.NAME_SUFFIX) }}
+  APP_NAME: ${{ vars.API_APP_NAME || format('app-fifa-bolao-{0}', vars.NAME_SUFFIX) }}            # API-only (S6.2)
+  WEB_APP_NAME: ${{ vars.FRONTEND_APP_NAME || format('app-fifa-bolao-web-{0}', vars.NAME_SUFFIX) }} # Frontend SPA (S6.2)
+  FUNCTION_APP: ${{ vars.FUNCTION_APP_NAME || format('func-fifa-bolao-{0}', vars.NAME_SUFFIX) }}
+  COSMOS_ACCOUNT: ${{ vars.COSMOS_ACCOUNT_NAME || format('cosmos-fifa-bolao-{0}', vars.NAME_SUFFIX) }}
+  # Onde os smoke tests batem. Prioridade: (1) repo Variable PUBLIC_BASE_URL;
+  # (2) SÓ no repo de produção, o Front Door (ADR-021: Web Apps isoladas só-AFD);
+  # (3) qualquer outro repo/fork → deriva do PRÓPRIO frontend do aluno. Assim um
+  # fork NUNCA aponta para a app de produção da TFTEC, mesmo sem configurar nada.
+  PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL || (github.repository == 'TFTEC/fifa2026-bolao-dev' && 'https://fd-fifa-bolao-tftec01-dhacbschctefaqct.z02.azurefd.net' || format('https://{0}.azurewebsites.net', vars.FRONTEND_APP_NAME || format('app-fifa-bolao-web-{0}', vars.NAME_SUFFIX))) }}
+
+jobs:
+  detect_changes:
+    name: Detect changed scopes
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      api: ${{ steps.filter.outputs.api }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+      functions: ${{ steps.filter.outputs.functions }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+      - uses: dorny/paths-filter@v4
+        id: filter
+        with:
+          base: ${{ github.event_name == 'workflow_dispatch' && github.ref || '' }}
+          filters: |
+            api:
+              - 'backend/**'
+              - 'scripts/deploy.sh'
+              - 'scripts/make-staging-pkg.cjs'
+              - 'scripts/make-zip.cjs'
+              - 'package.json'
+              - 'package-lock.json'
+              - '.github/workflows/deploy.yml'
+            frontend:
+              - 'frontend/**'
+              - 'frontend-server/**'
+              - 'scripts/deploy-frontend-webapp.sh'
+              - 'scripts/make-zip.cjs'
+              - 'package.json'
+              - 'package-lock.json'
+              - '.github/workflows/deploy.yml'
+            functions:
+              - 'functions/**'
+              - 'scripts/deploy-functions.sh'
+              - 'scripts/make-zip.cjs'
+              - 'package.json'
+              - 'package-lock.json'
+              - '.github/workflows/deploy.yml'
+
+  deploy_api:
+    name: Deploy API (backend, API-only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: detect_changes
+    if: needs.detect_changes.outputs.api == 'true' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Node 20
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Azure login (Service Principal)
+        uses: azure/login@v3
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # S6.5: a API resolve os segredos em runtime via Key Vault references +
+      # Managed Identity (App Settings @Microsoft.KeyVault). O CI NÃO baixa mais
+      # cosmos-key/jwt-secret — o passo "Fetch secrets" + .env eram código morto
+      # (scripts/deploy.sh nunca empacotava o .env nem lia esses env vars).
+      - name: Install dependencies (root + workspaces)
+        run: npm install
+      - name: Run canonical deploy script (API-only)
+        run: bash scripts/deploy.sh
+        env:
+          RG: ${{ env.RG }}
+          APP: ${{ env.APP_NAME }}
+          SMOKE_BASE_URL: ${{ env.PUBLIC_BASE_URL }}
+      - name: Summary
+        run: |
+          echo "## API Deploy (API-only)" >> $GITHUB_STEP_SUMMARY
+          echo "- API: https://${APP_NAME}.azurewebsites.net" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+
+  deploy_frontend:
+    name: Deploy Frontend (SPA Web App)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: detect_changes
+    if: needs.detect_changes.outputs.frontend == 'true' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Node 20
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Azure login (Service Principal)
+        uses: azure/login@v3
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Install dependencies (root + workspaces)
+        run: npm install
+      - name: Run frontend deploy script (Express)
+        run: bash scripts/deploy-frontend-webapp.sh
+        env:
+          FRONTEND_APP: ${{ env.WEB_APP_NAME }}
+          API_APP: ${{ env.APP_NAME }}
+          AZURE_RG: ${{ env.RG }}
+          SMOKE_BASE_URL: ${{ env.PUBLIC_BASE_URL }}
+          # Produção (Front Door, ADR-021): /api relativo, roteado pelo AFD para a
+          # API (passa pelo WAF). O guard SOR-05 valida que o bundle não embute
+          # *.azurewebsites.net/api nesse modo same-origin.
+          # Self-host/aluno (sem Front Door): defina a repo Variable
+          # VITE_API_BASE_URL com a URL ABSOLUTA da sua API
+          # (ex.: https://<sua-api>.azurewebsites.net/api). Sem a Variable = /api.
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || '/api' }}
+      - name: Summary
+        run: |
+          echo "## Frontend Deploy (SPA)" >> $GITHUB_STEP_SUMMARY
+          echo "- Site: ${PUBLIC_BASE_URL}" >> $GITHUB_STEP_SUMMARY
+          echo "- API base (build): ${{ vars.VITE_API_BASE_URL || '/api' }}" >> $GITHUB_STEP_SUMMARY
+
+  deploy_functions:
+    name: Deploy Functions
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    needs: [detect_changes, deploy_api]
+    if: |
+      always() &&
+      (needs.detect_changes.outputs.functions == 'true' || github.event_name == 'workflow_dispatch') &&
+      (needs.deploy_api.result == 'success' || needs.deploy_api.result == 'skipped')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Node 20
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Azure login (Service Principal)
+        uses: azure/login@v3
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Ensure Functions app settings (SignalR via KV reference)
+        run: |
+          set -e
+          az functionapp config appsettings set -g "$RG" -n "$FUNCTION_APP" \
+            --settings "COSMOS_DATABASE=bolao2026" >/dev/null
+          # AzureWebJobsCosmosDBConnection: connection string gerada (sem secret KV
+          # equivalente); binding crítico do trigger de scoring → mantido raw
+          # (fora do escopo S6.5; mascarado no log).
+          COSMOS_CONN=$(az cosmosdb keys list --type connection-strings \
+            --name "$COSMOS_ACCOUNT" -g "$RG" \
+            --query "connectionStrings[0].connectionString" -o tsv)
+          echo "::add-mask::$COSMOS_CONN"
+          az functionapp config appsettings set -g "$RG" -n "$FUNCTION_APP" \
+            --settings "AzureWebJobsCosmosDBConnection=$COSMOS_CONN" >/dev/null
+          # SignalR (opcional):
+          #  - Fork/aluno: defina o secret SIGNALR_CONNECTION_STRING → usamos raw
+          #    (não exige Key Vault). Sem o secret e sem KV, o realtime fica desligado.
+          #  - Produção: secret ausente → Key Vault reference (S6.5, MSI resolve runtime).
+          if [ -n "${SIGNALR_CONN_SECRET:-}" ]; then
+            SIGNALR_VAL="$SIGNALR_CONN_SECRET"
+            echo "✓ SignalR: connection string via GitHub secret"
+          else
+            SIGNALR_VAL="@Microsoft.KeyVault(SecretUri=https://${KV}.vault.azure.net/secrets/signalr-connection-string)"
+            echo "✓ SignalR: Key Vault reference (produção)"
+          fi
+          az functionapp config appsettings set -g "$RG" -n "$FUNCTION_APP" \
+            --settings "SIGNALR_CONNECTION_STRING=$SIGNALR_VAL" "AzureSignalRConnectionString=$SIGNALR_VAL" >/dev/null
+          echo "✓ Function App settings aplicados (scoring binding raw)"
+        env:
+          SIGNALR_CONN_SECRET: ${{ secrets.SIGNALR_CONNECTION_STRING }}
+      - name: Install dependencies
+        run: npm install
+      - name: Run canonical functions deploy script
+        run: bash scripts/deploy-functions.sh
+        env:
+          RG: ${{ env.RG }}
+          APP: ${{ env.FUNCTION_APP }}
+          COSMOS_ACCOUNT: ${{ env.COSMOS_ACCOUNT }}
+      - name: Summary
+        run: |
+          echo "## Functions Deploy" >> $GITHUB_STEP_SUMMARY
+          echo "- Function App: $FUNCTION_APP" >> $GITHUB_STEP_SUMMARY
+
+  smoke_live:
+    name: Smoke tests live
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    needs: [deploy_api, deploy_frontend, deploy_functions]
+    if: |
+      always() &&
+      (needs.deploy_api.result == 'success' || needs.deploy_api.result == 'skipped') &&
+      (needs.deploy_frontend.result == 'success' || needs.deploy_frontend.result == 'skipped') &&
+      (needs.deploy_functions.result == 'success' || needs.deploy_functions.result == 'skipped') &&
+      (needs.deploy_api.result == 'success' || needs.deploy_frontend.result == 'success' || needs.deploy_functions.result == 'success')
+    steps:
+      - name: Wait for warmup
+        run: sleep 15
+      - name: Test API endpoints (via Front Door)
+        run: |
+          # Same-origin pela borda (ADR-021): /api/* roteia para a API. O host
+          # direto *.azurewebsites.net está isolado (403), então validamos via AFD.
+          BASE="${PUBLIC_BASE_URL}"
+          set -e
+          curl -sf --max-time 30 "$BASE/api/health" | grep -q '"status":"ok"'
+          curl -sf --max-time 30 "$BASE/api/health/full" | grep -q '"ok":true'
+          curl -sf --max-time 30 "$BASE/api/leaderboard" | grep -q '"ranking"'
+          MC=$(curl -sf --max-time 30 "$BASE/api/matches" | node -e 'let d="";process.stdin.on("data",c=>c&&(d+=c)).on("end",()=>console.log(JSON.parse(d).count))')
+          test "$MC" = "72" && echo "✓ 72 matches" || (echo "✗ matches=$MC" && exit 1)
+          echo "✓ API smoke PASS"
+      - name: Test Frontend (SPA via Front Door)
+        run: |
+          BASE="${PUBLIC_BASE_URL}"
+          set -e
+          curl -sf --max-time 30 "$BASE/healthz" | grep -q 'ok'
+          curl -sf --max-time 30 -o /dev/null -w "%{http_code}" "$BASE/" | grep -q '200'
+          curl -sf --max-time 20 -o /dev/null -w "%{http_code}" "$BASE/leaderboard" | grep -q '200'
+          echo "✓ Frontend smoke PASS"
+      - name: Summary
+        run: |
+          echo "## Smoke Live" >> $GITHUB_STEP_SUMMARY
+          echo "- Entrada pública (Front Door): ${PUBLIC_BASE_URL}" >> $GITHUB_STEP_SUMMARY
+          echo "- API same-origin: ${PUBLIC_BASE_URL}/api" >> $GITHUB_STEP_SUMMARY

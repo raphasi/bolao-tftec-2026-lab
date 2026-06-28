@@ -1,0 +1,138 @@
+{
+  "_comment": "Subset de jogos da fase de grupos da Copa de 2026 para seed local. Use o main app API (MAIN_API_BASE_URL) em produção para popular os 72 jogos reais.",
+  "_source": "Calendário oficial FIFA World Cup 2026 (12 grupos, 4 seleções cada)",
+  "matches": [
+    {
+      "matchId": 1,
+      "groupCode": "A",
+      "phase": "group",
+      "homeTeam": "México",
+      "homeFlag": "mx",
+      "awayTeam": "Camarões",
+      "awayFlag": "cm",
+      "kickoffUtc": "2026-06-11T20:00:00Z",
+      "venue": "Estadio Azteca, Cidade do México"
+    },
+    {
+      "matchId": 2,
+      "groupCode": "B",
+      "phase": "group",
+      "homeTeam": "Canadá",
+      "homeFlag": "ca",
+      "awayTeam": "Equador",
+      "awayFlag": "ec",
+      "kickoffUtc": "2026-06-12T23:00:00Z",
+      "venue": "BMO Field, Toronto"
+    },
+    {
+      "matchId": 3,
+      "groupCode": "C",
+      "phase": "group",
+      "homeTeam": "Estados Unidos",
+      "homeFlag": "us",
+      "awayTeam": "Holanda",
+      "awayFlag": "nl",
+      "kickoffUtc": "2026-06-12T20:00:00Z",
+      "venue": "SoFi Stadium, Los Angeles"
+    },
+    {
+      "matchId": 4,
+      "groupCode": "D",
+      "phase": "group",
+      "homeTeam": "Brasil",
+      "homeFlag": "br",
+      "awayTeam": "Croácia",
+      "awayFlag": "hr",
+      "kickoffUtc": "2026-06-13T20:00:00Z",
+      "venue": "MetLife Stadium, Nova Jersey"
+    },
+    {
+      "matchId": 5,
+      "groupCode": "E",
+      "phase": "group",
+      "homeTeam": "Argentina",
+      "homeFlag": "ar",
+      "awayTeam": "Senegal",
+      "awayFlag": "sn",
+      "kickoffUtc": "2026-06-13T23:00:00Z",
+      "venue": "Lincoln Financial Field, Filadélfia"
+    },
+    {
+      "matchId": 6,
+      "groupCode": "F",
+      "phase": "group",
+      "homeTeam": "França",
+      "homeFlag": "fr",
+      "awayTeam": "Marrocos",
+      "awayFlag": "ma",
+      "kickoffUtc": "2026-06-14T20:00:00Z",
+      "venue": "Gillette Stadium, Boston"
+    },
+    {
+      "matchId": 7,
+      "groupCode": "G",
+      "phase": "group",
+      "homeTeam": "Alemanha",
+      "homeFlag": "de",
+      "awayTeam": "Japão",
+      "awayFlag": "jp",
+      "kickoffUtc": "2026-06-14T23:00:00Z",
+      "venue": "Hard Rock Stadium, Miami"
+    },
+    {
+      "matchId": 8,
+      "groupCode": "H",
+      "phase": "group",
+      "homeTeam": "Inglaterra",
+      "homeFlag": "gb-eng",
+      "awayTeam": "Polônia",
+      "awayFlag": "pl",
+      "kickoffUtc": "2026-06-15T18:00:00Z",
+      "venue": "AT&T Stadium, Dallas"
+    },
+    {
+      "matchId": 9,
+      "groupCode": "I",
+      "phase": "group",
+      "homeTeam": "Portugal",
+      "homeFlag": "pt",
+      "awayTeam": "Coreia do Sul",
+      "awayFlag": "kr",
+      "kickoffUtc": "2026-06-15T21:00:00Z",
+      "venue": "Levi's Stadium, São Francisco"
+    },
+    {
+      "matchId": 10,
+      "groupCode": "J",
+      "phase": "group",
+      "homeTeam": "Espanha",
+      "homeFlag": "es",
+      "awayTeam": "Senegal",
+      "awayFlag": "sn",
+      "kickoffUtc": "2026-06-16T20:00:00Z",
+      "venue": "Mercedes-Benz Stadium, Atlanta"
+    },
+    {
+      "matchId": 11,
+      "groupCode": "K",
+      "phase": "group",
+      "homeTeam": "Bélgica",
+      "homeFlag": "be",
+      "awayTeam": "Uruguai",
+      "awayFlag": "uy",
+      "kickoffUtc": "2026-06-16T23:00:00Z",
+      "venue": "Lumen Field, Seattle"
+    },
+    {
+      "matchId": 12,
+      "groupCode": "L",
+      "phase": "group",
+      "homeTeam": "Países Baixos",
+      "homeFlag": "nl",
+      "awayTeam": "México",
+      "awayFlag": "mx",
+      "kickoffUtc": "2026-06-17T20:00:00Z",
+      "venue": "NRG Stadium, Houston"
+    }
+  ]
+}

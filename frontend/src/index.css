@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * =============================================================================
+ * Design tokens — Identidade FIFA World Cup 2026 (alinhado ao app Tickets)
+ * =============================================================================
+ * Override de tema (decisão do owner 2026-05-15): o Bolão adota a identidade
+ * visual do app FIFA 2026 Tickets — paleta navy + dourado e tipografia
+ * Bebas Neue / Inter. A identificação TFTEC é mantida (textos/logo), apenas
+ * recolorida no esquema dourado.
+ *
+ * Paleta-fonte: FIFA2026-APP / "World Cup Tickets Hub" / src/index.css.
+ *
+ * NOTA: o manual de marca TFTEC Cloud (docs/brand/) permanece como referência
+ * histórica dos assets — NÃO foi apagado. O tema RUNTIME deste app passa a
+ * seguir a identidade FIFA por decisão do owner. Os NOMES dos tokens e das
+ * classes utilitárias (--brand-*, .text-brand-gradient, .glow-brand, etc.)
+ * foram preservados para zero alteração nos componentes; só os VALORES
+ * mudaram — o gradiente "brand" agora é dourado.
+ *
+ * Cores principais (FIFA):
+ *   gold          45 100% 50%   — primary / accent / CTAs
+ *   background     220 20% 4%    — navy quase preto
+ *   surface/card   220 18% 8%    — cards elevados
+ *   foreground     45 100% 96%   — branco quente
+ *
+ * Dark-first: tokens válidos tanto em :root quanto .dark (mesmo valor).
+ * =============================================================================
+ */
+
+@layer base {
+  :root,
+  .dark {
+    /* Backgrounds */
+    --background: 220 20% 4%;           /* navy quase preto */
+    --foreground: 45 100% 96%;          /* branco quente */
+    --card: 220 18% 8%;                 /* elevado */
+    --card-foreground: 45 100% 96%;
+    --popover: 220 18% 10%;
+    --popover-foreground: 45 100% 96%;
+
+    /* Brand (primary = dourado FIFA) */
+    --primary: 45 100% 50%;             /* gold */
+    --primary-foreground: 220 20% 4%;
+
+    /* Secondary (surface mais clara) */
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 45 100% 96%;
+
+    /* Muted */
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    /* Accent (dourado) */
+    --accent: 45 100% 50%;
+    --accent-foreground: 220 20% 4%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders */
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 45 100% 50%;                /* gold — focus */
+
+    /* Brand-specific (nomes preservados; valores remapeados p/ família dourada) */
+    --brand-magenta: 45 100% 70%;       /* gold-light */
+    --brand-purple: 45 100% 50%;        /* gold */
+    --brand-violet: 45 100% 35%;        /* gold-dark */
+    --brand-electric: 45 100% 50%;      /* gold */
+
+    /* Tokens dourados explícitos (paridade com o app Tickets) */
+    --gold: 45 100% 50%;
+    --gold-light: 45 100% 70%;
+    --gold-dark: 45 100% 35%;
+    --fifa-blue: 210 100% 40%;
+
+    /* Copa do Mundo — complementares (esporte universal) */
+    --copa-pitch: 142 50% 35%;      /* verde gramado (= stadium-green Tickets) */
+    --copa-gold: 45 100% 50%;       /* dourado medalha (= gold) */
+    --copa-red: 0 84% 60%;          /* paixão / cartões */
+
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased bg-pitch-overlay;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  code, pre, kbd {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Selection com a cor da marca (agora dourado) */
+  ::selection {
+    background-color: hsl(var(--brand-magenta) / 0.4);
+    color: hsl(220 20% 4%);
+  }
+}
+
+/*
+ * =============================================================================
+ * Utilities (nomes preservados — gradiente/glow "brand" agora dourado)
+ * =============================================================================
+ */
+@layer utilities {
+  /* Wordmark TFTEC — dourado sólido (sem degradê, por decisão do owner) */
+  .text-brand-gradient {
+    color: hsl(var(--gold));
+  }
+
+  /*
+   * Logo TFTEC recolorido com perfeição via CSS mask: a forma do ícone
+   * monocromático (canal alpha) mascara um fundo dourado sólido — nitidez
+   * vetorial em qualquer tamanho, sem repintar raster nem editar o .ai.
+   * Aplicar junto das classes de tamanho (h-8 w-8, etc.).
+   */
+  .tftec-mark {
+    display: inline-block;
+    background-color: hsl(var(--gold));
+    -webkit-mask: url('/tftec-icon-mono.png') center / contain no-repeat;
+    mask: url('/tftec-icon-mono.png') center / contain no-repeat;
+  }
+
+  .bg-brand-gradient {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--brand-magenta)) 0%,
+      hsl(var(--brand-purple)) 50%,
+      hsl(var(--brand-violet)) 100%
+    );
+  }
+
+  .bg-brand-gradient-radial {
+    background:
+      radial-gradient(at 0% 100%, hsl(var(--brand-electric) / 0.4), transparent 60%),
+      radial-gradient(at 100% 0%, hsl(var(--brand-violet) / 0.3), transparent 60%),
+      hsl(var(--background));
+  }
+
+  .glow-brand {
+    box-shadow:
+      0 0 0 1px hsl(var(--brand-purple) / 0.3),
+      0 4px 24px -4px hsl(var(--brand-magenta) / 0.4),
+      0 8px 40px -8px hsl(var(--brand-violet) / 0.3);
+  }
+
+  .border-brand-gradient {
+    border-image: linear-gradient(90deg, hsl(var(--brand-magenta)), hsl(var(--brand-violet))) 1;
+  }
+
+  /* Pattern de campo de futebol — linhas brancas sutis sobre brand gradient */
+  .bg-pitch-overlay {
+    background-image:
+      radial-gradient(at 0% 100%, hsl(var(--brand-electric) / 0.15) 0%, transparent 50%),
+      radial-gradient(at 100% 0%, hsl(var(--brand-violet) / 0.10) 0%, transparent 50%),
+      repeating-linear-gradient(0deg, transparent 0px, transparent 80px, hsl(var(--copa-pitch) / 0.04) 80px, hsl(var(--copa-pitch) / 0.04) 81px),
+      repeating-linear-gradient(90deg, transparent 0px, transparent 80px, hsl(var(--copa-pitch) / 0.04) 80px, hsl(var(--copa-pitch) / 0.04) 81px);
+  }
+}

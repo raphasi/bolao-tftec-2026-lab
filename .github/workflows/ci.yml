@@ -1,0 +1,112 @@
+name: CI
+
+# PR check: garante que build + typecheck passam antes de mergear.
+# Não precisa de Azure (só validações locais).
+
+on:
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.aiox/**'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_and_typecheck:
+    name: Build + Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies (root + workspaces)
+        run: npm install
+
+      - name: Backend — typecheck
+        run: npx tsc --noEmit
+        working-directory: ./backend
+
+      - name: Frontend — typecheck
+        run: npx tsc -b --noEmit
+        working-directory: ./frontend
+
+      - name: Functions — typecheck
+        run: npx tsc --noEmit
+        working-directory: ./functions
+
+      - name: Backend — build
+        run: npm run build
+        working-directory: ./backend
+
+      - name: Frontend — build
+        run: npm run build
+        working-directory: ./frontend
+
+      - name: Functions — build
+        run: npm run build
+        working-directory: ./functions
+
+      - name: Functions — unit tests (scoring)
+        run: npm test
+        working-directory: ./functions
+
+      - name: Verify dist outputs
+        run: |
+          test -f backend/dist/server.js || (echo "backend/dist/server.js missing" && exit 1)
+          test -f frontend/dist/index.html || (echo "frontend/dist/index.html missing" && exit 1)
+          ls functions/dist/src/functions/ | grep -E "calc-predictions|aggregate-leaderboard" || (echo "functions dist incomplete" && exit 1)
+          echo "✓ All dist outputs verified"
+
+  smoke_local:
+    name: Smoke local (backend prod-mode)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: build_and_typecheck
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install + build
+        run: |
+          npm install
+          npm run build --workspace=backend
+
+      - name: Start backend with mock env
+        env:
+          # Mock — não precisa Cosmos real pra smoke do startup
+          PORT: '4090'
+          NODE_ENV: 'production'
+          COSMOS_ENDPOINT: 'https://mock.documents.azure.com:443/'
+          COSMOS_KEY: 'mockKeyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=='
+          COSMOS_DATABASE: 'bolao2026'
+          JWT_SECRET: 'ci-mock-secret-must-be-at-least-32-chars-long-xx'
+        run: |
+          cd backend
+          node dist/server.js &
+          SERVER_PID=$!
+          sleep 3
+          # health endpoint não toca Cosmos (basic liveness)
+          curl -sf --max-time 5 http://localhost:4090/api/health > /tmp/health.json
+          cat /tmp/health.json
+          kill $SERVER_PID 2>/dev/null || true
+          # Verify JSON response
+          grep -q '"status":"ok"' /tmp/health.json && echo "✓ Smoke local OK" || (echo "✗ Smoke local failed" && exit 1)

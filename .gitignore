@@ -1,0 +1,91 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+local.settings.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/launch.json
+.vscode/*.local.*
+.idea/
+
+# Claude Code — settings locais por máquina (permissões, NUNCA versionar)
+.claude/settings.local.json
+
+# Azure
+.azure/
+*.publishsettings
+*.pubxml
+appsettings.local.json
+
+# Functions
+bin/
+obj/
+extensions.csproj
+
+# Test/coverage
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.parcel-cache/
+.turbo/
+*.tsbuildinfo
+
+# Bicep parameters reais (com secrets)
+infra/parameters.dev.json
+infra/parameters.local.json
+infra/parameters.*.json
+!infra/parameters.example.json
+infra/_compiled/
+
+# Brand source files (editáveis) — formatos pesados, fora do repo
+# Designers usam local. Repo mantém apenas PNG/JPG/PDF/SVG.
+docs/brand/**/*.ai
+docs/brand/**/*.eps
+docs/brand/**/*.psd
+docs/brand/**/*.indd
+docs/brand/**/*.sketch
+
+# Playwright (S4.4)
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.aiox/
+
+# Backups locais do ensaio (contêm PII/hashes — nunca commitar)
+backups/
+
+# Certificados / chaves privadas — NUNCA commitar (o cert vive no Key Vault)
+*.pfx
+*.p12
+*.pem
+*.key
+docs/cert/
+
+# Saída compilada do bicep (gerada sob demanda no deploy — não versionar)
+infra/modules/*.json

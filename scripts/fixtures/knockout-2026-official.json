@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "source": "FIFA World Cup 2026 Knockout Stage — cronograma e chaveamento oficiais",
+    "verified": "Wikipedia (2026 FIFA World Cup knockout stage) + SI.com (Round of 32 confirmed) — fetched 2026-06-28; estrutura cruzada com backend/src/services/bracket.ts (R32_SLOTS/FEEDERS)",
+    "season": 2026,
+    "totalMatches": 32,
+    "phase": "knockout",
+    "dateRange": "2026-06-28 → 2026-07-19 (local)",
+    "kickoffsInUTC": true,
+    "tzNote": "kickoffUtc em UTC. UI converte para America/Sao_Paulo (BRT = UTC-3). ET (verão) = UTC-4, logo BRT = ET + 1h.",
+    "teamsNote": "16-avos (73-88): times oficiais confirmados após a fase de grupos (validados nome+flag contra groups-2026.json). Oitavas→final (89-104): times 'a definir' (homeTeam/awayTeam vazios) — preenchidos via /admin/bracket conforme os resultados saem.",
+    "venueCityNote": "Cidades no padrão metro de matches-2026-official.json (SoFi→Los Angeles; AT&T→Dallas; MetLife→New York; Hard Rock→Miami; Levi's→San Francisco; Gillette→Boston; Estadio BBVA→Monterrey)."
+  },
+  "matches": [
+    { "matchId": 73, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "África do Sul",        "homeFlag": "za",     "awayTeam": "Canadá",                "awayFlag": "ca",     "kickoffUtc": "2026-06-28T19:00:00Z", "venue": { "city": "Los Angeles",   "stadium": "SoFi Stadium",            "country": "USA" } },
+    { "matchId": 74, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Alemanha",             "homeFlag": "de",     "awayTeam": "Paraguai",              "awayFlag": "py",     "kickoffUtc": "2026-06-29T20:30:00Z", "venue": { "city": "Boston",        "stadium": "Gillette Stadium",        "country": "USA" } },
+    { "matchId": 75, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Países Baixos",        "homeFlag": "nl",     "awayTeam": "Marrocos",              "awayFlag": "ma",     "kickoffUtc": "2026-06-30T01:00:00Z", "venue": { "city": "Monterrey",     "stadium": "Estadio BBVA",            "country": "Mexico" } },
+    { "matchId": 76, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Brasil",               "homeFlag": "br",     "awayTeam": "Japão",                 "awayFlag": "jp",     "kickoffUtc": "2026-06-29T17:00:00Z", "venue": { "city": "Houston",       "stadium": "NRG Stadium",             "country": "USA" } },
+    { "matchId": 77, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "França",               "homeFlag": "fr",     "awayTeam": "Suécia",                "awayFlag": "se",     "kickoffUtc": "2026-06-30T21:00:00Z", "venue": { "city": "New York",      "stadium": "MetLife Stadium",         "country": "USA" } },
+    { "matchId": 78, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Costa do Marfim",      "homeFlag": "ci",     "awayTeam": "Noruega",               "awayFlag": "no",     "kickoffUtc": "2026-06-30T17:00:00Z", "venue": { "city": "Dallas",        "stadium": "AT&T Stadium",            "country": "USA" } },
+    { "matchId": 79, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "México",               "homeFlag": "mx",     "awayTeam": "Equador",               "awayFlag": "ec",     "kickoffUtc": "2026-07-01T01:00:00Z", "venue": { "city": "Mexico City",   "stadium": "Estadio Azteca",          "country": "Mexico" } },
+    { "matchId": 80, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Inglaterra",           "homeFlag": "gb-eng", "awayTeam": "RD Congo",              "awayFlag": "cd",     "kickoffUtc": "2026-07-01T16:00:00Z", "venue": { "city": "Atlanta",       "stadium": "Mercedes-Benz Stadium",   "country": "USA" } },
+    { "matchId": 81, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Estados Unidos",       "homeFlag": "us",     "awayTeam": "Bósnia e Herzegovina",  "awayFlag": "ba",     "kickoffUtc": "2026-07-02T00:00:00Z", "venue": { "city": "San Francisco", "stadium": "Levi's Stadium",          "country": "USA" } },
+    { "matchId": 82, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Bélgica",              "homeFlag": "be",     "awayTeam": "Senegal",               "awayFlag": "sn",     "kickoffUtc": "2026-07-01T20:00:00Z", "venue": { "city": "Seattle",       "stadium": "Lumen Field",             "country": "USA" } },
+    { "matchId": 83, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Portugal",             "homeFlag": "pt",     "awayTeam": "Croácia",               "awayFlag": "hr",     "kickoffUtc": "2026-07-02T23:00:00Z", "venue": { "city": "Toronto",       "stadium": "BMO Field",               "country": "Canada" } },
+    { "matchId": 84, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Espanha",              "homeFlag": "es",     "awayTeam": "Áustria",               "awayFlag": "at",     "kickoffUtc": "2026-07-02T19:00:00Z", "venue": { "city": "Los Angeles",   "stadium": "SoFi Stadium",            "country": "USA" } },
+    { "matchId": 85, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Suíça",                "homeFlag": "ch",     "awayTeam": "Argélia",               "awayFlag": "dz",     "kickoffUtc": "2026-07-03T03:00:00Z", "venue": { "city": "Vancouver",     "stadium": "BC Place",                "country": "Canada" } },
+    { "matchId": 86, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Argentina",            "homeFlag": "ar",     "awayTeam": "Cabo Verde",            "awayFlag": "cv",     "kickoffUtc": "2026-07-03T22:00:00Z", "venue": { "city": "Miami",         "stadium": "Hard Rock Stadium",       "country": "USA" } },
+    { "matchId": 87, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Colômbia",             "homeFlag": "co",     "awayTeam": "Gana",                  "awayFlag": "gh",     "kickoffUtc": "2026-07-04T01:30:00Z", "venue": { "city": "Kansas City",   "stadium": "Arrowhead Stadium",       "country": "USA" } },
+    { "matchId": 88, "groupCode": "round-of-32", "phase": "round-of-32", "homeTeam": "Austrália",            "homeFlag": "au",     "awayTeam": "Egito",                 "awayFlag": "eg",     "kickoffUtc": "2026-07-03T18:00:00Z", "venue": { "city": "Dallas",        "stadium": "AT&T Stadium",            "country": "USA" } },
+
+    { "matchId": 89,  "groupCode": "round-of-16", "phase": "round-of-16", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-04T21:00:00Z", "venue": { "city": "Philadelphia", "stadium": "Lincoln Financial Field", "country": "USA" } },
+    { "matchId": 90,  "groupCode": "round-of-16", "phase": "round-of-16", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-04T17:00:00Z", "venue": { "city": "Houston",      "stadium": "NRG Stadium",             "country": "USA" } },
+    { "matchId": 91,  "groupCode": "round-of-16", "phase": "round-of-16", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-05T20:00:00Z", "venue": { "city": "New York",     "stadium": "MetLife Stadium",         "country": "USA" } },
+    { "matchId": 92,  "groupCode": "round-of-16", "phase": "round-of-16", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-06T00:00:00Z", "venue": { "city": "Mexico City",  "stadium": "Estadio Azteca",          "country": "Mexico" } },
+    { "matchId": 93,  "groupCode": "round-of-16", "phase": "round-of-16", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-06T19:00:00Z", "venue": { "city": "Dallas",       "stadium": "AT&T Stadium",            "country": "USA" } },
+    { "matchId": 94,  "groupCode": "round-of-16", "phase": "round-of-16", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-07T00:00:00Z", "venue": { "city": "Seattle",      "stadium": "Lumen Field",             "country": "USA" } },
+    { "matchId": 95,  "groupCode": "round-of-16", "phase": "round-of-16", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-07T16:00:00Z", "venue": { "city": "Atlanta",      "stadium": "Mercedes-Benz Stadium",   "country": "USA" } },
+    { "matchId": 96,  "groupCode": "round-of-16", "phase": "round-of-16", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-07T20:00:00Z", "venue": { "city": "Vancouver",    "stadium": "BC Place",                "country": "Canada" } },
+
+    { "matchId": 97,  "groupCode": "quarter", "phase": "quarter", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-09T20:00:00Z", "venue": { "city": "Boston",      "stadium": "Gillette Stadium",        "country": "USA" } },
+    { "matchId": 98,  "groupCode": "quarter", "phase": "quarter", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-10T19:00:00Z", "venue": { "city": "Los Angeles", "stadium": "SoFi Stadium",            "country": "USA" } },
+    { "matchId": 99,  "groupCode": "quarter", "phase": "quarter", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-11T21:00:00Z", "venue": { "city": "Miami",       "stadium": "Hard Rock Stadium",       "country": "USA" } },
+    { "matchId": 100, "groupCode": "quarter", "phase": "quarter", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-12T01:00:00Z", "venue": { "city": "Kansas City", "stadium": "Arrowhead Stadium",       "country": "USA" } },
+
+    { "matchId": 101, "groupCode": "semi", "phase": "semi", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-14T19:00:00Z", "venue": { "city": "Dallas",  "stadium": "AT&T Stadium",          "country": "USA" } },
+    { "matchId": 102, "groupCode": "semi", "phase": "semi", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-15T19:00:00Z", "venue": { "city": "Atlanta", "stadium": "Mercedes-Benz Stadium", "country": "USA" } },
+
+    { "matchId": 103, "groupCode": "third-place", "phase": "third-place", "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-18T21:00:00Z", "venue": { "city": "Miami",    "stadium": "Hard Rock Stadium", "country": "USA" } },
+    { "matchId": 104, "groupCode": "final",       "phase": "final",       "homeTeam": "", "homeFlag": "", "awayTeam": "", "awayFlag": "", "kickoffUtc": "2026-07-19T19:00:00Z", "venue": { "city": "New York", "stadium": "MetLife Stadium",   "country": "USA" } }
+  ]
+}

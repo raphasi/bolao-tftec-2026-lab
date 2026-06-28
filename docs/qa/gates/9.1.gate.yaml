@@ -1,0 +1,107 @@
+# QA Gate — Story 9.1 Visual Copa 2026 Refresh + Rebrand TFTEC Prime
+# Reviewer: Quinn (@qa)
+# Date: 2026-05-20
+
+storyId: "9.1"
+storyTitle: "Visual Copa 2026 Refresh + Rebrand TFTEC Prime"
+verdict: PASS
+reviewer: "@qa (Quinn)"
+date: "2026-05-20"
+commit: "833222e"
+branch: "feature/9.1-visual-copa-refresh"
+
+acceptance_criteria:
+  total: 10
+  passed: 10
+  failed: 0
+  details:
+    AC-1: { result: PASS, evidence: "Rename 'TFTEC Cloud' → 'TFTEC Prime' verificado em 8 locais via DOM ao vivo (Playwright smoke)" }
+    AC-2: { result: PASS, evidence: "Logo TFTEC Copa em Navbar/Footer/Login/Register — Playwright detectou <img src='/copa/tftec-copa-logo.png'> nos 4 contextos" }
+    AC-3: { result: PASS, evidence: "MascotesShowcase visível entre Hero e Features (Home.tsx:112), heading detectado" }
+    AC-4: { result: PASS, evidence: "Bola Trionda WebP com opacity-[0.12] + [filter:grayscale(60%)] no hero (Home.tsx:31-38)" }
+    AC-5: { result: PASS, evidence: "Taça WebP em 2 locais: hero decoração (Home.tsx:22-29) + card Campeão scoring (Home.tsx:175-181)" }
+    AC-6: { result: PASS, evidence: "4 imagens em frontend/public/copa/ (logo 27KB, taca 250KB, mascotes 64KB, bola 70KB)" }
+    AC-7: { result: PASS, evidence: "bola.webp = 70KB (target <200KB ✅, -40% vs PNG 117KB original)" }
+    AC-8: { result: PASS, evidence: "alts informativos para logo/mascotes/taça scoring; aria-hidden em decorações hero; contraste WCAG AA OK (21:1 logo branco × fundo)" }
+    AC-9: { result: PASS, evidence: "loading='eager' no logo Navbar; 'lazy' em mascotes + decorações; 0 failed network requests" }
+    AC-10: { result: PASS, evidence: "Playwright smoke 12/12 PASS, 0 console errors" }
+
+quality_checks:
+  - check: code_review
+    result: PASS
+    notes: "Atomic design correto; padrões do codebase respeitados; comments explicativos em pontos não-óbvios"
+  - check: unit_tests
+    result: N/A
+    notes: "Story puramente visual, não justifica novo unit test; suite Playwright existente preservada"
+  - check: acceptance_criteria
+    result: PASS
+    notes: "10/10 ACs verificados em código + Playwright smoke"
+  - check: no_regressions
+    result: PASS
+    notes: "SVGs antigos preservados, ainda em uso; auth flows + leaderboard intactos; build OK"
+  - check: performance
+    result: PASS_WITH_CONCERN
+    notes: "Bola 70KB ✅, mas taca 250KB (não exigida otimização). Lazy loading aplicado. 0 console errors."
+  - check: security
+    result: PASS
+    notes: "Imagens same-origin (public/), sem strings dinâmicas em src"
+  - check: documentation
+    result: PASS
+    notes: "Story file completo, spec preservado, validação @po preservada, gate file novo"
+
+issues:
+  - id: C-1
+    severity: MEDIUM
+    category: performance
+    description: "taca.webp = 250KB — input do owner sem otimização adicional"
+    recommendation: "Otimizar via sharp (~40-60% redução). Tech-debt opcional, não bloqueia merge."
+    blocking: false
+  - id: C-2
+    severity: LOW
+    category: a11y
+    description: "Footer logo poderia ter aria-hidden (texto adjacente já identifica)"
+    recommendation: "Adicionar aria-hidden no <TftecCopaLogo> do Layout.tsx footer em refactor futuro"
+    blocking: false
+  - id: C-3
+    severity: LOW
+    category: tooling
+    description: "eslint não instalado no devDeps — npm run lint falha"
+    recommendation: "Tech-debt PRÉ-EXISTENTE do projeto. Instalar eslint+plugins via @devops em story dedicada."
+    blocking: false
+
+evidence:
+  build:
+    typecheck: PASS  # tsc --noEmit: 0 errors
+    build_time: "21.52s"
+    precache_entries: 194
+    warnings: 0
+  playwright_smoke:
+    base_url: "http://localhost:5173"
+    checks_passed: 12
+    checks_total: 12
+    console_errors: 0
+    failed_requests: 0
+    script: "scripts/qa-smoke-9.1.mjs"
+    screenshots: "docs/qa/screenshots/9.1/"
+  visual_inspection:
+    home_png: "Hero c/ taça+bola decorações sutis, MascotesShowcase isolado, scoring c/ taça nova"
+    login_png: "Logo TFTEC Prime grande no card header"
+    register_png: "Logo TFTEC Prime grande no card header"
+    paleta_preserved: true  # magenta/roxo/dourado dominam, mascotes isolados
+
+decisions_supported:
+  rename_scope: "MINIMAL (8 user-visible) — sustentado, validation alinhada à decisão @sm/@po"
+  bola_strategy: "Opção A (grayscale + opacity) — visualmente confirmado neutralizando cores Copa"
+  svg_preservation: "Mantidos, ainda em uso em 4 outros locais não substituídos"
+  webp_optimization: "Aplicada na bola (70KB), não na taça (250KB — concern C-1)"
+
+handoff:
+  next_agent: "@devops (Gage)"
+  next_command: "*push"
+  rationale: |
+    PASS limpo, 3 concerns não-bloqueadoras registradas como tech-debt opcional.
+    Branch feature/9.1-visual-copa-refresh tem 1 commit local (833222e).
+    @devops deve:
+    1. Adicionar os 2 artefatos QA novos ao branch (qa-smoke-9.1.mjs + gates + screenshots)
+    2. Push branch + create PR contra main
+    3. Bolão tem CD automático on push to main — PR merge dispara deploy

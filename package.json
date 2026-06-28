@@ -1,0 +1,50 @@
+{
+  "name": "fifa2026-bolao",
+  "version": "0.1.0",
+  "description": "Bolão TFTEC Cloud — FIFA World Cup 2026 predictions app",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "functions"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=backend & npm run dev --workspace=frontend",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "seed": "tsx scripts/seed-cosmos.ts",
+    "seed:knockout:dry": "tsx scripts/seed-knockout.ts",
+    "seed:knockout": "tsx scripts/seed-knockout.ts --apply",
+    "rotate-admin": "tsx scripts/rotate-admin-password.ts",
+    "reset": "tsx scripts/reset-cosmos.ts",
+    "reset:hard": "tsx scripts/reset-cosmos.ts --hard",
+    "cleanup:e2e": "tsx scripts/cleanup-e2e-users.ts",
+    "cleanup:e2e:dry": "tsx scripts/cleanup-e2e-users.ts --dry-run",
+    "recalc:dry": "tsx scripts/recalc-finished-matches.ts",
+    "recalc": "tsx scripts/recalc-finished-matches.ts --apply",
+    "loadtest:signalr": "tsx scripts/load-test-signalr.ts",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.17.6",
+    "archiver": "^5.3.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@azure/cosmos": "^4.2.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "author": "TFTEC Cloud",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,148 @@
+// =========================================================================
+// Application Insights — Queries KQL pra Bolão TFTEC Cloud (S4.7)
+// =========================================================================
+// Resource: ai-fifa-bolao-tftec01 (workspace-based)
+// Acesso: portal.azure.com → Application Insights → Logs
+//
+// Uso: copiar query → colar no Logs editor → Run.
+// Time range default: 24h (ajustar via UI top-right).
+// =========================================================================
+
+
+// -------------------------------------------------------------------------
+// Q1 — Request rate por endpoint (top 10 da última hora)
+// Identifica endpoints mais usados, hot paths e padrões de tráfego.
+// -------------------------------------------------------------------------
+requests
+| where timestamp > ago(1h)
+| where url !startswith "https" or url startswith "https://app-fifa-bolao-tftec01"
+| extend endpoint = case(
+    url contains '/api/auth/', '/api/auth/*',
+    url contains '/api/matches/', '/api/matches/:id',
+    url contains '/api/groups/', '/api/groups/:code',
+    url contains '/api/predictions', '/api/predictions',
+    url contains '/api/specials', '/api/specials',
+    url contains '/api/admin/', '/api/admin/*',
+    url contains '/api/leaderboard', '/api/leaderboard',
+    url contains '/api/health', '/api/health',
+    url contains '/api/negotiate', '/api/negotiate',
+    url contains '/api/config', '/api/config/*',
+    'frontend'
+)
+| summarize count() by endpoint
+| order by count_ desc
+| take 10
+
+
+// -------------------------------------------------------------------------
+// Q2 — Latency p50/p95/p99 por endpoint (últimas 24h)
+// Detecta endpoints lentos. p95 > 1s vale investigar (composite index? cross-partition?).
+// -------------------------------------------------------------------------
+requests
+| where timestamp > ago(24h)
+| where success == true
+| summarize
+    p50=percentile(duration, 50),
+    p95=percentile(duration, 95),
+    p99=percentile(duration, 99),
+    count_=count()
+  by name
+| where count_ > 5
+| order by p95 desc
+| project name, p50, p95, p99, count_
+
+
+// -------------------------------------------------------------------------
+// Q3 — Function executions (últimas 6h)
+// Visão geral das 5 Functions (calc-predictions, calc-specials, aggregate x2, emit).
+// Useful pra confirmar changefeed está disparando.
+// -------------------------------------------------------------------------
+traces
+| where timestamp > ago(6h)
+| where cloud_RoleName == "func-fifa-bolao-tftec01"
+| where message has_any (
+    "Processing",
+    "Aggregating leaderboard",
+    "Tournament final",
+    "broadcast OK",
+    "scored"
+  )
+| extend func = case(
+    message contains "predictions", "calc-predictions",
+    message contains "specials" and message contains "Processing", "calc-specials",
+    message contains "Aggregating", "aggregate-leaderboard",
+    message contains "broadcast", "emit-leaderboard-update",
+    "other"
+)
+| summarize executions=count() by func, bin(timestamp, 15m)
+| render timechart
+
+
+// -------------------------------------------------------------------------
+// Q4 — Cosmos RU consumption (últimas 6h)
+// Detecta picos de uso. Free tier limita 1000 RU/s — alerta visual se > 800.
+// -------------------------------------------------------------------------
+dependencies
+| where timestamp > ago(6h)
+| where type == "Azure DocumentDB"
+| extend ruCharge = toint(customDimensions.ChargedRU)
+| where isnotnull(ruCharge)
+| summarize
+    total_RU=sum(ruCharge),
+    avg_RU_per_call=avg(ruCharge),
+    calls=count()
+  by bin(timestamp, 5min)
+| render timechart
+
+
+// -------------------------------------------------------------------------
+// Q5 — 5xx errors com stack trace (últimas 24h)
+// Detecta server errors que precisam investigação.
+// -------------------------------------------------------------------------
+requests
+| where timestamp > ago(24h)
+| where success == false and toint(resultCode) >= 500
+| join kind=leftouter (
+    exceptions
+    | project operation_Id, exception_type=type, exception_message=outerMessage, exception_details=details
+) on operation_Id
+| project
+    timestamp,
+    endpoint=name,
+    resultCode,
+    duration_ms=duration,
+    exception_type,
+    exception_message,
+    url
+| order by timestamp desc
+| take 50
+
+
+// =========================================================================
+// Queries extras — descomente conforme necessidade
+// =========================================================================
+
+// Q6 — Active users (last 24h, distinct sessions)
+// requests
+// | where timestamp > ago(24h)
+// | summarize sessions=dcount(session_Id), users=dcount(user_AuthenticatedId) by bin(timestamp, 1h)
+// | render columnchart
+
+
+// Q7 — Cold start detection (Function duration > 5s)
+// traces
+// | where cloud_RoleName == "func-fifa-bolao-tftec01"
+// | where message contains "FunctionStart" or message contains "Executed"
+// | extend duration_ms = toreal(customDimensions.Duration)
+// | where duration_ms > 5000
+// | project timestamp, operation_Name, duration_ms
+
+
+// Q8 — SignalR broadcast success rate
+// traces
+// | where timestamp > ago(6h)
+// | where message has "leaderboard:update broadcast"
+// | extend success = message contains "OK"
+// | summarize total=count(), ok=countif(success == true) by bin(timestamp, 15m)
+// | extend success_rate = todouble(ok) / total
+// | render timechart

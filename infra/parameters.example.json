@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus"
+    },
+    "nameSuffix": {
+      "value": "CHANGE_ME"
+    },
+    "namePrefix": {
+      "value": "fifa-bolao"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "tags": {
+      "value": {
+        "project": "fifa2026-bolao",
+        "managedBy": "bicep",
+        "owner": "tftec-cloud",
+        "environment": "dev"
+      }
+    },
+    "cosmosEnableFreeTier": {
+      "value": true
+    },
+    "appServiceSkuName": {
+      "value": "B1"
+    },
+    "mainApiBaseUrl": {
+      "value": "https://fifa2026-tickets-dev.azurewebsites.net/api"
+    },
+    "jwtSecret": {
+      "value": "REPLACE_WITH_RESULT_OF_openssl_rand_base64_32"
+    }
+  }
+}
