@@ -51,6 +51,12 @@ app.use(
         }
       : false,
     crossOriginEmbedderPolicy: false,
+    // Split front/API (sem Front Door): o frontend é uma ORIGEM diferente da API.
+    // O default do helmet (CORP=same-origin) faria o navegador bloquear a leitura
+    // cross-origin das respostas da API mesmo com o CORS correto. 'cross-origin'
+    // libera o recurso a ser lido de outra origem; o acesso continua restrito pelo
+    // CORS (Access-Control-Allow-Origin). Inofensivo atrás de Front Door (same-origin).
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
   }),
 );
 
