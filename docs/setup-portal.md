@@ -167,6 +167,10 @@ O "mapa do estádio" — como as peças se encaixam quando tudo estiver no ar:
   conversam por **HTTPS + CORS**. Isso espelha produção, onde escala-se front e back de forma
   independente. **Sem Front Door** neste lab — para você ter **mais flexibilidade e menos
   pontos de falha**.
+  > 🧩 **Por serem origens diferentes** (sem Front Door), 3 coisas precisam liberar o cruzamento
+  > — e **já vêm prontas no repo**: a API libera **CORS** (`CORS_ORIGINS`) e **CORP cross-origin**
+  > (helmet, em `backend/src/server.ts`), e o frontend libera a API no **CSP** (`connect-src` via
+  > app setting `API_ORIGIN`). Atrás de Front Door (same-origin) nada disso é necessário.
 - 🟪 **Pontuação assíncrona.** Quando o admin finaliza um jogo, ele **só grava o resultado** no
   Cosmos. Quem calcula os pontos são as **Functions**, acordadas pelo **Change Feed** do Cosmos.
   O usuário nunca espera o cálculo — ele acontece "nos bastidores".
@@ -553,6 +557,12 @@ No Key Vault → **Objects → Secrets → + Generate/Import** e crie **um por u
 
 > 💡 **O frontend não tem segredos.** Ele fala com a API por **URL absoluta**, embutida no
 > **build** (`VITE_API_BASE_URL`) na Fase 8. Por isso não precisa de Managed Identity.
+
+> 🔌 **App setting `API_ORIGIN` (split sem Front Door).** Como front e API são **origens
+> diferentes**, o CSP do mini-servidor do front precisa **liberar a origem da API** no
+> `connect-src` — senão o navegador bloqueia as chamadas do SPA ("Failed to fetch"). A esteira de
+> deploy (Fase 8) **seta `API_ORIGIN` sozinha** (= URL da sua API) no seu fork; se rodar algo à
+> mão, defina no Web App do frontend a app setting **`API_ORIGIN = https://<sua-api>.azurewebsites.net`**.
 
 #### 6.4 Function App (pontuação)
 
@@ -992,6 +1002,7 @@ Agora o tráfego **API↔Cosmos** sai da internet e passa a viver **dentro da re
 | **Site carrega, mas chama a API errada / 404 em `/api`** | Variable `VITE_API_BASE_URL` ausente/errada (sem ela o build usa `/api`, que só funciona com Front Door) | Defina a Variable `VITE_API_BASE_URL` com a **URL absoluta** da sua API + `/api` (Fase 8.2) e **rode o workflow de novo** |
 | **Deploy publica no recurso errado / "resource not found"** | Variables de nome não batem com os recursos do Portal | Confira `API_APP_NAME`/`FRONTEND_APP_NAME`/`FUNCTION_APP_NAME`/`COSMOS_ACCOUNT_NAME`/`KEY_VAULT_NAME`/`AZURE_RG` — o nome na Variable tem que ser **idêntico** ao do Portal (Seção 5) |
 | **(Fase 11.1) CORS no navegador** (erro no console F12, mas `curl` funciona) | `CORS_ORIGINS` ≠ URL do front (quase sempre **barra `/` no fim**) | Ajuste para `https://app-prd-bl-fend-cin-001.azurewebsites.net` **sem `/`**, ou volte para `*` e confira |
+| **Login / chamadas falham com "Failed to fetch"** (a API responde direto na URL dela, mas não pelo site) | Bloqueio **cross-origin**: falta `API_ORIGIN` no front (CSP `connect-src`) e/ou o CORP do backend | Confirme a app setting **`API_ORIGIN`** no front = URL da API (Fase 6.3) e recarregue; o repo já traz **CORS** + **CORP `cross-origin`** (`backend/src/server.ts`). Cheque os headers: a API deve mandar `Access-Control-Allow-Origin` e `Cross-Origin-Resource-Policy: cross-origin` |
 | **Lancei resultado e o placar não muda** | Falta um container `leases-*`; ou a Function não conecta no Cosmos; ou a Function (Consumo) **hibernou** | Confira os **5 leases** (Fase 3.3); **reinicie** a `func-prd-bl-cin-001`. Em Consumo (Y1) as Functions hibernam e o Change Feed às vezes só volta após **restart** |
 | **Deploy (Actions) — job `Smoke tests live` vermelho** | O smoke pressupõe a topologia de produção (**Front Door same-origin**) — você está em **split sem Front Door** | **Esperado.** Os jobs de **deploy** (API/Frontend/Functions) é que importam — se estão verdes, valide manualmente (Fase 10) |
 | **Workflow falha no login Azure** | `AZURE_CREDENTIALS` ausente ou ≠ JSON do Service Principal | Refaça 8.1/8.2; o secret deve ser o **JSON completo** (começa em `{ "clientId"...`) |
