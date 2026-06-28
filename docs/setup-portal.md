@@ -32,7 +32,7 @@
 2. [Objetivos do lab](#-2-objetivos-do-lab)
 3. [Serviços Azure que vamos usar](#-3-serviços-azure-que-vamos-usar)
 4. [Arquitetura: o estado-alvo](#-4-arquitetura-o-estado-alvo)
-5. [Taxonomia de nomes (o mapa dos recursos)](#-5-taxonomia-de-nomes-o-mapa-dos-recursos)
+5. [Taxonomia de nomes (convenção recomendada, porém flexível)](#-5-taxonomia-de-nomes-convenção-recomendada-porém-flexível)
 6. [A jornada do aluno](#-6-a-jornada-do-aluno)
    - [🎽 Fase 0 — Pré-jogo: pré-requisitos](#-fase-0--pré-jogo-pré-requisitos)
    - [🤝 Fase 1 — Convocação: fork do repositório](#-fase-1--convocação-fork-do-repositório)
@@ -994,7 +994,7 @@ Agora o tráfego **API↔Cosmos** sai da internet e passa a viver **dentro da re
 | **Workflow falha no login Azure** | `AZURE_CREDENTIALS` ausente ou ≠ JSON do Service Principal | Refaça 8.1/8.2; o secret deve ser o **JSON completo** (começa em `{ "clientId"...`) |
 | **Seed falha com 403 (Forbidden)** | Cosmos em "Selected networks" sem o seu IP | Mantenha o Cosmos em **All networks** (Fase 3.1); o Cloud Shell precisa de acesso público |
 | **(Fase 11.2)** `getent hosts` na API devolve **IP público** | Falta `WEBSITE_VNET_ROUTE_ALL=1`, ou a zona `privatelink.documents.azure.com` não linkada à VNet | Confirme a VNet Integration + `WEBSITE_VNET_ROUTE_ALL=1` e a zona DNS linkada (11.2) |
-| **(Fase 11.2)** `nameresolver: command not found` no SSH da API | `nameresolver` é do Kudu de **Windows**; a API é **Linux** | Use `getent hosts <fqdn>` ou `node -e "require('dns').lookup('<fqdn>',(e,a)=>console.log(a))"` (11.5) |
+| **(Fase 11.2)** `nameresolver: command not found` no SSH da API | `nameresolver` é do Kudu de **Windows**; a API é **Linux** | Use `getent hosts <fqdn>` ou `node -e "require('dns').lookup('<fqdn>',(e,a)=>console.log(a))"` (11.2) |
 | **(Fase 11.2)** `/api/health/full` quebrou após o Private Endpoint | Private Endpoint não **Approved**, ou DNS sem A-records | Cosmos → Networking → connection **Approved**; recrie os A-records pela aba **DNS configuration** do PE; em último caso reabra (remova `WEBSITE_VNET_ROUTE_ALL`) e reteste |
 | **Mudei o frontend e o navegador mostra o antigo** | **PWA / Service Worker** com cache | Hard-reload (Ctrl+Shift+R) ou DevTools → Application → Service Workers → **Unregister** |
 | **Cosmos lento / erro 429** | Estourou os 1000 RU/s do Free Tier | Normal sob carga alta; aguarde ou aumente RU/s (sai do free) |
