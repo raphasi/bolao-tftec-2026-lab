@@ -619,6 +619,16 @@ Web App **API** (`app-fifa-bolao-<suffix>`) → **Settings → Environment varia
 8. Volte em **Environment variables** e confirme: cada referência mostra **`Key Vault Reference`
    = resolvido** (ícone verde). Se aparecer erro, revise o **RBAC** (7.1) — é a causa nº 1.
 
+> 🧠 **Por que essa volta toda (referência + Managed Identity) em vez de colar a chave direto?**
+> Você *poderia* colar a chave do Cosmos na App Setting — mas ela ficaria **em texto** na
+> configuração, visível para quem abre o Portal e fácil de vazar num print/screenshare. Com a
+> **referência**, a App Setting guarda só um *ponteiro* (`@Microsoft.KeyVault(...)`). Quando o app
+> inicia, o App Service usa a **Managed Identity** dele (a "identidade" que você ligou em 6.2) para
+> buscar o valor real no Key Vault — **sem senha em lugar nenhum** no código ou na config. É por
+> isso que a role **Key Vault Secrets User** (7.1) é obrigatória: é ela que autoriza essa
+> identidade a *ler* o segredo. Bônus: para trocar uma senha, você muda **só no Key Vault** e o
+> app pega a nova sozinho — sem redeploy.
+
 > 💚 **Por que `CORS_ORIGINS = *` agora?** Para você ter **flexibilidade total** enquanto monta e
 > testa: com `*`, a API aceita chamadas de **qualquer origem** (o seu frontend, testes locais,
 > Postman…). Nada de erro de CORS no meio da subida. **Fechamos para a URL específica do front
@@ -706,6 +716,18 @@ sobre o `NAME_SUFFIX`):
 > da sua API, terminando em **`/api`**. Sem essa Variable, o build cairia em `/api` relativo (que
 > só funciona com Front Door) e o site **não acharia a API**. Como o `CORS_ORIGINS` está em `*`
 > (Fase 7.2), a chamada cross-origin é aceita sem dor de cabeça.
+>
+> 🧠 **O conceito que confunde todo mundo aqui — `VITE_API_BASE_URL` × `CORS_ORIGINS`:** são
+> **dois lados** da mesma conversa, em **momentos diferentes**.
+> - **`VITE_API_BASE_URL`** age no **build** (compilação do front): é **o front decidindo para
+>   quem ligar**. Fica "congelado" dentro do JS que vai pro navegador.
+> - **`CORS_ORIGINS`** age em **runtime** (a cada request): é **a API decidindo quem pode atender**.
+>
+> Como front (`app-...-web-...`) e API (`app-...`) ficam em **endereços diferentes** (origens
+> distintas), o navegador **bloqueia** a chamada a menos que a API responda "essa origem é
+> liberada" (CORS). Por isso os dois precisam casar: o front **aponta** para a API
+> (`VITE_API_BASE_URL`) **e** a API **autoriza** o front (`CORS_ORIGINS`). Num Front Door (prod)
+> isso some, porque front e API viram a **mesma** origem (`/api` relativo) e não há "cross-origin".
 
 > 💡 **`PUBLIC_BASE_URL` é opcional.** Se você não definir, a esteira **deriva sozinha** a URL do
 > **seu** frontend (a partir do `FRONTEND_APP_NAME`/`NAME_SUFFIX`). Defina explicitamente só se
@@ -917,28 +939,43 @@ Agora o tráfego **API↔Cosmos** sai da internet e passa a viver **dentro da re
 
 > ⚠️ Do seu PC, o nome do Cosmos resolve o **IP público** — isso é normal e **não** é erro.
 > Valide **pela própria API**, que agora resolve de dentro da VNet.
+>
+> 🧠 **Por que o MESMO nome resolve diferente dependendo de onde você pergunta?** A Private DNS
+> Zone (`privatelink.documents.azure.com`) só está **ligada à sua VNet**. Quem pergunta **de
+> dentro** da VNet (a sua API, via VNet Integration) recebe o **IP privado** (`10.20.x`); quem
+> pergunta **de fora** (o seu PC, a internet) continua recebendo o **IP público**. É o esperado —
+> chama-se "DNS split-horizon". Por isso testar do seu micro **não prova nada**: a validação tem
+> que partir **de dentro** (Kudu da API ou uma VM na VNet). O nome (`cosmos-...documents.azure.com`)
+> **não muda** — só *para onde* ele aponta, dependendo de quem pergunta.
 
-1. **Kudu da API:** `https://app-fifa-bolao-<suffix>.scm.azurewebsites.net` → **SSH** (ou Debug
-   console) → rode:
+1. **Kudu da API:** `https://app-fifa-bolao-<suffix>.scm.azurewebsites.net` → **SSH** (console do
+   container Linux da API). Resolva o nome do Cosmos **de dentro** da VNet:
    ```bash
-   nameresolver cosmos-fifa-bolao-<suffix>.documents.azure.com
+   getent hosts cosmos-fifa-bolao-<suffix>.documents.azure.com
    ```
-   → deve resolver para um **IP privado (`10.20.2.x`)**. **IP público** = falta
+   → deve mostrar um **IP privado (`10.20.2.x`)**. **IP público** = falta
    `WEBSITE_VNET_ROUTE_ALL=1` ou a zona DNS não linkada à VNet.
+   > 🧠 **Por que `getent` e não `nameresolver`/`nslookup`?** A nossa API roda em **App Service
+   > Linux** — o console SSH é um shell do container, **sem** `nameresolver` (isso é ferramenta do
+   > Kudu de **Windows**) e geralmente sem `nslookup`/`dig`. O `getent hosts` usa o resolvedor do
+   > próprio sistema (glibc) e está sempre disponível. Alternativa garantida (a API é Node):
+   > `node -e "require('dns').lookup('cosmos-fifa-bolao-<suffix>.documents.azure.com',(e,a)=>console.log(a))"`.
 2. **App + banco:** abra `https://app-fifa-bolao-<suffix>.azurewebsites.net/api/health/full` →
-   continua **`"ok":true`** (a API fala com o Cosmos pelo **IP privado**).
+   continua **`"ok":true`** (a API fala com o Cosmos pelo **IP privado**). _Este é o teste que
+   realmente importa: se a API responde `ok` com a rede privada ligada, o caminho funciona._
 3. **Smoke do app:** refaça o **teste de pontuação** (10.2) — lançar um resultado ainda atualiza
    o leaderboard. _(As Functions continuam pelo público; a API, pelo privado.)_
 
-> ⚠️ **Não use `ping`** no App Service (ICMP bloqueado — "General failure." é esperado). Use
-> `nameresolver`.
+> ⚠️ **Não use `ping`** no App Service (ICMP é bloqueado pelo sandbox — "General failure." é
+> esperado, **não** significa que a rede está quebrada). Use `getent hosts` (resolução de nome) e,
+> para a prova real, o `/api/health/full`.
 >
 > ❌ Se `/api/health/full` quebrar: confira VNet Integration + `WEBSITE_VNET_ROUTE_ALL=1`, a zona
 > DNS linkada e a connection **Approved** em Cosmos → Networking. Em último caso, **reabra**
 > temporariamente o caminho (remova `WEBSITE_VNET_ROUTE_ALL`) para confirmar que o resto está OK.
 
-> ✅ **Pronto quando:** `nameresolver` na API devolve **IP `10.20.x`** e `/api/health/full`
-> segue `"ok":true`. 🔒 **CORS fechado + caminho API↔Cosmos privatizado — uma porta de cada vez.**
+> ✅ **Pronto quando:** o `getent` na API devolve **IP `10.20.x`** e `/api/health/full` segue
+> **`"ok":true`**. 🔒 **CORS fechado + caminho API↔Cosmos privatizado — uma porta de cada vez.**
 
 ---
 
@@ -956,7 +993,8 @@ Agora o tráfego **API↔Cosmos** sai da internet e passa a viver **dentro da re
 | **Deploy (Actions) — job `Smoke tests live` vermelho** | O smoke pressupõe a topologia de produção (**Front Door same-origin**) — você está em **split sem Front Door** | **Esperado.** Os jobs de **deploy** (API/Frontend/Functions) é que importam — se estão verdes, valide manualmente (Fase 10) |
 | **Workflow falha no login Azure** | `AZURE_CREDENTIALS` ausente ou ≠ JSON do Service Principal | Refaça 8.1/8.2; o secret deve ser o **JSON completo** (começa em `{ "clientId"...`) |
 | **Seed falha com 403 (Forbidden)** | Cosmos em "Selected networks" sem o seu IP | Mantenha o Cosmos em **All networks** (Fase 3.1); o Cloud Shell precisa de acesso público |
-| **(Fase 11.2)** `nameresolver` na API devolve **IP público** | Falta `WEBSITE_VNET_ROUTE_ALL=1`, ou a zona `privatelink.documents.azure.com` não linkada à VNet | Confirme a VNet Integration + `WEBSITE_VNET_ROUTE_ALL=1` e a zona DNS linkada (11.2) |
+| **(Fase 11.2)** `getent hosts` na API devolve **IP público** | Falta `WEBSITE_VNET_ROUTE_ALL=1`, ou a zona `privatelink.documents.azure.com` não linkada à VNet | Confirme a VNet Integration + `WEBSITE_VNET_ROUTE_ALL=1` e a zona DNS linkada (11.2) |
+| **(Fase 11.2)** `nameresolver: command not found` no SSH da API | `nameresolver` é do Kudu de **Windows**; a API é **Linux** | Use `getent hosts <fqdn>` ou `node -e "require('dns').lookup('<fqdn>',(e,a)=>console.log(a))"` (11.5) |
 | **(Fase 11.2)** `/api/health/full` quebrou após o Private Endpoint | Private Endpoint não **Approved**, ou DNS sem A-records | Cosmos → Networking → connection **Approved**; recrie os A-records pela aba **DNS configuration** do PE; em último caso reabra (remova `WEBSITE_VNET_ROUTE_ALL`) e reteste |
 | **Mudei o frontend e o navegador mostra o antigo** | **PWA / Service Worker** com cache | Hard-reload (Ctrl+Shift+R) ou DevTools → Application → Service Workers → **Unregister** |
 | **Cosmos lento / erro 429** | Estourou os 1000 RU/s do Free Tier | Normal sob carga alta; aguarde ou aumente RU/s (sai do free) |
