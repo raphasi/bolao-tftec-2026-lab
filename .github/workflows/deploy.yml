@@ -189,8 +189,12 @@ jobs:
       - name: Ensure Functions app settings (SignalR via KV reference)
         run: |
           set -e
+          # WEBSITE_NODE_DEFAULT_VERSION=~22: o Azure Functions (modelo v4 Node) NÃO
+          # suporta Node 24 — com 24 o worker não INDEXA as functions (lista vazia →
+          # scoring nunca dispara). 22 é a LTS suportada pelo Functions. (As Web Apps
+          # seguem em 24; só a Function App precisa de 22.)
           az functionapp config appsettings set -g "$RG" -n "$FUNCTION_APP" \
-            --settings "COSMOS_DATABASE=bolao2026" >/dev/null
+            --settings "COSMOS_DATABASE=bolao2026" "WEBSITE_NODE_DEFAULT_VERSION=~22" >/dev/null
           # AzureWebJobsCosmosDBConnection: connection string gerada (sem secret KV
           # equivalente); binding crítico do trigger de scoring → mantido raw
           # (fora do escopo S6.5; mascarado no log).

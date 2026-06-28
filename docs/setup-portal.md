@@ -568,10 +568,14 @@ No Key Vault → **Objects → Secrets → + Generate/Import** e crie **um por u
 
 1. Portal → busca **Function App** → **+ Create** → hosting **Consumption (Serverless)**.
 2. **Resource group:** `rg-prd-bl-cin-001` · **Name:** `func-prd-bl-cin-001`
-3. **Runtime stack:** **Node.js** · **Version:** **24 LTS** · **Region:** Central India.
-   > ⚠️ Se **24 LTS não aparecer** na lista (o suporte do Azure Functions a uma versão Node nova
-   > às vezes chega depois do App Service), escolha a **LTS mais recente disponível** (ex.: 22) —
-   > o código roda igual. Mantenha a mesma versão no `WEBSITE_NODE_DEFAULT_VERSION` se ajustar.
+3. **Runtime stack:** **Node.js** · **Version:** **22 LTS** · **Region:** Central India.
+   > 🚨 **Use Node 22 na Function App (NÃO 24).** O **Azure Functions** (modelo v4 Node) **ainda
+   > não suporta Node 24** — com 24 o worker **não indexa as functions** (a lista de functions vem
+   > **vazia** e a **pontuação nunca dispara**, mesmo com tudo "verde" no deploy). As **Web Apps**
+   > (API/frontend) seguem em **Node 24**; só a **Function App** precisa de **22**. A esteira de
+   > deploy já força `WEBSITE_NODE_DEFAULT_VERSION=~22` na Function App. _(Validado ao vivo: com 24
+   > a lista de functions ficava vazia; ao trocar para 22 + restart, as 6 functions registraram e o
+   > scoring rodou.)_
 4. **Operating System:** **Windows** _(o plano Consumo Linux nem sempre está disponível na
    região; Windows + Node é o caminho mais estável para as Functions)._
 5. **Storage account:** selecione a `stprdbl001` (4.1).
@@ -1017,7 +1021,7 @@ Agora o tráfego **API↔Cosmos** sai da internet e passa a viver **dentro da re
 | **Deploy publica no recurso errado / "resource not found"** | Variables de nome não batem com os recursos do Portal | Confira `API_APP_NAME`/`FRONTEND_APP_NAME`/`FUNCTION_APP_NAME`/`COSMOS_ACCOUNT_NAME`/`KEY_VAULT_NAME`/`AZURE_RG` — o nome na Variable tem que ser **idêntico** ao do Portal (Seção 5) |
 | **(Fase 11.1) CORS no navegador** (erro no console F12, mas `curl` funciona) | `CORS_ORIGINS` ≠ URL do front (quase sempre **barra `/` no fim**) | Ajuste para `https://app-prd-bl-fend-cin-001.azurewebsites.net` **sem `/`**, ou volte para `*` e confira |
 | **Login / chamadas falham com "Failed to fetch"** (a API responde direto na URL dela, mas não pelo site) | Bloqueio **cross-origin**: falta `API_ORIGIN` no front (CSP `connect-src`) e/ou o CORP do backend | Confirme a app setting **`API_ORIGIN`** no front = URL da API (Fase 6.3) e recarregue; o repo já traz **CORS** + **CORP `cross-origin`** (`backend/src/server.ts`). Cheque os headers: a API deve mandar `Access-Control-Allow-Origin` e `Cross-Origin-Resource-Policy: cross-origin` |
-| **Lancei resultado e o placar não muda** | Falta um container `leases-*`; ou a Function não conecta no Cosmos; ou a Function (Consumo) **hibernou** | Confira os **5 leases** (Fase 3.3); **reinicie** a `func-prd-bl-cin-001`. Em Consumo (Y1) as Functions hibernam e o Change Feed às vezes só volta após **restart** |
+| **Lancei resultado e o placar não muda** | **(nº1)** Function App em **Node 24** → worker não indexa (lista de functions **vazia**); ou falta um `leases-*`; ou a Function não conecta no Cosmos; ou (Consumo) **hibernou** | **Confirme a lista de functions** (`az functionapp function list ...` deve ter **6**). Se vazia → **`WEBSITE_NODE_DEFAULT_VERSION=~22`** + restart (Node 24 não roda no Functions). Confira os **5 leases** (3.3) e o binding `AzureWebJobsCosmosDBConnection`; em Consumo, o Change Feed às vezes só volta após **restart** |
 | **Deploy (Actions) — job `Smoke tests live` vermelho** | O smoke pressupõe a topologia de produção (**Front Door same-origin**) — você está em **split sem Front Door** | **Esperado.** Os jobs de **deploy** (API/Frontend/Functions) é que importam — se estão verdes, valide manualmente (Fase 10) |
 | **Workflow falha no login Azure** | `AZURE_CREDENTIALS` ausente ou ≠ JSON do Service Principal | Refaça 8.1/8.2; o secret deve ser o **JSON completo** (começa em `{ "clientId"...`) |
 | **Seed falha com 403 (Forbidden)** | Cosmos em "Selected networks" sem o seu IP | Mantenha o Cosmos em **All networks** (Fase 3.1); o Cloud Shell precisa de acesso público |
