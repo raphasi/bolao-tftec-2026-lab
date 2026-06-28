@@ -105,7 +105,11 @@ jobs:
         env:
           RG: ${{ env.RG }}
           APP: ${{ env.APP_NAME }}
-          SMOKE_BASE_URL: ${{ env.PUBLIC_BASE_URL }}
+          # Smoke da API: em produção valida pela borda (Front Door = PUBLIC_BASE_URL);
+          # em fork/self-host (sem Front Door) a API só responde na PRÓPRIA URL, então
+          # apontamos para ela — senão o smoke bate no front (/api → 404), o job falha
+          # e o deploy de Functions é PULADO.
+          SMOKE_BASE_URL: ${{ github.repository == 'TFTEC/fifa2026-bolao-dev' && env.PUBLIC_BASE_URL || format('https://{0}.azurewebsites.net', env.APP_NAME) }}
       - name: Summary
         run: |
           echo "## API Deploy (API-only)" >> $GITHUB_STEP_SUMMARY
