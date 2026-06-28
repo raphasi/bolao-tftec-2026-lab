@@ -150,6 +150,15 @@ jobs:
           # VITE_API_BASE_URL com a URL ABSOLUTA da sua API
           # (ex.: https://<sua-api>.azurewebsites.net/api). Sem a Variable = /api.
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || '/api' }}
+      - name: Ensure frontend API_ORIGIN (CSP connect-src no split sem Front Door)
+        # Em fork/self-host a API é outra origem; o CSP do front precisa liberá-la
+        # (connect-src). Setamos API_ORIGIN = URL da API. Em produção (Front Door,
+        # same-origin) não roda — o CSP já basta com 'self'.
+        if: github.repository != 'TFTEC/fifa2026-bolao-dev'
+        run: |
+          az webapp config appsettings set -g "$RG" -n "$WEB_APP_NAME" \
+            --settings "API_ORIGIN=https://${APP_NAME}.azurewebsites.net" >/dev/null
+          echo "✓ API_ORIGIN=https://${APP_NAME}.azurewebsites.net"
       - name: Summary
         run: |
           echo "## Frontend Deploy (SPA)" >> $GITHUB_STEP_SUMMARY
