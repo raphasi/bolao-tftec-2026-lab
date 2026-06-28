@@ -29,6 +29,11 @@ app.disable('x-powered-by');
 // "F" e a página era enquadrável (clickjacking). Aplicado a todas as respostas.
 // CSP: connect-src libera o Azure SignalR (realtime via /api/negotiate → wss
 // *.service.signalr.net); sem isso a CSP quebraria o tempo-real.
+// Split front/API (sem Front Door): a API é OUTRA origem, então o CSP precisa
+// liberá-la no connect-src senão o navegador bloqueia as chamadas do SPA.
+// Defina a app setting API_ORIGIN = URL da API (ex.: https://<api>.azurewebsites.net).
+// Atrás de Front Door (same-origin) não é necessário — deixe vazio.
+const API_ORIGIN = process.env.API_ORIGIN ? ` ${process.env.API_ORIGIN}` : '';
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -38,7 +43,7 @@ const CONTENT_SECURITY_POLICY = [
   "script-src 'self'",
   "style-src 'self' https://fonts.googleapis.com 'unsafe-inline'",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "connect-src 'self' https://*.service.signalr.net wss://*.service.signalr.net",
+  `connect-src 'self' https://*.service.signalr.net wss://*.service.signalr.net${API_ORIGIN}`,
   "form-action 'self'",
   'upgrade-insecure-requests',
 ].join('; ');
