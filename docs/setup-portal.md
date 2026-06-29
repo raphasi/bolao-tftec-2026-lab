@@ -38,7 +38,7 @@
    - [🤝 Fase 1 — Convocação: fork do repositório](#-fase-1--convocação-fork-do-repositório)
    - [🏟️ Fase 2 — Fundação: Resource Group + observabilidade](#️-fase-2--fundação-resource-group--observabilidade)
    - [🗄️ Fase 3 — O banco: Cosmos DB (rede pública) + 14 containers](#️-fase-3--o-banco-cosmos-db-rede-pública--14-containers)
-   - [⚡ Fase 4 — Tempo real e armazenamento: Storage + SignalR](#-fase-4--tempo-real-e-armazenamento-storage--signalr)
+   - [⚡ Fase 4 — Tempo real: SignalR](#-fase-4--tempo-real-signalr)
    - [🔐 Fase 5 — Cofre de segredos: Key Vault](#-fase-5--cofre-de-segredos-key-vault)
    - [🖥️ Fase 6 — Hospedagem: Plan + API + Frontend + Functions](#️-fase-6--hospedagem-plan--api--frontend--functions)
    - [🔗 Fase 7 — Amarração: Managed Identity + Key Vault references (CORS aberto)](#-fase-7--amarração-managed-identity--key-vault-references-cors-aberto)
@@ -112,7 +112,7 @@ Tudo dentro de **um Resource Group** (`rg-prd-bl-cin-001`), na região **Central
 | 🟧 **Azure SignalR Service** | Empurra o leaderboard **em tempo real** | Free_F1 (serverless) |
 | 🔑 **Azure Key Vault** | Guarda os segredos (Cosmos, JWT, SignalR) **fora do código** | Free (operações) |
 | 📈 **Application Insights + Log Analytics** | Logs, métricas e diagnóstico de tudo | Free (5 GB/mês) |
-| 💾 **Storage Account** | Runtime obrigatório da Function App | Standard_LRS (centavos) |
+| 💾 **Storage Account** | Runtime obrigatório da Function App _(auto-criada com a Function — sem passo manual)_ | Standard_LRS (centavos) |
 | 🔒 **VNet + Private Endpoint + Private DNS** | Rede privada API↔Cosmos (**Fase 11**) | ~US$15/mês enquanto no ar |
 | 🤖 **GitHub Actions** (CI/CD) | Build + deploy automáticos | Grátis |
 
@@ -219,7 +219,6 @@ Os recursos seguem o padrão de taxonomia **`<tipo>-<ambiente>-<carga>-<região>
 |---|---|---|
 | Log Analytics Workspace | `log-prd-bl-cin-001` | backing do App Insights |
 | Application Insights | `appi-prd-bl-cin-001` | observabilidade |
-| Storage Account | `stprdbl001` | **minúsculas, sem hífen, ≤ 24 chars** |
 | SignalR Service | `signalr-prd-bl-cin-001` | tempo real |
 | App Service Plan | `asp-prd-bl-cin-001` | B1 Linux; hospeda os 2 Web Apps |
 | _(Fase 11)_ Virtual Network | `vnet-prd-bl-cin-001` | `10.20.0.0/16` |
@@ -240,7 +239,7 @@ Os recursos seguem o padrão de taxonomia **`<tipo>-<ambiente>-<carga>-<região>
 | **1** | Convocação: **fork** do repositório (no GitHub, sem terminal) | 5 min |
 | **2** | Fundação: Resource Group + Log Analytics + App Insights | 8 min |
 | **3** | O banco: **Cosmos DB (rede pública)** + os **14 containers** | 15 min |
-| **4** | Tempo real e armazenamento: **Storage** + **SignalR** | 8 min |
+| **4** | Tempo real: **SignalR** _(Storage é auto-criada com a Function na 6.4)_ | 4 min |
 | **5** | Cofre de segredos: **Key Vault** + secrets | 10 min |
 | **6** | Hospedagem: **Plan** + **Web App API** + **Web App Frontend** + **Function App** | 15 min |
 | **7** | Amarração: **Managed Identity + Key Vault references** (CORS `*` aberto) | 12 min |
@@ -537,24 +536,15 @@ Na conta Cosmos → **Settings → Keys**. 📋 Anote (vai usar nos segredos do 
 
 ---
 
-### ⚡ Fase 4 — Tempo real e armazenamento: Storage + SignalR
+### ⚡ Fase 4 — Tempo real: SignalR
 
-> 🎯 **Objetivo:** criar a **Storage Account** (runtime obrigatório das Functions) e o **SignalR**
-> (que empurra o leaderboard em tempo real).
+> 🎯 **Objetivo:** criar o **SignalR**, que empurra o leaderboard em tempo real.
+>
+> 💡 **E a Storage Account?** Você **não cria** mais à mão: o assistente da **Function App**
+> (Fase 6.4) **cria a storage automaticamente** (a runtime das Functions exige uma, e ela é
+> provisionada sozinha). Não há passo manual de Storage.
 
-#### 4.1 Storage Account
-
-1. Portal → **Storage accounts** → **+ Create**.
-2. **Resource group:** `rg-prd-bl-cin-001` · **Name:** `stprdbl001`
-   _(⚠️ minúsculas, **sem hífen**, no máximo 24 caracteres)._
-3. **Region:** Central India · **Performance:** Standard · **Redundancy:** **LRS**.
-4. Aba **Security:** TLS 1.2 mínimo · **Allow blob anonymous access:** Disabled.
-5. **Review + create** → **Create**.
-
-> 💡 Você **não precisa** anotar a chave da Storage: a Function App (Fase 6) se conecta a ela
-> **automaticamente** quando você a seleciona na criação.
-
-#### 4.2 SignalR Service
+#### 4.1 SignalR Service
 
 1. Portal → busca **SignalR Service** → **+ Create**.
 2. **Resource group:** `rg-prd-bl-cin-001` · **Name:** `signalr-prd-bl-cin-001` · **Region:** Central India.
@@ -566,7 +556,7 @@ Na conta Cosmos → **Settings → Keys**. 📋 Anote (vai usar nos segredos do 
 > 💡 **SignalR é o que dá o "ao vivo".** Sem ele, o app funciona 100% — só o auto-refresh do
 > placar deixa de acontecer (o usuário precisaria recarregar a página). Recomendado manter.
 
-> ✅ **Pronto quando:** Storage e SignalR existem no RG e você anotou a connection string do SignalR.
+> ✅ **Pronto quando:** o SignalR existe no RG e você anotou a connection string dele.
 
 ---
 
@@ -629,7 +619,7 @@ No Key Vault → **Objects → Secrets → + Generate/Import** e crie **um por u
 | `cosmos-key` | a **PRIMARY KEY** do Cosmos (3.4) |
 | `cosmos-database` | `bolao2026` |
 | `jwt-secret` | a string gerada em 5.3 (≥ 32 chars) |
-| `signalr-connection-string` | a **Primary Connection String** do SignalR (4.2) |
+| `signalr-connection-string` | a **Primary Connection String** do SignalR (4.1) |
 
 > 🔒 **Regra de ouro:** o Key Vault é a **única fonte de verdade** dos segredos. Para rotacionar
 > uma senha no futuro, você troca **aqui** — as referências (Fase 7) pegam a versão nova
@@ -720,11 +710,10 @@ No Key Vault → **Objects → Secrets → + Generate/Import** e crie **um por u
 5. **Storage account — não procure, não existe seletor.** O wizard novo de **Consumption
    (Windows)** **não pede** storage account (não há aba "Storage" nem campo na Basics): o Azure
    **cria uma storage automaticamente** para a Function App. **Siga em frente** — está tudo certo.
-   > 💡 Vai aparecer no RG uma storage extra com nome automático — é a da Function App. A
-   > `stprdbl001` simplesmente não será usada por ela; reusá-la era só **economia**, nunca foi
-   > obrigatório. A runtime usa `AzureWebJobsStorage` (preenchido sozinho) e a esteira de deploy
-   > **não depende do nome** dessa storage. _(Se você estiver num portal antigo que ainda mostra
-   > uma aba "Hosting" com "Storage account", aí sim pode escolher a `stprdbl001`.)_
+   > 💡 Vai aparecer no RG uma storage com nome automático (tipo `func...` + aleatório) — é a da
+   > Function App, e é **esperado**. A runtime usa `AzureWebJobsStorage` (preenchido sozinho) e a
+   > esteira de deploy **não depende do nome** dela. _(Se você estiver num portal antigo que ainda
+   > mostra uma aba "Hosting" com "Storage account", pode deixar criar uma nova ali.)_
 6. **Review + create** → **Create**.
 
 **Após criar**, abra a `func-prd-bl-cin-001`:
@@ -865,7 +854,7 @@ No **seu fork** no GitHub → **Settings → Secrets and variables → Actions**
 | Secret | Valor |
 |---|---|
 | `AZURE_CREDENTIALS` | o **JSON inteiro** do passo 8.1 |
-| `SIGNALR_CONNECTION_STRING` | a Primary Connection String do SignalR (4.2) — _opcional, mas recomendado para o tempo real_ |
+| `SIGNALR_CONNECTION_STRING` | a Primary Connection String do SignalR (4.1) — _opcional, mas recomendado para o tempo real_ |
 
 **Aba *Variables* → *New repository variable*:** aqui você **informa os nomes dos seus recursos**
 — é assim que a esteira sabe **onde** publicar. Preencha cada uma com o **nome que você criou no
@@ -1220,7 +1209,7 @@ Agora o tráfego **API↔Cosmos** sai da internet e passa a viver **dentro da re
 | 🔐 | *Cosmos PRIMARY KEY* | chave longa (Fase 3.4) → secret `cosmos-key` |
 | 🔐 | *Cosmos CONNECTION STRING* | `AccountEndpoint=...;AccountKey=...;` (a CI usa nas Functions) |
 | 🔐 | *jwt-secret* | `openssl rand -base64 32` (Fase 5.3) → secret `jwt-secret` |
-| 🔐 | *SignalR connection string* | Primary Connection String (Fase 4.2) → secret + GitHub secret |
+| 🔐 | *SignalR connection string* | Primary Connection String (Fase 4.1) → secret + GitHub secret |
 | 🔐 | *AZURE_CREDENTIALS* | JSON do Service Principal (Fase 8.1) → GitHub secret |
 | 🔐 | *Admin do bolão* | `SEED_ADMIN_EMAIL` / senha (Fase 9) |
 | 🌐 | *URL da API* | `https://app-prd-bl-bend-cin-001.azurewebsites.net` |
