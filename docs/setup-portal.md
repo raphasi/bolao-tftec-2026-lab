@@ -975,6 +975,11 @@ inteiro ali; não precisa virar uma linha só).
 
 #### 8.3 Configurar Secrets e Variables no seu fork
 
+> ℹ️ **Por que preencher do zero?** O fork **trouxe o código e os workflows**, mas o GitHub **NÃO
+> copia Secrets nem Variables** para forks (é proteção de segurança — senão qualquer fork roubaria
+> credenciais). Então **estes valores não existem ainda no seu fork**: você cria todos agora. Eles
+> também são **individuais** (seus nomes de recurso, suas credenciais), então não há o que herdar.
+
 No **seu fork** no GitHub → **Settings → Secrets and variables → Actions**:
 
 **Aba *Secrets* → *New repository secret*:**
