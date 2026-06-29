@@ -408,6 +408,54 @@ existente** → **Don't provision dedicated throughput** (usa o throughput do da
 > atualiza**. Confira que existem **14 containers no total** (9 de dados + 5 leases) antes de
 > seguir.
 
+##### ⚡ Alternativa (mais rápida): criar os 14 containers via Cloud Shell 🧰
+
+Criar 14 containers clicando é repetitivo. Se preferir, crie todos de uma vez pelo **Cloud
+Shell**. *Pré-requisito:* a conta Cosmos (3.1) e o database `bolao2026` com throughput
+compartilhado (3.2) **já criados** — o bloco abaixo só cria os containers.
+
+1. No topo do Portal, clique no ícone **Cloud Shell** (`>_`) → escolha **Bash**.
+2. Cole o bloco inteiro (os nomes já são os padrão do lab; se você renomeou algo, ajuste as
+   3 primeiras linhas):
+
+```bash
+RG=rg-prd-bl-cin-001
+ACC=cosmos-prd-bl-cin-001
+DB=bolao2026
+
+# 9 containers de DADOS — formato "id:partition-key"
+for c in \
+  "users:/userId" \
+  "predictions:/userId" \
+  "specials:/userId" \
+  "matches-cache:/groupCode" \
+  "leaderboard:/season" \
+  "groups:/season" \
+  "players:/season" \
+  "config:/scope" \
+  "audit-log:/performedBy"; do
+  az cosmosdb sql container create -g "$RG" -a "$ACC" -d "$DB" \
+    -n "${c%%:*}" -p "${c##*:}" -o none
+  echo "✓ ${c%%:*}"
+done
+
+# 5 containers de LEASE — todos com /id
+for c in leases-calc leases-specials leases-aggregate-predictions \
+         leases-aggregate-specials leases-emit-leaderboard; do
+  az cosmosdb sql container create -g "$RG" -a "$ACC" -d "$DB" \
+    -n "$c" -p /id -o none
+  echo "✓ $c"
+done
+
+# Confirmação: deve imprimir 14
+az cosmosdb sql container list -g "$RG" -a "$ACC" -d "$DB" --query "length(@)"
+```
+
+> ℹ️ Sem `--throughput`, cada container usa o **throughput compartilhado do database** (3.2) —
+> é o equivalente CLI de *"Don't provision dedicated throughput"*. Reexecutar o bloco é seguro:
+> containers que já existem apenas retornam erro de "conflito" e os demais seguem. Mesmo usando
+> o atalho, **confira os 14** no Data Explorer antes de seguir.
+
 #### 3.4 Anotar as credenciais
 
 Na conta Cosmos → **Settings → Keys**. 📋 Anote (vai usar nos segredos do Key Vault e no seed):
