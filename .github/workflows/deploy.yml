@@ -238,8 +238,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 6
     needs: [deploy_api, deploy_frontend, deploy_functions]
+    # Só roda no repo de PRODUÇÃO (topologia com Front Door same-origin: /api/* na
+    # URL pública roteia para a API). No lab/forks é SPLIT sem Front Door — o
+    # PUBLIC_BASE_URL é o frontend, que não serve /api → este smoke daria 404 (falso
+    # vermelho). A API e o frontend já são validados pelos próprios scripts de deploy.
     if: |
       always() &&
+      github.repository == 'TFTEC/fifa2026-bolao-dev' &&
       (needs.deploy_api.result == 'success' || needs.deploy_api.result == 'skipped') &&
       (needs.deploy_frontend.result == 'success' || needs.deploy_frontend.result == 'skipped') &&
       (needs.deploy_functions.result == 'success' || needs.deploy_functions.result == 'skipped') &&
