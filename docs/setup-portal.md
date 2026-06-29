@@ -372,6 +372,21 @@ Os recursos seguem o padrão de taxonomia **`<tipo>-<ambiente>-<carga>-<região>
    _(throughput compartilhado por todos os containers — cabe no Free Tier)._
 4. **OK**.
 
+> 🔴 **NÃO PULE o "Provision throughput" (passo 3).** Esse checkbox é o que dá ao database um
+> throughput **compartilhado** entre os 14 containers. Se você criar o database **sem** ele, cada
+> container vai exigir throughput **próprio** (mín. 400 RU/s) e, com o limite de 1000 RU/s da
+> conta, só caberão ~2 containers — os demais falham com *"would have increased the total
+> throughput to 1200 RU/s"* (ver Troubleshooting na 3.3). **Confirme** que pegou (no Cloud Shell):
+> ```bash
+> az cosmosdb sql database throughput show -g rg-prd-bl-cin-001 -a cosmos-prd-bl-cin-001 -n bolao2026 --query "resource.throughput"
+> ```
+> Deve imprimir **1000**. Se der erro `NotFound` / "does not have shared throughput", o database
+> ficou sem throughput compartilhado → apague e recrie:
+> ```bash
+> az cosmosdb sql database delete -g rg-prd-bl-cin-001 -a cosmos-prd-bl-cin-001 -n bolao2026 --yes
+> az cosmosdb sql database create -g rg-prd-bl-cin-001 -a cosmos-prd-bl-cin-001 -n bolao2026 --throughput 1000
+> ```
+
 #### 3.3 Criar os 14 containers
 
 Para **cada** container: **Data Explorer → New Container** → selecione o database **`bolao2026`
@@ -423,38 +438,55 @@ RG=rg-prd-bl-cin-001
 ACC=cosmos-prd-bl-cin-001
 DB=bolao2026
 
-# 9 containers de DADOS — formato "id:partition-key"
-for c in \
-  "users:/userId" \
-  "predictions:/userId" \
-  "specials:/userId" \
-  "matches-cache:/groupCode" \
-  "leaderboard:/season" \
-  "groups:/season" \
-  "players:/season" \
-  "config:/scope" \
-  "audit-log:/performedBy"; do
-  az cosmosdb sql container create -g "$RG" -a "$ACC" -d "$DB" \
-    -n "${c%%:*}" -p "${c##*:}" -o none
-  echo "✓ ${c%%:*}"
-done
+# PRE-CHECK: o database PRECISA ter throughput compartilhado, senao cada container
+# exige RU/s proprio e estoura o limite de 1000 da conta (erro "...to 1200 RU/s").
+if ! az cosmosdb sql database throughput show -g "$RG" -a "$ACC" -n "$DB" -o none 2>/dev/null; then
+  echo "❌ O database '$DB' NAO tem throughput compartilhado. Recrie antes de seguir:"
+  echo "   az cosmosdb sql database delete -g $RG -a $ACC -n $DB --yes"
+  echo "   az cosmosdb sql database create -g $RG -a $ACC -n $DB --throughput 1000"
+else
+  # 9 containers de DADOS — formato "id:partition-key"
+  for c in \
+    "users:/userId" \
+    "predictions:/userId" \
+    "specials:/userId" \
+    "matches-cache:/groupCode" \
+    "leaderboard:/season" \
+    "groups:/season" \
+    "players:/season" \
+    "config:/scope" \
+    "audit-log:/performedBy"; do
+    if az cosmosdb sql container create -g "$RG" -a "$ACC" -d "$DB" \
+         -n "${c%%:*}" -p "${c##*:}" -o none 2>/dev/null; then echo "✓ ${c%%:*}"; else echo "✗ ${c%%:*} (falhou)"; fi
+  done
 
-# 5 containers de LEASE — todos com /id
-for c in leases-calc leases-specials leases-aggregate-predictions \
-         leases-aggregate-specials leases-emit-leaderboard; do
-  az cosmosdb sql container create -g "$RG" -a "$ACC" -d "$DB" \
-    -n "$c" -p /id -o none
-  echo "✓ $c"
-done
+  # 5 containers de LEASE — todos com /id
+  for c in leases-calc leases-specials leases-aggregate-predictions \
+           leases-aggregate-specials leases-emit-leaderboard; do
+    if az cosmosdb sql container create -g "$RG" -a "$ACC" -d "$DB" \
+         -n "$c" -p /id -o none 2>/dev/null; then echo "✓ $c"; else echo "✗ $c (falhou)"; fi
+  done
 
-# Confirmação: deve imprimir 14
-az cosmosdb sql container list -g "$RG" -a "$ACC" -d "$DB" --query "length(@)"
+  # Confirmação: deve imprimir 14
+  az cosmosdb sql container list -g "$RG" -a "$ACC" -d "$DB" --query "length(@)"
+fi
 ```
 
 > ℹ️ Sem `--throughput`, cada container usa o **throughput compartilhado do database** (3.2) —
 > é o equivalente CLI de *"Don't provision dedicated throughput"*. Reexecutar o bloco é seguro:
-> containers que já existem apenas retornam erro de "conflito" e os demais seguem. Mesmo usando
-> o atalho, **confira os 14** no Data Explorer antes de seguir.
+> containers que já existem apenas retornam "conflito" (marcados `✗`, sem problema) e os demais
+> seguem. Mesmo usando o atalho, **confira os 14** no Data Explorer antes de seguir.
+
+> 🛠️ **Troubleshooting — erro `... would have increased the total throughput to 1200 RU/s`:**
+> sinal de que o database foi criado **sem throughput compartilhado** (o "Provision throughput"
+> da 3.2 não pegou), então cada container tenta provisionar RU/s próprio e a 3ª criação estoura o
+> limite de 1000 RU/s da conta. Só `users` e `predictions` (≈800 RU/s) entram; o resto falha.
+> **Correção** (o database ainda está vazio — o seed é só na Fase 9):
+> ```bash
+> az cosmosdb sql database delete -g "$RG" -a "$ACC" -n "$DB" --yes
+> az cosmosdb sql database create -g "$RG" -a "$ACC" -n "$DB" --throughput 1000
+> ```
+> Depois **rode o bloco dos 14 containers de novo** — agora todos compartilham os 1000 RU/s.
 
 #### 3.4 Anotar as credenciais
 
