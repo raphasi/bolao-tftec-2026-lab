@@ -495,7 +495,7 @@ echo "== Throughput do database (esperado: 1000) =="
 az cosmosdb sql database throughput show -g "$RG" -a "$ACC" -n "$DB" --query "resource.throughput" -o tsv
 
 echo "== Containers existentes =="
-got=$(az cosmosdb sql container list -g "$RG" -a "$ACC" -d "$DB" --query "[].id" -o tsv | sort)
+got=$(az cosmosdb sql container list -g "$RG" -a "$ACC" -d "$DB" --query "[].name" -o tsv | sort)
 echo "$got"
 echo "Total: $(printf '%s\n' "$got" | grep -c .)  (esperado: 14)"
 
