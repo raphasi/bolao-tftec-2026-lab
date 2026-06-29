@@ -870,9 +870,11 @@ jogadores**, leaderboard inicializado.
 > **liberar os jogos para teste**, rode (no Cloud Shell 🧰, com as credenciais do Cosmos no
 > ambiente — mesmas da Fase 9):
 > ```bash
-> npx tsx scripts/lab-open-predictions.ts --apply
+> npx tsx scripts/lab-open-predictions.ts --apply            # ~1 mês à frente (default)
+> npx tsx scripts/lab-open-predictions.ts --apply --days 45  # ajuste a janela
 > ```
-> Ele move os 72 jogos de grupo para o **futuro** (palpites reabrem). Reverter ao calendário
+> Ele move os 72 jogos de grupo para o **futuro** (default **+30 dias**, relativo a quando você
+> roda → sempre sobra tempo). Palpites reabrem. Reverter ao calendário
 > oficial: `npm run reset` + `npm run seed`. _(Para finalizar um jogo **antes** do kickoff e testar
 > a pontuação, use **Admin → Resultados → "Permitir finalizar"** no jogo.)_
 
