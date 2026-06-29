@@ -364,24 +364,35 @@ Os recursos seguem o padrão de taxonomia **`<tipo>-<ambiente>-<carga>-<região>
    _(simplicidade agora; restringimos na Fase 11)._
 6. **Review + create** → **Create**. ⏳ **Demora ~5–8 min.**
 
-#### 3.2 Criar o database `bolao2026`
+#### 3.2 Criar o database `bolao2026` (pelo Cloud Shell 🧰)
 
-1. Abra a conta → **Data Explorer** → **New Database**.
-2. **Database id:** `bolao2026`
-3. ✅ **Provision throughput** → **Manual** → **1000** RU/s
-   _(throughput compartilhado por todos os containers — cabe no Free Tier)._
-4. **OK**.
+> ⛔ **NÃO crie o database pelo Portal.** No "New Database" do Data Explorer é preciso marcar
+> **Provision throughput → Manual → 1000 RU/s** para o database ter throughput **compartilhado**.
+> Esse passo é fácil de esquecer/errar e, quando isso acontece, o database fica **sem** throughput
+> próprio → na 3.3 **cada container** passa a exigir RU/s dedicado (mín. 400) e, com o limite de
+> **1000 RU/s** da conta, só caberão ~2 containers; o resto falha com
+> *"would have increased the total throughput to 1200 RU/s"*. Para tornar isso **à prova de erro**,
+> criamos o database por **comando** — que garante o throughput compartilhado de uma vez.
 
-> 🔴 **NÃO PULE o "Provision throughput" (passo 3).** Esse checkbox é o que dá ao database um
-> throughput **compartilhado** entre os 14 containers. Se você criar o database **sem** ele, cada
-> container vai exigir throughput **próprio** (mín. 400 RU/s) e, com o limite de 1000 RU/s da
-> conta, só caberão ~2 containers — os demais falham com *"would have increased the total
-> throughput to 1200 RU/s"* (ver Troubleshooting na 3.3). **Confirme** que pegou (no Cloud Shell):
-> ```bash
-> az cosmosdb sql database throughput show -g rg-prd-bl-cin-001 -a cosmos-prd-bl-cin-001 -n bolao2026 --query "resource.throughput"
-> ```
-> Deve imprimir **1000**. Se der erro `NotFound` / "does not have shared throughput", o database
-> ficou sem throughput compartilhado → apague e recrie:
+No **Cloud Shell** (`>_` no topo do Portal → **Bash**), rode:
+
+```bash
+az cosmosdb sql database create \
+  -g rg-prd-bl-cin-001 -a cosmos-prd-bl-cin-001 -n bolao2026 \
+  --throughput 1000
+
+# Confirmação — deve imprimir 1000
+az cosmosdb sql database throughput show \
+  -g rg-prd-bl-cin-001 -a cosmos-prd-bl-cin-001 -n bolao2026 \
+  --query "resource.throughput"
+```
+
+> ✅ **Pronto quando** o segundo comando imprime **`1000`** — o database `bolao2026` existe com
+> throughput **compartilhado**, e os 14 containers da 3.3 vão dividir esses 1000 RU/s sem cobrar
+> throughput próprio.
+>
+> ♻️ **Se já tinha criado o database errado** (pelo Portal, sem throughput): apague e recrie —
+> ele ainda está vazio nesta fase (o seed é só na Fase 9):
 > ```bash
 > az cosmosdb sql database delete -g rg-prd-bl-cin-001 -a cosmos-prd-bl-cin-001 -n bolao2026 --yes
 > az cosmosdb sql database create -g rg-prd-bl-cin-001 -a cosmos-prd-bl-cin-001 -n bolao2026 --throughput 1000
