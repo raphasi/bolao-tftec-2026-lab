@@ -712,7 +712,12 @@ No Key Vault → **Objects → Secrets → + Generate/Import** e crie **um por u
    > scoring rodou.)_
 4. **Operating System:** **Windows** _(o plano Consumo Linux nem sempre está disponível na
    região; Windows + Node é o caminho mais estável para as Functions)._
-5. **Storage account:** selecione a `stprdbl001` (4.1).
+5. **Storage account:** avance para a aba **Storage** (clique em **Next** — o seletor **não fica
+   na aba _Basics_**; dependendo da versão do portal a aba se chama **Storage** ou **Hosting**) e,
+   em **Storage account**, selecione a `stprdbl001` (4.1).
+   > 💡 Se o assistente só oferecer **Create new** (acontece em versões mais novas / Flex), **pode
+   > deixar criar uma storage nova** — a Function App **precisa** de uma de qualquer jeito; reusar a
+   > `stprdbl001` é só economia, não é obrigatório.
 6. **Review + create** → **Create**.
 
 **Após criar**, abra a `func-prd-bl-cin-001`:
