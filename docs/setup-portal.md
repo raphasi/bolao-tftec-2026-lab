@@ -840,11 +840,50 @@ Web App **API** (`app-prd-bl-bend-cin-001`) → **Settings → Environment varia
 
 ### ⚙️ Fase 8 — Esteira de deploy: Service Principal + GitHub Actions
 
-> 🎯 **Objetivo:** dar ao GitHub permissão para publicar nos **seus** recursos, configurar as
-> variáveis no seu fork, fazer **a única edição** que o lab sem Front Door exige, e **disparar o
-> deploy** — tudo pela web (+ um comando no Cloud Shell para a permissão).
+> 🎯 **Objetivo:** **fazer o fork** do projeto (se ainda não fez), dar ao GitHub permissão para
+> publicar nos **seus** recursos, configurar as variáveis no seu fork, fazer **a única edição** que
+> o lab sem Front Door exige, e **disparar o deploy** — tudo pela web (+ um comando no Cloud Shell
+> para a permissão).
 
-#### 8.1 Criar a permissão de deploy (Service Principal) 🧰
+#### 8.1 Faça o fork do repositório (no GitHub)
+
+> A esteira de deploy roda a partir de uma **cópia sua** do projeto no GitHub — o **fork**. Se você
+> **já fez** o fork na Fase 1, **pule para o passo 6** (só confirme que está no seu fork). Se não fez,
+> siga do passo 1. **Pré-requisito:** ter uma **conta no GitHub** e estar **logado**.
+
+1. Entre no GitHub (https://github.com) com a sua conta.
+2. Abra o repositório do lab: **`https://github.com/raphasi/bolao-tftec-2026-lab`**
+   _(⚠️ a URL final/pública será divulgada na turma — o repo é tornado público antes da aula)._
+3. No **canto superior direito** da página do repositório, clique no botão **Fork**.
+4. Na tela **"Create a new fork"**:
+   - **Owner:** selecione **a SUA conta** _(não escolha uma organização que você não controla)._
+   - **Repository name:** deixe como está (`bolao-tftec-2026-lab`).
+   - **Copy the `main` branch only:** deixe **marcado**.
+   - Clique em **Create fork**.
+5. Aguarde alguns segundos — o GitHub leva você ao **seu** fork.
+6. ✅ **Confirme que está no SEU fork:** no topo da página o nome deve ser
+   **`<seu-usuario>/bolao-tftec-2026-lab`**, com a etiqueta **"forked from raphasi/bolao-tftec-2026-lab"**
+   logo abaixo. Se ainda aparecer `raphasi/...` como dono, você está no **original** — volte e clique em **Fork**.
+
+> 🚨 **O erro nº 1 dos alunos:** continuar trabalhando no repositório **original** (`raphasi/...`) em
+> vez do **seu fork**. **Tudo** na Fase 8 (Secrets, Variables, Actions) é feito **no seu fork** — no
+> original você não tem permissão e **nada funciona**. Sempre confira o **nome do dono no topo**.
+
+> 💡 **O botão "Fork" não aparece / está cinza?**
+> - Confirme que você está **logado** no GitHub.
+> - O repo precisa estar **público** (o instrutor libera antes da aula). Se ainda estiver privado e
+>   você não tiver acesso, **aguarde a URL pública**.
+> - Se você **já forkou** antes, o GitHub não deixa forkar de novo — o seu fork **já existe** em
+>   `https://github.com/<seu-usuario>/bolao-tftec-2026-lab` (abra direto).
+
+> 🧠 **Como editar um arquivo pela web** (você não vai precisar baixar nada): abra o arquivo no seu
+> fork → ícone de **lápis (✏️ Edit this file)** → altere → **Commit changes** → **Commit directly to
+> the `main` branch** → **Commit changes**.
+
+> ✅ **Pronto quando:** existe `https://github.com/<seu-usuario>/bolao-tftec-2026-lab` e você
+> consegue navegar pelas pastas (`backend/`, `frontend/`, `functions/`, `.github/workflows/`).
+
+#### 8.2 Criar a permissão de deploy (Service Principal) 🧰
 
 No **Azure Cloud Shell** (Bash), descubra sua subscription e crie o Service Principal **com
 escopo só no seu Resource Group** (boa prática):
@@ -865,7 +904,7 @@ az ad sp create-for-rbac \
 > publicar. O `--scopes` limita o poder dela **só** ao `rg-prd-bl-cin-001`. Em CLIs antigas, troque
 > `--json-auth` por `--sdk-auth`.
 
-#### 8.2 Configurar Secrets e Variables no seu fork
+#### 8.3 Configurar Secrets e Variables no seu fork
 
 No **seu fork** no GitHub → **Settings → Secrets and variables → Actions**:
 
@@ -873,7 +912,7 @@ No **seu fork** no GitHub → **Settings → Secrets and variables → Actions**
 
 | Secret | Valor |
 |---|---|
-| `AZURE_CREDENTIALS` | o **JSON inteiro** do passo 8.1 |
+| `AZURE_CREDENTIALS` | o **JSON inteiro** do passo 8.2 |
 | `SIGNALR_CONNECTION_STRING` | a Primary Connection String do SignalR (4.1) — _opcional, mas recomendado para o tempo real_ |
 
 **Aba *Variables* → *New repository variable*:** aqui você **informa os nomes dos seus recursos**
@@ -927,7 +966,7 @@ instância para `-002`, reflita aqui):
 > 💡 **Nada de editar o `deploy.yml`!** Tudo é feito por **Variables** — é só preencher. A esteira
 > publica exatamente nos recursos que você nomeou nas Variables.
 
-#### 8.3 Disparar o deploy
+#### 8.4 Disparar o deploy
 
 1. No seu fork → aba **Actions** → se aparecer o aviso, clique no botão verde para **habilitar
    os workflows** (1ª vez).
@@ -935,7 +974,7 @@ instância para `-002`, reflita aqui):
 3. Acompanhe os jobs em paralelo: **Deploy API**, **Deploy Frontend**, **Deploy Functions** e,
    por fim, **Smoke tests live**.
 
-> ⏳ **Acabou de criar o Service Principal (8.1)? A 1ª execução pode falhar no "Azure login"** com
+> ⏳ **Acabou de criar o Service Principal (8.2)? A 1ª execução pode falhar no "Azure login"** com
 > **`No subscriptions found for ***`** — é só a **propagação do RBAC** (a role do SP leva ~1-2 min
 > para valer). **Espere 2 min e rode o workflow de novo** (Re-run / Run workflow). _(Validado: a
 > role existe; era só timing.)_
@@ -1199,13 +1238,13 @@ Agora o tráfego **API↔Cosmos** sai da internet e passa a viver **dentro da re
 | **Erro ao criar Web App / Plan:** `"...Current Limit (Total VMs): 0"` | Região **sem cota** de App Service na sua trial (cota é **regional**, às vezes zerada). **Não é** spending limit | Escolha outra região que libere (Fase 0) e **recrie tudo nela**. A região varia por assinatura |
 | **Frontend/Backend mostra "Application Error" (página azul)** | O Node **crashou no boot** | Abra o **Log stream** (Web App → **Monitoring → Log stream**). Verifique: `JWT_SECRET` ≥ 32 chars, `COSMOS_*` corretos (Fase 7.2), Startup Command (`node backend/dist/server.js` na API / `node server.js` no front), `PORT=8080`. ⚠️ **Não use FTP** (desabilitado) — use o Log stream |
 | **Referência do Key Vault não resolve** (erro na App Setting) | RBAC faltando para a Managed Identity | Confirme **Key Vault Secrets User** para a MSI da API (e das Functions) no IAM do Key Vault (Fase 7.1) |
-| **Site carrega, mas chama a API errada / 404 em `/api`** | Variable `VITE_API_BASE_URL` ausente/errada (sem ela o build usa `/api`, que só funciona com Front Door) | Defina a Variable `VITE_API_BASE_URL` com a **URL absoluta** da sua API + `/api` (Fase 8.2) e **rode o workflow de novo** |
+| **Site carrega, mas chama a API errada / 404 em `/api`** | Variable `VITE_API_BASE_URL` ausente/errada (sem ela o build usa `/api`, que só funciona com Front Door) | Defina a Variable `VITE_API_BASE_URL` com a **URL absoluta** da sua API + `/api` (Fase 8.3) e **rode o workflow de novo** |
 | **Deploy publica no recurso errado / "resource not found"** | Variables de nome não batem com os recursos do Portal | Confira `API_APP_NAME`/`FRONTEND_APP_NAME`/`FUNCTION_APP_NAME`/`COSMOS_ACCOUNT_NAME`/`KEY_VAULT_NAME`/`AZURE_RG` — o nome na Variable tem que ser **idêntico** ao do Portal (Seção 5) |
 | **(Fase 11.1) CORS no navegador** (erro no console F12, mas `curl` funciona) | `CORS_ORIGINS` ≠ URL do front (quase sempre **barra `/` no fim**) | Ajuste para `https://app-prd-bl-fend-cin-001.azurewebsites.net` **sem `/`**, ou volte para `*` e confira |
 | **Login / chamadas falham com "Failed to fetch"** (a API responde direto na URL dela, mas não pelo site) | Bloqueio **cross-origin**: falta `API_ORIGIN` no front (CSP `connect-src`) e/ou o CORP do backend | Confirme a app setting **`API_ORIGIN`** no front = URL da API (Fase 6.3) e recarregue; o repo já traz **CORS** + **CORP `cross-origin`** (`backend/src/server.ts`). Cheque os headers: a API deve mandar `Access-Control-Allow-Origin` e `Cross-Origin-Resource-Policy: cross-origin` |
 | **Lancei resultado e o placar não muda** | **(nº1)** Function App em **Node 24** → worker não indexa (lista de functions **vazia**); ou falta um `leases-*`; ou a Function não conecta no Cosmos; ou (Consumo) **hibernou** | **Confirme a lista de functions** (`az functionapp function list ...` deve ter **6**). Se vazia → **`WEBSITE_NODE_DEFAULT_VERSION=~22`** + restart (Node 24 não roda no Functions). Confira os **5 leases** (3.3) e o binding `AzureWebJobsCosmosDBConnection`; em Consumo, o Change Feed às vezes só volta após **restart** |
 | **Deploy (Actions) — job `Smoke tests live` vermelho** | O smoke pressupõe a topologia de produção (**Front Door same-origin**) — você está em **split sem Front Door** | **Esperado.** Os jobs de **deploy** (API/Frontend/Functions) é que importam — se estão verdes, valide manualmente (Fase 10) |
-| **Workflow falha no login Azure** (`No subscriptions found for ***`) | **Propagação do RBAC** do SP recém-criado (mais comum), ou `AZURE_CREDENTIALS` ausente/≠ JSON do SP | Espere **1-2 min** e **rode o workflow de novo** (a role do SP leva um tempo para valer). Se persistir: refaça 8.1/8.2; o secret deve ser o **JSON completo** (começa em `{ "clientId"...`) |
+| **Workflow falha no login Azure** (`No subscriptions found for ***`) | **Propagação do RBAC** do SP recém-criado (mais comum), ou `AZURE_CREDENTIALS` ausente/≠ JSON do SP | Espere **1-2 min** e **rode o workflow de novo** (a role do SP leva um tempo para valer). Se persistir: refaça 8.2/8.3; o secret deve ser o **JSON completo** (começa em `{ "clientId"...`) |
 | **Seed falha com 403 (Forbidden)** | Cosmos em "Selected networks" sem o seu IP | Mantenha o Cosmos em **All networks** (Fase 3.1); o Cloud Shell precisa de acesso público |
 | **(Fase 11.2)** `getent hosts` na API devolve **IP público** | Falta `WEBSITE_VNET_ROUTE_ALL=1`, ou a zona `privatelink.documents.azure.com` não linkada à VNet | Confirme a VNet Integration + `WEBSITE_VNET_ROUTE_ALL=1` e a zona DNS linkada (11.2) |
 | **(Fase 11.2)** `nameresolver: command not found` no SSH da API | `nameresolver` é do Kudu de **Windows**; a API é **Linux** | Use `getent hosts <fqdn>` ou `node -e "require('dns').lookup('<fqdn>',(e,a)=>console.log(a))"` (11.2) |
@@ -1230,7 +1269,7 @@ Agora o tráfego **API↔Cosmos** sai da internet e passa a viver **dentro da re
 | 🔐 | *Cosmos CONNECTION STRING* | `AccountEndpoint=...;AccountKey=...;` (a CI usa nas Functions) |
 | 🔐 | *jwt-secret* | `openssl rand -base64 32` (Fase 5.3) → secret `jwt-secret` |
 | 🔐 | *SignalR connection string* | Primary Connection String (Fase 4.1) → secret + GitHub secret |
-| 🔐 | *AZURE_CREDENTIALS* | JSON do Service Principal (Fase 8.1) → GitHub secret |
+| 🔐 | *AZURE_CREDENTIALS* | JSON do Service Principal (Fase 8.2) → GitHub secret |
 | 🔐 | *Admin do bolão* | `SEED_ADMIN_EMAIL` / senha (Fase 9) |
 | 🌐 | *URL da API* | `https://app-prd-bl-bend-cin-001.azurewebsites.net` |
 | 🌐 | *URL do Frontend* | `https://app-prd-bl-fend-cin-001.azurewebsites.net` |
