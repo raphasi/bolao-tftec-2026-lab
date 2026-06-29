@@ -765,6 +765,16 @@ Web App **API** (`app-prd-bl-bend-cin-001`) → **Settings → Environment varia
 @Microsoft.KeyVault(SecretUri=https://kv-prd-bl-cin-001.vault.azure.net/secrets/<nome-do-secret>)
 ```
 
+> 🔴 **Se você usou nomes diferentes dos do guia, ajuste a URL!** Se o seu Key Vault **não** se
+> chama `kv-prd-bl-cin-001` (ex.: você usou `kv-dev-bl-cin-001`), **troque o nome do cofre na URL
+> de TODAS as 5 referências** abaixo. Uma referência apontando para um cofre que não existe falha
+> com **"Reference was not able to be resolved"** — e o RBAC/identidade podem estar 100% certos.
+> Confira também que o **nome do secret bate exatamente** (um typo tipo `wt-secret` em vez de
+> `jwt-secret` quebra só aquela referência). Confirme o nome real do cofre no Cloud Shell:
+> ```bash
+> az keyvault list --query "[].name" -o tsv
+> ```
+
 | Name | Value |
 |---|---|
 | `COSMOS_ENDPOINT` | `@Microsoft.KeyVault(SecretUri=https://kv-prd-bl-cin-001.vault.azure.net/secrets/cosmos-endpoint)` |
@@ -782,7 +792,17 @@ Web App **API** (`app-prd-bl-bend-cin-001`) → **Settings → Environment varia
 
 7. **Apply / Save** (o app reinicia).
 8. Volte em **Environment variables** e confirme: cada referência mostra **`Key Vault Reference`
-   = resolvido** (ícone verde). Se aparecer erro, revise o **RBAC** (7.1) — é a causa nº 1.
+   = resolvido** (ícone verde).
+
+> 🛠️ **"Reference was not able to be resolved"?** Verifique, nesta ordem:
+> 1. **Nome do cofre/secret na URL** — a causa mais sorrateira: se a URL aponta para um cofre que
+>    **não existe** (ex.: ficou `kv-prd-bl-cin-001` mas o seu é `kv-dev-bl-cin-001`) ou um secret
+>    com **typo** (`wt-secret`≠`jwt-secret`), falha mesmo com RBAC perfeito. Compare a URL com
+>    `az keyvault list` e `az keyvault secret list --vault-name <cofre>`.
+> 2. **RBAC** — a Managed Identity da API tem **Key Vault Secrets User** no cofre (7.1)? E o
+>    `principalId` da role é o **atual** do app (`az webapp identity show … --query principalId`)?
+> 3. **Modo do cofre** — tem que ser **RBAC** (`az keyvault show … --query properties.enableRbacAuthorization` = `true`); em "Vault access policy" a role não vale.
+> 4. **Propagação** — após ajustar, **Save** (o app reinicia) e dê **Refresh**.
 
 > 🧠 **Por que essa volta toda (referência + Managed Identity) em vez de colar a chave direto?**
 > Você *poderia* colar a chave do Cosmos na App Setting — mas ela ficaria **em texto** na
