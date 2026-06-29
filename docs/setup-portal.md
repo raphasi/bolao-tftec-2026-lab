@@ -550,8 +550,20 @@ Na conta Cosmos → **Settings → Keys**. 📋 Anote (vai usar nos segredos do 
 2. **Resource group:** `rg-prd-bl-cin-001` · **Name:** `signalr-prd-bl-cin-001` · **Region:** Central India.
 3. **Pricing tier:** **Free_F1** · **Service mode:** **Serverless**.
 4. **Review + create** → **Create**.
-5. Abra o recurso → **Settings → Keys** → 📋 **anote a `Primary Connection String`** (vira o
-   segredo `signalr-connection-string` no Key Vault, Fase 5).
+5. Abra o recurso → **Settings → Keys** → no campo **Primary Connection String** clique no ícone
+   de **copiar** (📋) — isso copia a string **inteira** de uma vez. Ela vira o segredo
+   `signalr-connection-string` (Key Vault, Fase 5) e o secret `SIGNALR_CONNECTION_STRING` (GitHub, Fase 8).
+
+> 📋 **O que copiar (string inteira):** a Primary Connection String do SignalR tem **3 partes
+> coladas** e você precisa de **TODAS**. O formato é:
+> ```
+> Endpoint=https://signalr-prd-bl-cin-001.service.signalr.net;AccessKey=AbCdEf...suaChave...==;Version=1.0;
+> ```
+> - ✅ **Começa em `Endpoint=`** (NÃO comece no `https://` — o `Endpoint=` faz parte!).
+> - ✅ Vai **até o fim**, incluindo `;AccessKey=...` **e** `;Version=1.0;` (com o `;` final).
+> - ❌ **Não pare no primeiro `;`** (isso deixaria de fora a chave e a versão).
+> - 💡 Use o **botão de copiar** do Portal — ele pega a string completa e evita erro de seleção.
+> Se você copiou certo, o valor **começa com `Endpoint=`** e **termina com `Version=1.0;`**.
 
 > 💡 **SignalR é o que dá o "ao vivo".** Sem ele, o app funciona 100% — só o auto-refresh do
 > placar deixa de acontecer (o usuário precisaria recarregar a página). Recomendado manter.
@@ -619,7 +631,7 @@ No Key Vault → **Objects → Secrets → + Generate/Import** e crie **um por u
 | `cosmos-key` | a **PRIMARY KEY** do Cosmos (3.4) |
 | `cosmos-database` | `bolao2026` |
 | `jwt-secret` | a string gerada em 5.3 (≥ 32 chars) |
-| `signalr-connection-string` | a **Primary Connection String** do SignalR (4.1) |
+| `signalr-connection-string` | a **Primary Connection String** do SignalR **inteira** (de `Endpoint=` até `Version=1.0;` — ver 4.1) |
 
 > 🔒 **Regra de ouro:** o Key Vault é a **única fonte de verdade** dos segredos. Para rotacionar
 > uma senha no futuro, você troca **aqui** — as referências (Fase 7) pegam a versão nova
@@ -970,7 +982,7 @@ No **seu fork** no GitHub → **Settings → Secrets and variables → Actions**
 | Secret | Valor |
 |---|---|
 | `AZURE_CREDENTIALS` | o **JSON inteiro** do passo 8.2 |
-| `SIGNALR_CONNECTION_STRING` | a Primary Connection String do SignalR (4.1) — _opcional, mas recomendado para o tempo real_ |
+| `SIGNALR_CONNECTION_STRING` | a Primary Connection String do SignalR **inteira** (de `Endpoint=` até `Version=1.0;` — ver 4.1) — _opcional, mas recomendado para o tempo real_ |
 
 **Aba *Variables* → *New repository variable*:** aqui você **informa os nomes dos seus recursos**
 — é assim que a esteira sabe **onde** publicar. Preencha cada uma com o **nome que você criou no
