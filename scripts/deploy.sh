@@ -107,23 +107,31 @@ ok "Run-From-Package ativo, Oryx desabilitado"
 # -----------------------------------------------------------------------------
 # 6. Deploy via az (zip vai pra /home/data/SitePackages/, mounted read-only)
 # -----------------------------------------------------------------------------
-log "[6/7] az webapp deploy --type zip --async"
-az webapp deploy --resource-group "$RG" --name "$APP" \
-  --src-path "$ZIP" --type zip --async true 2>&1 | tail -3 || err "az deploy falhou"
+log "[6/7] az webapp deploy --type zip (sem rastrear startup — readiness gate valida)"
+# IMPORTANTE: --track-status false faz o 'az' RETORNAR logo após enviar o zip, em vez de
+# ficar esperando o container ficar "healthy". Em cold start (B1 + zip grande) esse tracking
+# estoura a janela e retorna exit 1 (FALSO-NEGATIVO) mesmo com o app subindo segundos depois.
+# Por isso NÃO abortamos no exit code do 'az' aqui: a validação real é o readiness gate abaixo
+# (única fonte de verdade = /api/health respondeu 200?). Antes, esse falso-negativo derrubava
+# o job e pulava o deploy das Functions.
+if ! az webapp deploy --resource-group "$RG" --name "$APP" \
+       --src-path "$ZIP" --type zip --async true --track-status false 2>&1 | tail -5; then
+  log "⚠ 'az webapp deploy' retornou erro (comum em cold start) — seguindo para a validação real..."
+fi
 
-log "Aguardando startup probe (~2 min — Run-From-Package monta zip)..."
-sleep 120
-ok "Warmup completo"
-
-# Readiness gate: cold start de um plano/app recém-criado pode passar de 2 min.
-# Espera /api/health responder 200 (até +5 min) ANTES do smoke, p/ não dar
-# falso-negativo (que, na API, ainda pularia o deploy das Functions).
-log "Aguardando /api/health = 200 (cold start)..."
-for i in $(seq 1 20); do
+# Readiness gate = ÚNICA fonte de verdade. Run-From-Package remonta o zip e reinicia; cold
+# start de app recém-criado pode passar de 2 min. Espera /api/health=200 por até ~7 min e
+# SÓ falha se o app realmente nunca responder.
+log "Validando deploy: aguardando /api/health = 200 (cold start pode levar alguns min)..."
+sleep 30
+ready=0
+for i in $(seq 1 26); do                       # 30s + 26 x 15s ≈ 7 min
   code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "$SMOKE_URL/api/health" 2>/dev/null || echo 000)
-  [ "$code" = "200" ] && { ok "API respondendo (tentativa $i)"; break; }
+  if [ "$code" = "200" ]; then ready=1; ok "API saudável (HTTP 200, tentativa $i)"; break; fi
+  log "  ...app ainda subindo (tentativa $i/26, HTTP $code)"
   sleep 15
 done
+[ "$ready" = "1" ] || err "API não respondeu 200 após ~7 min — deploy realmente falhou (veja: az webapp log startup show -n \"$APP\" -g \"$RG\")"
 
 # -----------------------------------------------------------------------------
 # 7. Smoke tests live
