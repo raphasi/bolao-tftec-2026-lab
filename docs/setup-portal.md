@@ -1126,7 +1126,46 @@ O resumo do workflow (aba **Summary** da execução) deve mostrar: **1 admin** c
 > pontuação automática e tempo real. Ao fim desta fase, o app está **no ar e completo**. **É a
 > linha de base** a partir da qual vamos fechar as portas na Fase 11.
 
-#### 10.1 Smoke test rápido (do seu navegador)
+#### 10.1 Smoke test rápido
+
+Faça de um dos dois jeitos — **(A) automático** (recomendado, mostra tudo de uma vez) ou
+**(B) manual** no navegador.
+
+##### (A) Automático — script PowerShell (✓/✗ por item) 🧰
+
+O script `scripts/validate-lab.ps1` roda **todos os testes** e imprime **`[ OK ]` / `[FALHA]` por
+item** + um resumo `N OK / M FALHA` (e código de saída 0/1). **Jeito mais fácil, sem instalar
+nada:** use o **Azure Cloud Shell** (já vem com `az` logado).
+
+1. No Portal, abra o **Cloud Shell** (`>_` no topo) → escolha **PowerShell**.
+2. Cole o bloco abaixo, **trocando pelos SEUS nomes** de recurso:
+
+```powershell
+# baixa o script do repo (precisa do repo PÚBLICO) e roda
+iwr https://raw.githubusercontent.com/raphasi/bolao-tftec-2026-lab/main/scripts/validate-lab.ps1 -OutFile validate-lab.ps1
+./validate-lab.ps1 `
+  -ApiApp app-prd-bl-bend-cin-001 `
+  -FrontApp app-prd-bl-fend-cin-001 `
+  -FuncApp func-prd-bl-cin-001 `
+  -ResourceGroup rg-prd-bl-cin-001
+```
+
+Saída esperada (exemplo):
+```
+  [ OK ]  API viva (/api/health) — status=ok
+  [ OK ]  API + Cosmos (/api/health/full) — cosmos ok (14ms)
+  [ OK ]  API tem dados (/api/matches = 72) — 72 jogos
+  [ OK ]  Frontend vivo (/healthz) — ok
+  [ OK ]  Site abre (/ = 200) — HTTP 200
+  [ OK ]  Functions registradas (6 esperadas) — 6 registradas
+=== Resumo: 6 OK / 0 FALHA ===
+```
+
+> 💡 Cada linha **`[FALHA]`** explica o motivo (ex.: *"0 functions indexadas — Node 24?"*, ou
+> *"count=0 (rodou o seed?)"*) — vá direto ao item que falhou. No **seu PC** (em vez do Cloud Shell)
+> funciona igual se você tiver **PowerShell 7+** e o repo clonado: `pwsh scripts/validate-lab.ps1 -ApiApp ...`.
+
+##### (B) Manual — no navegador
 
 - [ ] **API viva:** abra `https://app-prd-bl-bend-cin-001.azurewebsites.net/api/health` → JSON
       com `"status":"ok"`.
@@ -1139,19 +1178,6 @@ O resumo do workflow (aba **Summary** da execução) deve mostrar: **1 admin** c
 - [ ] **Functions registradas:** Portal → `func-prd-bl-cin-001` → **Functions** → devem
       aparecer **6**: `calc-predictions`, `calc-specials`, `aggregate-from-predictions`,
       `aggregate-from-specials`, `emit-leaderboard-update`, `health-check-cron`.
-
-> ⚡ **Atalho — validar os 6 itens de uma vez (PowerShell):** em vez de checar um a um, rode o
-> script `scripts/validate-lab.ps1`, que faz os 6 testes e mostra **✓/✗ por item** + um resumo
-> `N OK / M FALHA`. Precisa de **PowerShell 7+** (`pwsh`) e **`az login`** (para o check das
-> Functions); rode da pasta do projeto:
-> ```powershell
-> pwsh scripts/validate-lab.ps1 `
->   -ApiApp app-prd-bl-bend-cin-001 -FrontApp app-prd-bl-fend-cin-001 `
->   -FuncApp func-prd-bl-cin-001 -ResourceGroup rg-prd-bl-cin-001
-> ```
-> Troque pelos **seus** nomes (ex.: `-ApiApp app-dev-...`). Sem parâmetros, usa os nomes-padrão do
-> guia. Saída esperada: **6 OK / 0 FALHA**. _(O checklist acima, no navegador, continua valendo se
-> você não quiser usar terminal.)_
 
 #### 10.2 Teste de pontuação ponta a ponta (o teste que importa)
 
