@@ -1140,6 +1140,19 @@ O resumo do workflow (aba **Summary** da execução) deve mostrar: **1 admin** c
       aparecer **6**: `calc-predictions`, `calc-specials`, `aggregate-from-predictions`,
       `aggregate-from-specials`, `emit-leaderboard-update`, `health-check-cron`.
 
+> ⚡ **Atalho — validar os 6 itens de uma vez (PowerShell):** em vez de checar um a um, rode o
+> script `scripts/validate-lab.ps1`, que faz os 6 testes e mostra **✓/✗ por item** + um resumo
+> `N OK / M FALHA`. Precisa de **PowerShell 7+** (`pwsh`) e **`az login`** (para o check das
+> Functions); rode da pasta do projeto:
+> ```powershell
+> pwsh scripts/validate-lab.ps1 `
+>   -ApiApp app-prd-bl-bend-cin-001 -FrontApp app-prd-bl-fend-cin-001 `
+>   -FuncApp func-prd-bl-cin-001 -ResourceGroup rg-prd-bl-cin-001
+> ```
+> Troque pelos **seus** nomes (ex.: `-ApiApp app-dev-...`). Sem parâmetros, usa os nomes-padrão do
+> guia. Saída esperada: **6 OK / 0 FALHA**. _(O checklist acima, no navegador, continua valendo se
+> você não quiser usar terminal.)_
+
 #### 10.2 Teste de pontuação ponta a ponta (o teste que importa)
 
 > 🗓️ **Todos os jogos aparecem "Palpite finalizado"?** O palpite trava no kickoff
