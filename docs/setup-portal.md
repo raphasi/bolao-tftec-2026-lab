@@ -1140,24 +1140,34 @@ O resumo do workflow (aba **Summary** da execução) deve mostrar: **1 admin** c
       aparecer **6**: `calc-predictions`, `calc-specials`, `aggregate-from-predictions`,
       `aggregate-from-specials`, `emit-leaderboard-update`, `health-check-cron`.
 
+> ⚡ **Atalho — validar os 6 itens de uma vez (PowerShell):** em vez de checar um a um, rode o
+> script `scripts/validate-lab.ps1`, que faz os 6 testes e mostra **✓/✗ por item** + um resumo
+> `N OK / M FALHA`. Precisa de **PowerShell 7+** (`pwsh`) e **`az login`** (para o check das
+> Functions); rode da pasta do projeto:
+> ```powershell
+> pwsh scripts/validate-lab.ps1 `
+>   -ApiApp app-prd-bl-bend-cin-001 -FrontApp app-prd-bl-fend-cin-001 `
+>   -FuncApp func-prd-bl-cin-001 -ResourceGroup rg-prd-bl-cin-001
+> ```
+> Troque pelos **seus** nomes (ex.: `-ApiApp app-dev-...`). Sem parâmetros, usa os nomes-padrão do
+> guia. Saída esperada: **6 OK / 0 FALHA**. _(O checklist acima, no navegador, continua valendo se
+> você não quiser usar terminal.)_
+
 #### 10.2 Teste de pontuação ponta a ponta (o teste que importa)
 
 > 🗓️ **Todos os jogos aparecem "Palpite finalizado"?** O palpite trava no kickoff
 > (`now ≥ kickoff − 30min`). Se as datas da Copa **já passaram**, ninguém consegue palpitar. Para
-> **liberar os jogos para teste**, rode este helper no **Cloud Shell** 🧰 (é um script de teste,
-> então aqui ainda usamos terminal). Pegue as credenciais do **seu** Cosmos e clone o fork:
-> ```bash
-> git clone https://github.com/<seu-usuario>/bolao-tftec-2026-lab.git bolao && cd bolao && npm install
-> export COSMOS_ENDPOINT=$(az cosmosdb show -n <conta-cosmos> -g <seu-rg> --query documentEndpoint -o tsv)
-> export COSMOS_KEY=$(az cosmosdb keys list -n <conta-cosmos> -g <seu-rg> --query primaryMasterKey -o tsv)
-> export COSMOS_DATABASE=bolao2026
-> npx tsx scripts/lab-open-predictions.ts --apply            # ~1 mês à frente (default)
-> npx tsx scripts/lab-open-predictions.ts --apply --days 45  # ajuste a janela
-> ```
-> Ele move os 72 jogos de grupo para o **futuro** (default **+30 dias**, relativo a quando você
-> roda → sempre sobra tempo). Palpites reabrem. Reverter ao calendário
-> oficial: `npm run reset` + `npm run seed`. _(Para finalizar um jogo **antes** do kickoff e testar
-> a pontuação, use **Admin → Resultados → "Permitir finalizar"** no jogo.)_
+> **liberar os jogos para teste**, rode o workflow **"Abrir palpites (teste)"** — **sem terminal**:
+>
+> | Onde | O que fazer |
+> |---|---|
+> | Seu fork → **Actions** | clique no workflow **"Abrir palpites (teste)"** (menu da esquerda) |
+> | Botão **Run workflow** (direita) | campo **days** = `30` (default ≈ 1 mês à frente; ajuste se quiser) → **Run workflow** |
+>
+> Ele move os 72 jogos de grupo para o **futuro** (relativo a quando você roda → sempre sobra
+> tempo) e os palpites reabrem. **Reverter ao calendário oficial:** rode de novo o workflow
+> **"Seed (carga inicial)"** (Fase 9). _(Para finalizar um jogo **antes** do kickoff e testar a
+> pontuação, use **Admin → Resultados → "Permitir finalizar"** no jogo.)_
 
 1. No site, faça **login com o admin** (Fase 9).
 2. Faça um **palpite** num jogo qualquer (ou crie um 2º usuário e palpite com ele).

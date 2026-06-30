@@ -1,0 +1,65 @@
+name: Abrir palpites (teste)
+
+# Move os 72 jogos da fase de grupos para o FUTURO (default +30 dias) e reabre os
+# palpites — útil quando as datas reais da Copa já passaram e você quer testar a
+# pontuação. SEM git clone / terminal: Actions → "Abrir palpites (teste)" → Run.
+#
+# Pega o endpoint/chave do Cosmos direto da conta via ARM (o Service Principal do
+# deploy tem Contributor) — não precisa de Key Vault nem de novos secrets.
+#
+# ⚠️ É um utilitário de TESTE (altera as datas dos jogos). Para voltar ao calendário
+# oficial, rode de novo o workflow "Seed (carga inicial)".
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Dias à frente para o 1º jogo (janela de palpites)'
+        required: true
+        default: '30'
+
+concurrency:
+  group: lab-tools-main
+  cancel-in-progress: false
+
+env:
+  RG: ${{ vars.AZURE_RG || 'rg-fifa-bolao' }}
+  COSMOS_ACCOUNT: ${{ vars.COSMOS_ACCOUNT_NAME || format('cosmos-fifa-bolao-{0}', vars.NAME_SUFFIX) }}
+
+jobs:
+  open-predictions:
+    name: Reabrir palpites
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Node 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - name: Azure login (Service Principal)
+        uses: azure/login@v3
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Install dependencies
+        run: npm install
+      - name: Mover jogos para o futuro (reabrir palpites)
+        run: |
+          set -euo pipefail
+          COSMOS_ENDPOINT=$(az cosmosdb show -n "$COSMOS_ACCOUNT" -g "$RG" --query documentEndpoint -o tsv)
+          COSMOS_KEY=$(az cosmosdb keys list -n "$COSMOS_ACCOUNT" -g "$RG" --query primaryMasterKey -o tsv)
+          echo "::add-mask::$COSMOS_KEY"
+          export COSMOS_ENDPOINT COSMOS_KEY
+          export COSMOS_DATABASE="bolao2026"
+          echo "▸ Reabrindo palpites (+${{ inputs.days }} dias)..."
+          npx tsx scripts/lab-open-predictions.ts --apply --days "${{ inputs.days }}"
+      - name: Summary
+        run: |
+          {
+            echo "## ⚽ Palpites reabertos"
+            echo "- Os 72 jogos de grupo foram movidos para **+${{ inputs.days }} dias** a partir de agora."
+            echo "- Os palpites reabrem na tela **/palpites**."
+            echo "- Para voltar ao calendário oficial: rode de novo o workflow **Seed (carga inicial)**."
+          } >> "$GITHUB_STEP_SUMMARY"
