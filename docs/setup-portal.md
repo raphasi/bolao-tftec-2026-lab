@@ -1133,9 +1133,17 @@ Faça de um dos dois jeitos — **(A) automático** (recomendado, mostra tudo de
 
 ##### (A) Automático — PowerShell (✓/✗ por item) 🧰
 
-**Não precisa baixar nada nem clonar:** abra o **Azure Cloud Shell** (`>_` no topo do Portal) →
-escolha **PowerShell** (já vem com `az` logado), **cole o bloco abaixo** (trocando os **4 nomes** no
-topo pelos SEUS recursos) e tecle **Enter**:
+**Não precisa baixar nada nem clonar.**
+
+1. Abra o **Azure Cloud Shell** (`>_` no topo do Portal).
+2. 🔴 **Garanta que está no PowerShell, NÃO no Bash.** O Cloud Shell costuma abrir em **Bash** — se
+   você colar o script no Bash, dá um monte de `bash: ... command not found`. Para entrar no
+   PowerShell, **digite `pwsh` e Enter** (ou use o seletor **`Bash ▾` → PowerShell** no canto
+   superior esquerdo). Confira pelo prompt:
+   - **Bash** (errado p/ este script): `usuario [ ~ ]$`
+   - **PowerShell** (certo): `PS /home/...>`
+3. Já no PowerShell (`az` já vem logado), **cole o bloco abaixo** — trocando os **4 nomes** no topo
+   pelos SEUS recursos — e tecle **Enter**:
 
 ```powershell
 # === Smoke test do Bolão — troque os 4 nomes e cole no Cloud Shell (PowerShell) ===
