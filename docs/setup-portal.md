@@ -1097,6 +1097,12 @@ o endpoint e a chave do **seu** Cosmos direto da conta (via ARM) e popular o ban
    | **admin_email** | o e-mail com que você vai **logar no painel admin** | `voce@exemplo.com` |
    | **admin_password** | **troque** o padrão por uma senha sua (mín. 8 caracteres) | `MinhaSenhaForte!` |
    | **admin_name** | seu nome (aparece no painel) | `Seu Nome` |
+   | **shift_days** | move os jogos para **+N dias** e **libera os palpites** (deixe `30`). Use `0` só se quiser as **datas reais** da Copa | `30` |
+
+> 📅 **Por que mover os jogos?** O dataset tem as datas **oficiais** da Copa (jun/2026), que **já
+> passaram** — sem mover, **todos os jogos nascem travados** e ninguém consegue palpitar nem testar
+> a pontuação. Com `shift_days = 30` (padrão), os 72 jogos vão para o **futuro** e o ambiente nasce
+> **testável**. _(Para reabrir/ajustar depois, há o workflow "Abrir palpites (teste)" — Fase 10.2.)_
 
 4. Clique no botão verde **Run workflow** (dentro do formulário) para confirmar.
 5. A execução aparece na lista em alguns segundos → abra-a e aguarde **~2–3 min** ficar **verde**.
@@ -1211,19 +1217,21 @@ Saída esperada:
 
 #### 10.2 Teste de pontuação ponta a ponta (o teste que importa)
 
-> 🗓️ **Todos os jogos aparecem "Palpite finalizado"?** O palpite trava no kickoff
-> (`now ≥ kickoff − 30min`). Se as datas da Copa **já passaram**, ninguém consegue palpitar. Para
-> **liberar os jogos para teste**, rode o workflow **"Abrir palpites (teste)"** — **sem terminal**:
+> 🗓️ **Jogos aparecem "Palpite finalizado"?** Isso acontece quando o palpite travou no kickoff
+> (`now ≥ kickoff − 30min`). **Se você rodou o Seed com `shift_days = 30` (padrão), os jogos já
+> estão no futuro e os palpites abertos** — pode pular este aviso. Só precisa agir se você rodou o
+> Seed com `shift_days = 0` (datas reais) ou se muito tempo passou: rode o workflow
+> **"Abrir palpites (teste)"** — **sem terminal**:
 >
 > | Onde | O que fazer |
 > |---|---|
 > | Seu fork → **Actions** | clique no workflow **"Abrir palpites (teste)"** (menu da esquerda) |
 > | Botão **Run workflow** (direita) | campo **days** = `30` (default ≈ 1 mês à frente; ajuste se quiser) → **Run workflow** |
 >
-> Ele move os 72 jogos de grupo para o **futuro** (relativo a quando você roda → sempre sobra
-> tempo) e os palpites reabrem. **Reverter ao calendário oficial:** rode de novo o workflow
-> **"Seed (carga inicial)"** (Fase 9). _(Para finalizar um jogo **antes** do kickoff e testar a
-> pontuação, use **Admin → Resultados → "Permitir finalizar"** no jogo.)_
+> Ele move os 72 jogos de grupo para o **futuro** e os palpites reabrem. **Voltar às datas reais da
+> Copa:** rode o **"Seed (carga inicial)"** (Fase 9) com **`shift_days = 0`**. _(Para finalizar um
+> jogo **antes** do kickoff e testar a pontuação, use **Admin → Resultados → "Permitir finalizar"**
+> no jogo.)_
 
 1. No site, faça **login com o admin** (Fase 9).
 2. Faça um **palpite** num jogo qualquer (ou crie um 2º usuário e palpite com ele).

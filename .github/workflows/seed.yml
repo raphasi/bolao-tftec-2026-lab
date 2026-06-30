@@ -24,6 +24,10 @@ on:
         description: 'Nome do admin'
         required: true
         default: 'Admin TFTEC'
+      shift_days:
+        description: 'Mover os jogos p/ +N dias (libera os palpites — a fase de grupos real já passou). Use 0 p/ manter as datas REAIS.'
+        required: true
+        default: '30'
 
 concurrency:
   group: seed-main
@@ -67,11 +71,24 @@ jobs:
           export SEED_ADMIN_NAME="${{ inputs.admin_name }}"
           echo "▸ Cosmos: $COSMOS_ENDPOINT (db bolao2026) — rodando o seed..."
           npm run seed
+          # As datas oficiais da fase de grupos (jun/2026) já passaram -> palpites travados.
+          # Por padrão movemos os 72 jogos para o futuro p/ o ambiente nascer testável.
+          if [ "${{ inputs.shift_days }}" != "0" ]; then
+            echo "▸ Movendo os 72 jogos para +${{ inputs.shift_days }} dias (libera os palpites)..."
+            npx tsx scripts/lab-open-predictions.ts --apply --days "${{ inputs.shift_days }}"
+          else
+            echo "▸ shift_days=0 — mantendo as datas REAIS da Copa (jogos podem nascer travados)."
+          fi
       - name: Summary
         run: |
           {
             echo "## 🌱 Seed concluído"
             echo "- Admin: \`${{ inputs.admin_email }}\`"
             echo "- Esperado: **72 jogos**, **12 grupos / 48 seleções**, **~1247 players**, leaderboard inicializado"
+            if [ "${{ inputs.shift_days }}" != "0" ]; then
+              echo "- 📅 Jogos movidos para **+${{ inputs.shift_days }} dias** → palpites **liberados** para teste."
+            else
+              echo "- 📅 Datas **REAIS** mantidas (shift_days=0)."
+            fi
             echo "- Idempotente: pode rodar de novo sem duplicar."
           } >> "$GITHUB_STEP_SUMMARY"
