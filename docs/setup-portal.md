@@ -1131,39 +1131,50 @@ O resumo do workflow (aba **Summary** da execução) deve mostrar: **1 admin** c
 Faça de um dos dois jeitos — **(A) automático** (recomendado, mostra tudo de uma vez) ou
 **(B) manual** no navegador.
 
-##### (A) Automático — script PowerShell (✓/✗ por item) 🧰
+##### (A) Automático — PowerShell (✓/✗ por item) 🧰
 
-O script `scripts/validate-lab.ps1` roda **todos os testes** e imprime **`[ OK ]` / `[FALHA]` por
-item** + um resumo `N OK / M FALHA` (e código de saída 0/1). **Jeito mais fácil, sem instalar
-nada:** use o **Azure Cloud Shell** (já vem com `az` logado).
-
-1. No Portal, abra o **Cloud Shell** (`>_` no topo) → escolha **PowerShell**.
-2. Cole o bloco abaixo, **trocando pelos SEUS nomes** de recurso:
+**Não precisa baixar nada nem clonar:** abra o **Azure Cloud Shell** (`>_` no topo do Portal) →
+escolha **PowerShell** (já vem com `az` logado), **cole o bloco abaixo** (trocando os **4 nomes** no
+topo pelos SEUS recursos) e tecle **Enter**:
 
 ```powershell
-# baixa o script do repo (precisa do repo PÚBLICO) e roda
-iwr https://raw.githubusercontent.com/raphasi/bolao-tftec-2026-lab/main/scripts/validate-lab.ps1 -OutFile validate-lab.ps1
-./validate-lab.ps1 `
-  -ApiApp app-prd-bl-bend-cin-001 `
-  -FrontApp app-prd-bl-fend-cin-001 `
-  -FuncApp func-prd-bl-cin-001 `
-  -ResourceGroup rg-prd-bl-cin-001
+# === Smoke test do Bolão — troque os 4 nomes e cole no Cloud Shell (PowerShell) ===
+$ApiApp   = "app-prd-bl-bend-cin-001"     # ⬅️ sua API
+$FrontApp = "app-prd-bl-fend-cin-001"     # ⬅️ seu frontend
+$FuncApp  = "func-prd-bl-cin-001"         # ⬅️ sua Function App
+$RG       = "rg-prd-bl-cin-001"           # ⬅️ seu Resource Group
+
+$api = "https://$ApiApp.azurewebsites.net"; $fe = "https://$FrontApp.azurewebsites.net"
+$ok = 0; $bad = 0
+function T($n, $b) {
+  try   { $d = & $b; Write-Host "  [ OK ]  $n — $d" -ForegroundColor Green; $script:ok++ }
+  catch { Write-Host "  [FALHA] $n — $($_.Exception.Message)" -ForegroundColor Red; $script:bad++ }
+}
+T "API /api/health"           { if ((irm "$api/api/health").status -ne 'ok') { throw 'status != ok' }; 'ok' }
+T "API + Cosmos /health/full" { if (-not (irm "$api/api/health/full").dependencies.cosmos.ok) { throw 'cosmos != ok' }; 'cosmos ok' }
+T "API dados /matches = 72"   { $c = (irm "$api/api/matches").count; if ($c -ne 72) { throw "count=$c (rodou o seed?)" }; "$c jogos" }
+T "Frontend /healthz"         { if ((iwr "$fe/healthz" -UseBasicParsing).Content -notmatch 'ok') { throw 'sem ok' }; 'ok' }
+T "Site / (200)"              { if ((iwr "$fe/" -UseBasicParsing).StatusCode -ne 200) { throw 'nao 200' }; '200' }
+T "Functions (6)"             { $f = @(az functionapp function list -g $RG -n $FuncApp --query "[].name" -o tsv 2>$null | ForEach-Object { ($_ -split '/')[-1] }); if ($f.Count -lt 6) { throw "$($f.Count)/6 (Function App em Node 24?)" }; "$($f.Count) registradas" }
+Write-Host "`n=== $ok OK / $bad FALHA ===" -ForegroundColor (@('Green','Red')[[int]($bad -gt 0)])
 ```
 
-Saída esperada (exemplo):
+Saída esperada:
 ```
-  [ OK ]  API viva (/api/health) — status=ok
-  [ OK ]  API + Cosmos (/api/health/full) — cosmos ok (14ms)
-  [ OK ]  API tem dados (/api/matches = 72) — 72 jogos
-  [ OK ]  Frontend vivo (/healthz) — ok
-  [ OK ]  Site abre (/ = 200) — HTTP 200
-  [ OK ]  Functions registradas (6 esperadas) — 6 registradas
-=== Resumo: 6 OK / 0 FALHA ===
+  [ OK ]  API /api/health — ok
+  [ OK ]  API + Cosmos /health/full — cosmos ok
+  [ OK ]  API dados /matches = 72 — 72 jogos
+  [ OK ]  Frontend /healthz — ok
+  [ OK ]  Site / (200) — 200
+  [ OK ]  Functions (6) — 6 registradas
+
+=== 6 OK / 0 FALHA ===
 ```
 
-> 💡 Cada linha **`[FALHA]`** explica o motivo (ex.: *"0 functions indexadas — Node 24?"*, ou
-> *"count=0 (rodou o seed?)"*) — vá direto ao item que falhou. No **seu PC** (em vez do Cloud Shell)
-> funciona igual se você tiver **PowerShell 7+** e o repo clonado: `pwsh scripts/validate-lab.ps1 -ApiApp ...`.
+> 💡 Cada **`[FALHA]`** já diz o motivo (ex.: *"count=0 (rodou o seed?)"*, *"0/6 (Node 24?)"*) — vá
+> direto ao item que falhou. _(Existe também a versão completa versionada no repo,
+> `scripts/validate-lab.ps1`, com retry e parâmetros — útil se você tiver o repo clonado:
+> `pwsh scripts/validate-lab.ps1 -ApiApp ...`.)_
 
 ##### (B) Manual — no navegador
 
