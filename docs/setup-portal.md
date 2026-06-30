@@ -1155,7 +1155,13 @@ T "API + Cosmos /health/full" { if (-not (irm "$api/api/health/full").dependenci
 T "API dados /matches = 72"   { $c = (irm "$api/api/matches").count; if ($c -ne 72) { throw "count=$c (rodou o seed?)" }; "$c jogos" }
 T "Frontend /healthz"         { if ((iwr "$fe/healthz" -UseBasicParsing).Content -notmatch 'ok') { throw 'sem ok' }; 'ok' }
 T "Site / (200)"              { if ((iwr "$fe/" -UseBasicParsing).StatusCode -ne 200) { throw 'nao 200' }; '200' }
-T "Functions (6)"             { $f = @(az functionapp function list -g $RG -n $FuncApp --query "[].name" -o tsv 2>$null | ForEach-Object { ($_ -split '/')[-1] }); if ($f.Count -lt 6) { throw "$($f.Count)/6 (Function App em Node 24?)" }; "$($f.Count) registradas" }
+T "Functions (6)" {
+  for ($i=1; $i -le 3; $i++) { $raw = az functionapp function list -g $RG -n $FuncApp --query "[].name" -o tsv 2>$null; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 3 }
+  if ($LASTEXITCODE -ne 0) { throw "az falhou (rode 'az login' ou rede instavel) — nao foi possivel checar" }
+  $f = @($raw | ForEach-Object { ($_ -split '/')[-1] } | Where-Object { $_ })
+  if ($f.Count -lt 6) { throw "$($f.Count)/6 (Function App em Node 24? deve ser ~22 — ver Troubleshooting)" }
+  "$($f.Count) registradas"
+}
 Write-Host "`n=== $ok OK / $bad FALHA ===" -ForegroundColor (@('Green','Red')[[int]($bad -gt 0)])
 ```
 
@@ -1175,6 +1181,11 @@ Saída esperada:
 > direto ao item que falhou. _(Existe também a versão completa versionada no repo,
 > `scripts/validate-lab.ps1`, com retry e parâmetros — útil se você tiver o repo clonado:
 > `pwsh scripts/validate-lab.ps1 -ApiApp ...`.)_
+>
+> ⚠️ **Rode no Cloud Shell** (já vem com `az` logado). Se rodar no **PowerShell local**, faça
+> **`az login`** antes — senão o check das Functions aparece como **`az falhou…`** (não é problema
+> nas suas Functions). Se vier **`az falhou (rede instável)`**, é só repetir — são chamadas ARM que
+> às vezes caem por rede local.
 
 ##### (B) Manual — no navegador
 
