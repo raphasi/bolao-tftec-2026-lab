@@ -1086,15 +1086,28 @@ o endpoint e a chave do **seu** Cosmos direto da conta (via ARM) e popular o ban
 > grava no Cosmos pela internet. Nesta fase ele está público; só restringimos na **Fase 11**. Por
 > isso o seed vem **antes** da Fase 11. _(Se precisar re-seedar depois, reabra o público temporariamente.)_
 
-1. No **seu fork** → aba **Actions** → no menu à esquerda, **"Seed (carga inicial)"** → botão **Run workflow**.
-2. Preencha os campos:
-   - **admin_email** — o e-mail com que você vai **logar no painel admin**.
-   - **admin_password** — **troque** o padrão por uma senha sua (mín. 8 caracteres).
-   - **admin_name** — seu nome.
-3. Clique em **Run workflow** (verde) → aguarde **~2–3 min**.
+1. No **seu fork** (não no repositório original!) → aba **Actions** (barra superior do repo).
+2. No **menu da esquerda**, clique no workflow **"Seed (carga inicial)"**.
+3. À **direita**, clique no botão **▾ Run workflow**. Abre um **pequeno formulário** (um popover)
+   com os 3 campos abaixo — **é aqui que você digita os dados do admin**:
 
-O resumo do workflow deve mostrar: **1 admin** criado, **72 jogos**, **12 grupos / 48 seleções**,
-**~1247 jogadores**, leaderboard inicializado.
+   | Campo (no formulário) | O que preencher | Exemplo |
+   |---|---|---|
+   | **Use workflow from** | deixe **`Branch: main`** (já vem selecionado) | `main` |
+   | **admin_email** | o e-mail com que você vai **logar no painel admin** | `voce@exemplo.com` |
+   | **admin_password** | **troque** o padrão por uma senha sua (mín. 8 caracteres) | `MinhaSenhaForte!` |
+   | **admin_name** | seu nome (aparece no painel) | `Seu Nome` |
+
+4. Clique no botão verde **Run workflow** (dentro do formulário) para confirmar.
+5. A execução aparece na lista em alguns segundos → abra-a e aguarde **~2–3 min** ficar **verde**.
+
+> 🖱️ **Onde fica o "Run workflow":** ele só aparece **depois** de selecionar o workflow
+> "Seed (carga inicial)" no menu da esquerda — é um botão no canto **direito**, acima da lista de
+> execuções. Os campos (`admin_email`, etc.) **não** ficam num arquivo nem em Settings: eles
+> aparecem **dentro desse formulário** que abre ao clicar em **Run workflow**.
+
+O resumo do workflow (aba **Summary** da execução) deve mostrar: **1 admin** criado, **72 jogos**,
+**12 grupos / 48 seleções**, **~1247 jogadores**, leaderboard inicializado.
 
 > 💡 **Idempotente.** Pode rodar de novo sem duplicar (faz upsert; o admin não é recriado se o
 > e-mail já existir).
