@@ -363,6 +363,32 @@ Os recursos seguem o padrão de taxonomia **`<tipo>-<ambiente>-<carga>-<região>
    _(simplicidade agora; restringimos na Fase 11)._
 6. **Review + create** → **Create**. ⏳ **Demora ~5–8 min.**
 
+> ⚠️ **Alternativa (SÓ se o Portal não deixar) — criar via Cloud Shell 🧰.** Em algumas assinaturas
+> **trial**, a lista de regiões do wizard **não mostra Central India** (ou trava ao selecionar). **Use
+> este passo apenas se o Portal não funcionar** — se a criação pelo Portal (passos 1–6) deu certo,
+> **pule isto**. No **Cloud Shell** (Bash), ajuste as 3 variáveis e rode:
+>
+> ```bash
+> RG=rg-prd-bl-cin-001                 # seu RG (já criado na Fase 2)
+> ACC=cosmos-prd-bl-cin-001            # nome GLOBALmente único — troque se já existir
+> LOC=centralindia                     # tente centralindia; se for barrado, use uma região liberada
+>
+> az cosmosdb create \
+>   --name "$ACC" \
+>   --resource-group "$RG" \
+>   --kind GlobalDocumentDB \
+>   --locations regionName="$LOC" failoverPriority=0 isZoneRedundant=False \
+>   --default-consistency-level Session \
+>   --enable-free-tier true \
+>   --public-network-access Enabled
+> ```
+>
+> - Se o `az` **recusar `centralindia`** (mesma restrição do Portal — cota regional da trial), o erro
+>   é claro; escolha então uma **região liberada** (`az account list-locations -o table`) e use **a
+>   mesma em TODOS os recursos** (ela precisa ter **cota de App Service** — ver Seção 4.1).
+> - `--enable-free-tier true`: só **1 free tier por assinatura**; se falhar por isso, troque para `false`.
+> - Isso cria só a **conta**. O **database** e os **containers** continuam nos passos 3.2 e 3.3.
+
 #### 3.2 Criar o database `bolao2026` (pelo Cloud Shell 🧰)
 
 > ⛔ **NÃO crie o database pelo Portal.** No "New Database" do Data Explorer é preciso marcar
