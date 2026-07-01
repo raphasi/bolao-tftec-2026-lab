@@ -107,17 +107,26 @@ ok "Run-From-Package ativo, Oryx desabilitado"
 # -----------------------------------------------------------------------------
 # 6. Deploy via az (zip vai pra /home/data/SitePackages/, mounted read-only)
 # -----------------------------------------------------------------------------
-log "[6/7] az webapp deploy --type zip (sem rastrear startup — readiness gate valida)"
-# IMPORTANTE: --track-status false faz o 'az' RETORNAR logo após enviar o zip, em vez de
-# ficar esperando o container ficar "healthy". Em cold start (B1 + zip grande) esse tracking
-# estoura a janela e retorna exit 1 (FALSO-NEGATIVO) mesmo com o app subindo segundos depois.
-# Por isso NÃO abortamos no exit code do 'az' aqui: a validação real é o readiness gate abaixo
-# (única fonte de verdade = /api/health respondeu 200?). Antes, esse falso-negativo derrubava
-# o job e pulava o deploy das Functions.
-if ! az webapp deploy --resource-group "$RG" --name "$APP" \
+log "[6/7] az webapp deploy --type zip (timeout + retry — blindagem contra trava do Kudu)"
+# --track-status false faz o 'az' retornar após enviar o zip (sem esperar o container ficar
+# "healthy"). Ainda assim, o Kudu OCASIONALMENTE prende o deployment em "Fetching changes." e o
+# 'az webapp deploy' NÃO retorna → o job estoura o timeout (~20 min) sem culpa de config. Essa
+# trava é TRANSITÓRIA (a próxima tentativa quase sempre sobe). Blindagem para o evento em massa:
+#   1) 'timeout' por tentativa (mata um deploy pendurado);
+#   2) até 3 tentativas, com 'restart' do app entre elas (limpa deployment preso);
+#   3) NÃO abortamos aqui — o readiness gate abaixo é a fonte de verdade (/api/health = 200?).
+DEPLOY_SENT=0
+for attempt in 1 2 3; do
+  log "  ▸ deploy: tentativa $attempt/3 (até 5 min por tentativa)..."
+  if timeout 300 az webapp deploy --resource-group "$RG" --name "$APP" \
        --src-path "$ZIP" --type zip --async true --track-status false 2>&1 | tail -5; then
-  log "⚠ 'az webapp deploy' retornou erro (comum em cold start) — seguindo para a validação real..."
-fi
+    DEPLOY_SENT=1; ok "deploy enviado (tentativa $attempt)"; break
+  fi
+  log "  ⚠ tentativa $attempt não retornou OK (timeout/trava do Kudu) — reiniciando o app e tentando de novo..."
+  timeout 120 az webapp restart --resource-group "$RG" --name "$APP" -o none 2>/dev/null || true
+  sleep 20
+done
+[ "$DEPLOY_SENT" = "1" ] || log "⚠ 'az webapp deploy' não confirmou em 3 tentativas — o readiness gate abaixo decide."
 
 # Readiness gate = ÚNICA fonte de verdade. Run-From-Package remonta o zip e reinicia; cold
 # start de app recém-criado pode passar de 2 min. Espera /api/health=200 por até ~7 min e

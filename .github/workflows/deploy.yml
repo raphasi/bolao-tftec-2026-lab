@@ -79,7 +79,7 @@ jobs:
   deploy_api:
     name: Deploy API (backend, API-only)
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30   # cabe build + até 3 tentativas de deploy (timeout+retry) + readiness gate
     needs: detect_changes
     if: needs.detect_changes.outputs.api == 'true' || github.event_name == 'workflow_dispatch'
     steps:
