@@ -292,7 +292,6 @@ Os recursos seguem o padrão de taxonomia **`<tipo>-<ambiente>-<carga>-<região>
 > pedir você fará **direto na interface web do GitHub** — **sem `git clone`, sem terminal**.
 
 1. Abra o repositório do Bolão no GitHub: `https://github.com/raphasi/bolao-tftec-2026-lab`
-   _(⚠️ repo privado por enquanto — será tornado público/transferido para a org TFTEC antes do evento; a URL final será divulgada na turma)._
 2. No canto superior direito, clique em **Fork**.
 3. Em **Owner**, selecione **a sua conta**. Deixe o nome do repositório como está.
 4. Mantenha marcado **"Copy the `main` branch only"** → **Create fork**.
