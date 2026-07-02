@@ -248,7 +248,7 @@ Os recursos seguem o padrão de taxonomia **`<tipo>-<ambiente>-<carga>-<região>
 | **9** | Carga inicial: **seed** (workflow no GitHub — sem terminal) | 3 min |
 | **10** | Final: **validar ponta a ponta** (app 100%, ambiente aberto) | 10 min |
 | **10.5** | 🌐 **Domínio válido + Certificado** (HTTPS no frontend, cert wildcard do KV de tickets) | 15 min |
-| **11** | 🔒 **Fechar o ambiente por partes** (CORS → rede privada), testando a cada passo | 40 min |
+| **11** | 🔒 **Fechar o ambiente por partes** (CORS → rede privada → reduzir superfície pública), testando a cada passo | 55 min |
 | **12** | Troubleshooting | livre |
 
 > 🧠 **Total:** ~90–120 min até a Fase 10 (app no ar) + ~40 min para a Fase 11. Você pode
@@ -1490,6 +1490,70 @@ Você **não cria** VNet nem subnets aqui — o **lab inicial (etapa de infra)**
 > ✅ **Pronto quando:** o `getent` na API devolve um **IP privado** (não público) e `/api/health/full`
 > segue **`"ok":true`**. 🔒 **CORS fechado + caminho API↔Cosmos privatizado — uma porta de cada vez.**
 
+#### Passo 11.3 — Reduzir a superfície pública (Cosmos só-Azure + inbound das Functions)
+
+> 🎯 **Defesa em camadas.** A API já vai pelo caminho **privado** (11.2). Agora reduzimos a
+> superfície **pública** que sobrou: o Cosmos deixa de aceitar a internet inteira e passa a aceitar
+> só **de dentro do Azure** (onde rodam as Functions Consumption), e as Functions param de expor o
+> endpoint HTTP para o mundo. **Não desligamos o público** do Cosmos — as Functions Consumption não
+> entram na VNet (ver o conceito no 11.2) — só o **restringimos**.
+
+**(a) Cosmos: público só a partir do Azure (o equivalente ao "Allow Azure services")**
+
+O Cosmos não tem o checkbox único do SQL/Storage; o equivalente é **"Accept connections from within
+Azure datacenters"** (que, por baixo, adiciona o IP coringa `0.0.0.0` = faixa dos datacenters Azure).
+
+1. Cosmos `cosmos-prd-bl-cin-001` → **Settings → Networking** → **Public network access = Selected
+   networks**.
+2. Marque **☑ Accept connections from within Azure datacenters** (libera as Functions, que têm IP
+   dinâmico).
+3. **+ Add my current IP** (para você administrar / usar o Data Explorer).
+4. **Save.** _(Regras de firewall levam até **15 min** para propagar — instabilidade nesse intervalo é normal.)_
+
+> 💻 **Equivalente por CLI** (`0.0.0.0` é o coringa "de dentro do Azure"):
+> ```bash
+> az cosmosdb update -g rg-prd-bl-cin-001 -n cosmos-prd-bl-cin-001 \
+>   --ip-range-filter "0.0.0.0,SEU.IP.PUBLICO"
+> ```
+
+> ⚠️ **O trade-off (é o ponto de ensino):**
+> - **Não** desligue o `Public network access` (deixe **Enabled**) — as Functions Consumption dependem dele; `Disabled` tem precedência e derruba tudo.
+> - Essa opção é **larga**: aceita **qualquer** origem dentro do Azure (inclusive de outras assinaturas). Fecha a internet-não-Azure (a maior parte da superfície), mas **não** é isolamento por assinatura. A barreira real continua sendo a **chave/token** — é **defesa em camadas**.
+> - A **API não é afetada** — ela chega pelo **Private Endpoint** (11.2). Isto aqui só endurece o caminho **público** (Functions).
+
+**(b) Functions: fechar o inbound HTTP**
+
+Suas 6 functions são **Change Feed + timer** — **nenhuma** é HTTP voltada ao usuário. Então o
+endpoint público `func-…azurewebsites.net` não serve para nada externo → dá para trancar _(no
+Consumption, restrição de **inbound** é suportada)_.
+
+1. Function App `func-prd-bl-cin-001` → **Settings → Networking** → **Inbound traffic → Access
+   restrictions**.
+2. **Public network access:** **Enabled from select virtual networks and IP addresses**.
+3. **+ Add rule** → deixe o padrão **Deny** e **Allow** só o essencial: **Service Tag = `AzureCloud`**
+   (plataforma/scale) e, se quiser administrar, seu **IP**.
+4. **Save.**
+
+> ⚠️ Deixe o **`AzureCloud`** liberado (senão você quebra o gerenciamento da app). O caminho do
+> **scoring** (Change Feed = Function→Cosmos, **outbound**) **não** depende do inbound → trancar o
+> inbound é seguro para a pontuação.
+
+**🧪 Teste (obrigatório):**
+- **`/api/health/full`** da API segue **`"ok":true`** (a API não foi afetada — vai pelo PE).
+- Refaça o **teste de pontuação (Fase 10)**: lançar um resultado ainda **atualiza o leaderboard** —
+  prova que as **Functions** continuam alcançando o Cosmos (agora só-Azure) e que o inbound travado
+  não quebrou o Change Feed.
+- ❌ Se o placar parar: o Cosmos restringiu demais (confirme o **Accept connections from within Azure
+  datacenters** ligado) **ou** o inbound da Function bloqueou o `AzureCloud`.
+
+> ⚠️ **Vai re-seedar depois?** O seed roda de um **runner do GitHub** (fora do Azure) → com o Cosmos
+> em Selected networks ele **falha** (403). Antes de re-seedar, **reabra** o Cosmos (All networks) e
+> restrinja de novo depois. _(A carga inicial da Fase 9 já rodou antes desta fase, então o fluxo normal não é afetado.)_
+
+> ✅ **Pronto quando:** o Cosmos está em **Selected networks** com **Azure datacenters + seu IP**, a
+> Function está com **inbound restrito** (`AzureCloud` + seu IP) e o **teste de pontuação segue
+> funcionando**. 🔒 **Superfície pública reduzida — sem desligar o Consumption.**
+
 ---
 
 ### 🎖️ Fase 12 — Troubleshooting
@@ -1512,6 +1576,8 @@ Você **não cria** VNet nem subnets aqui — o **lab inicial (etapa de infra)**
 | **(Fase 11.2)** `getent hosts` na API devolve **IP público** | Falta `WEBSITE_VNET_ROUTE_ALL=1`, ou a zona `privatelink.documents.azure.com` não linkada à VNet | Confirme a VNet Integration + `WEBSITE_VNET_ROUTE_ALL=1` e a zona DNS linkada (11.2) |
 | **(Fase 11.2)** `nameresolver: command not found` no SSH da API | `nameresolver` é do Kudu de **Windows**; a API é **Linux** | Use `getent hosts <fqdn>` ou `node -e "require('dns').lookup('<fqdn>',(e,a)=>console.log(a))"` (11.2) |
 | **(Fase 11.2)** `/api/health/full` quebrou após o Private Endpoint | Private Endpoint não **Approved**, ou DNS sem A-records | Cosmos → Networking → connection **Approved**; recrie os A-records pela aba **DNS configuration** do PE; em último caso reabra (remova `WEBSITE_VNET_ROUTE_ALL`) e reteste |
+| **(Fase 11.3)** o **placar parou de atualizar** após restringir o Cosmos | O Cosmos ficou em Selected networks **sem** liberar o Azure → as **Functions** (Consumption, IP dinâmico) tomam 403 | Cosmos → Networking → confirme **☑ Accept connections from within Azure datacenters** (ou `--ip-range-filter "0.0.0.0,..."`) e o `Public network access` = **Enabled** (não Disabled). Cheque também o inbound da Function (deixe o `AzureCloud`) |
+| **(Fase 11.3)** o **seed (workflow) falha com 403** depois do hardening | O runner do GitHub está **fora do Azure** → bloqueado pelo Selected networks | **Reabra** o Cosmos (All networks) para re-seedar e **restrinja de novo** depois (ou allowliste o IP do runner) |
 | **Mudei o frontend e o navegador mostra o antigo** | **PWA / Service Worker** com cache | Hard-reload (Ctrl+Shift+R) ou DevTools → Application → Service Workers → **Unregister** |
 | **Cosmos lento / erro 429** | Estourou os 1000 RU/s do Free Tier | Normal sob carga alta; aguarde ou aumente RU/s (sai do free) |
 
